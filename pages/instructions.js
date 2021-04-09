@@ -1,3 +1,5 @@
 export default function instructions() {
-  return ()
+  return (
+    <div></div>
+  )
 }

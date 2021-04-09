@@ -1,3 +1,5 @@
 export default function addModuleForm() {
-  return ()
+  return (
+    <div></div>
+  )
 }

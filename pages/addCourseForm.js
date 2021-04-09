@@ -1,3 +1,5 @@
 export default function addCourseForm() {
-  return ()
+  return (
+    <div></div>
+  )
 }

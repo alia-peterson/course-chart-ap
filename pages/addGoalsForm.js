@@ -1,3 +1,5 @@
 export default function addGoalsForm() {
-  return ()
+  return (
+    <div></div>
+  )
 }

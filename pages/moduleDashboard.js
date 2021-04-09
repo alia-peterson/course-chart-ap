@@ -1,3 +1,5 @@
 export default function moduleDashboard() {
-  return ()
+  return (
+    <div></div>
+  )
 }

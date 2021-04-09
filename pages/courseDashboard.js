@@ -1,3 +1,5 @@
 export default function courseDashboard() {
-  return ()
+  return (
+    <div></div>
+  )
 }
