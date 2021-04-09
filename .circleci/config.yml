@@ -1,14 +1,12 @@
 version: 2.1
 orbs:
-  node: circleci/node@1.1
-jobs:
+  cypress: cypress-io/cypress@1
+workflows:
   build:
-    executor:
-      name: node/default
-      tag: '10.4'
-    steps:
-      - checkout
-      - node/with-cache:
-          steps:
-            - run: npm install
-      - run: npm run test
+    jobs:
+      - cypress/install:
+          build: 'npm run build'
+      - cypress/run:
+          requires:
+            - cypress/install
+          start: 'npm run test'
