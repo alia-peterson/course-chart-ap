@@ -1,0 +1,35 @@
+/* primary cyan #2E9BF0 */
+/* background blue #1B3D59 */
+/* active blue #2D75AE */
+/* dark gray #808080 */
+/* light gray #E6E6E6 */
+
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;500&display=swap');
+
+.navbar {
+  min-height: 100vh;
+  width: 200px;
+  background-color: #1B3D59;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+.container {
+  background-color: #2E9BF0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* height: 160px; */
+  width: 100%;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  width: 80px;
+  border: 2px solid black;
+  border-radius: 50%;
+  background-color: #F9F9F9;
+  margin-top: 1rem;
+}
