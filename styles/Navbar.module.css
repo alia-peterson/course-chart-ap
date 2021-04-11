@@ -13,7 +13,7 @@
   font-family: 'Rajdhani', sans-serif;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: flex-end;
 }
 
@@ -38,14 +38,39 @@
   margin-top: 1rem;
 }
 
-.buttons {
+.courseButtons {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 }
 
-.buttons a {
+.courseButtons a {
   margin-top: 1rem;
   padding: 0.5rem;
   background-color: #2D75AE;
+}
+
+.navButtons {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.navButtons a {
+  background-color: #808080;
+  padding: 0.5rem 0;
+  text-align: center;
+  width: 100%;
+}
+
+.new {
+  background-color: #2E9BF0 !important;
+}
+
+.navButtons a:nth-child(1) {
+  background-color: #808080;
+}
+
+.navButtons a:nth-child(2) {
+  background-color: #E6E6E6;
 }
