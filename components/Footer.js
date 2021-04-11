@@ -1,5 +1,14 @@
-export default function Footer() {
+import React from 'react';
+
+const Footer = () => {
+    
     return (
-        <div></div>
+        <footer>
+            <a>Contact the Developers</a>
+        </footer>
+        
     )
 }
+
+export default Footer;
+
