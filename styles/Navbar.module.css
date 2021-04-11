@@ -11,6 +11,10 @@
   width: 200px;
   background-color: #1B3D59;
   font-family: 'Rajdhani', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
 }
 
 .container {
@@ -32,4 +36,16 @@
   border-radius: 50%;
   background-color: #F9F9F9;
   margin-top: 1rem;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.buttons a {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  background-color: #2D75AE;
 }

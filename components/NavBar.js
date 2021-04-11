@@ -12,7 +12,22 @@ export default function NavBar() {
         <h1>CourseChart</h1>
       </secton>
 
-      <secton>
+      <secton className={styles.buttons}>
+        <Link href='/courseDashboard'>
+          <a>All Courses</a>
+        </Link>
+
+        <Link href='/courseDashboard'>
+          <a>Course 1</a>
+        </Link>
+
+        <Link href='/moduleDashboard'>
+          <a>All Modules</a>
+        </Link>
+
+        <Link href='/moduleDashboard'>
+          <a>Module 1</a>
+        </Link>
 
       </secton>
     </nav>
