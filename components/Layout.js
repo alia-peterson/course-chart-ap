@@ -14,11 +14,11 @@ const Layout = ({ children }) => {
             <div className={styles.container}>
                 <NavBar />
 
-                <div className={styles.main}>
+                <main className={styles.main}>
                   {children}
 
                   <Footer />
-                </div>
+                </main>
             </div>
         </>
     )
