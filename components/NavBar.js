@@ -47,7 +47,7 @@ export default function NavBar() {
 
       <secton className={styles.courseButtons}>
         <Link href='/'>
-          <a className={styles.course}>All Courses</a>
+          <a className={styles.course}>All Course Dashboard</a>
         </Link>
 
         {courses}
