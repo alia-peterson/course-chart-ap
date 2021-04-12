@@ -9,4 +9,6 @@ workflows:
       - cypress/run:
           requires:
             - cypress/install
+          record: false
           start: 'npm run test'
+          
