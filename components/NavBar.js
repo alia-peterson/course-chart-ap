@@ -38,14 +38,14 @@ export default function NavBar() {
 
   return (
     <nav className={styles.navbar}>
-      <secton className={styles.container}>
+      <section className={styles.container}>
         <div className={styles.logo}>
           <Image src='/icon.png' alt='Course chart icon' height={50} width={50} />
         </div>
         <h1>CourseChart</h1>
-      </secton>
+      </section>
 
-      <secton className={styles.courseButtons}>
+      <section className={styles.courseButtons}>
         <Link href='/'>
           <a className={styles.course}>All Course Dashboard</a>
         </Link>
@@ -55,7 +55,7 @@ export default function NavBar() {
         <Link href='/addCourseForm'>
         <a className={styles.addCourse}>+ Add New Course</a>
         </Link>
-      </secton>
+      </section>
 
       <section className={styles.navButtons}>
         <Link href='/instructions'>
