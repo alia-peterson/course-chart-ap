@@ -1,21 +1,63 @@
 const data = {
-  courses: [
-    {
-      id: 1,
-      name: '',
-      institution: '',
-      creditHours: 4,
-      length: 16
-    }
-  ], 
-  modules: [
-    {
-      id: 2,
-      number: 8,
-      courseId: 194753,
-      name: ''
-    }
-  ],
+    courses: [{
+      "Id":1,
+      "Name":"Foundations of Nursing",
+      "Institution":"Colorado Nursing College",
+      "CreditHours":3,
+      "Length":8,
+      "CreatedAt":"",
+      "UpdatedAt":"",
+      "Modules":[
+        {
+            "id":1,
+            "name":"Module 1",
+            "number":1,
+            "CourseId":1
+        },
+        {
+            "id":2,
+            "name":"Module 2",
+            "number":2,
+            "CourseId":1
+        },
+        {
+            "id":3,
+            "name":"Module 3",
+            "number":3,
+            "CourseId":1
+        },
+        {
+            "id":4,
+            "name":"Module 4",
+            "number":4,
+            "CourseId":1
+        },
+        {
+            "id":5,
+            "name":"Module 5",
+            "number":5,
+            "CourseId":1
+        },
+        {
+            "id":6,
+            "name":"Module 6",
+            "number":6,
+            "CourseId":1
+        },
+        {
+            "id":7,
+            "name":"Module 7",
+            "number":7,
+            "CourseId":1
+        },
+        {
+            "id":8,
+            "name":"Module 8",
+            "number":8,
+            "CourseId":1
+        }
+      ]
+    }],
   activities: [
     {
       id: 3,
