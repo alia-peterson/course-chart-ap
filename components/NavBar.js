@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import styles from '../styles/Navbar.module.css'
+import styles from '../styles/Navbar.module.scss'
 
 export default function NavBar() {
   return (
@@ -14,27 +14,27 @@ export default function NavBar() {
 
       <secton className={styles.courseButtons}>
         <Link href='/'>
-          <a>All Courses</a>
+          <a className={styles.link}>All Courses</a>
         </Link>
 
         <Link href='/courseDashboard'>
-          <a>Course 1</a>
+          <a className={styles.link}>Course 1</a>
         </Link>
 
         <Link href='/addCourseForm'>
-          <a className={styles.new}>+ Add New Course</a>
+          <a className={styles.add}>+ Add New Course</a>
         </Link>
 
         <Link href='/moduleDashboard'>
-          <a>All Modules</a>
+          <a className={styles.link}>All Modules</a>
         </Link>
 
         <Link href='/moduleDashboard'>
-          <a>Module 1</a>
+          <a className={styles.link}>Module 1</a>
         </Link>
 
         <Link href='/addModuleForm'>
-          <a className={styles.new}>+ Add New Module</a>
+          <a className={styles.add}>+ Add New Module</a>
         </Link>
       </secton>
 

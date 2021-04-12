@@ -1,15 +1,9 @@
-/* primary cyan #2E9BF0 */
-/* background blue #1B3D59 */
-/* active blue #2D75AE */
-/* dark gray #808080 */
-/* light gray #E6E6E6 */
-
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;500&display=swap');
+@import 'variables';
 
 .navbar {
   min-height: 100vh;
   width: 200px;
-  background-color: #1B3D59;
+  background-color: $blue-dark;
   font-family: 'Rajdhani', sans-serif;
   display: flex;
   flex-direction: column;
@@ -18,7 +12,7 @@
 }
 
 .container {
-  background-color: #2E9BF0;
+  background-color: $blue-light;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -34,7 +28,7 @@
   width: 80px;
   border: 2px solid black;
   border-radius: 50%;
-  background-color: #F9F9F9;
+  background-color: $off-white;
   margin-top: 1rem;
 }
 
@@ -42,35 +36,41 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-}
-
-.courseButtons a {
-  margin-top: 1rem;
-  padding: 0.5rem;
-  background-color: #2D75AE;
+  width: 80%;
 }
 
 .navButtons {
   display: flex;
   flex-direction: column;
   width: 100%;
+
+  a {
+    padding: 0.5rem 0;
+    text-align: center;
+    width: 100%;
+  }
 }
 
-.navButtons a {
-  background-color: #808080;
+.link,
+.add {
   padding: 0.5rem 0;
   text-align: center;
+  margin-top: 0.5rem;
   width: 100%;
 }
 
-.new {
-  background-color: #2E9BF0 !important;
+.link {
+  background-color: $blue-medium;
+}
+
+.add {
+  background-color: $blue-light;
 }
 
 .navButtons a:nth-child(1) {
-  background-color: #808080;
+  background-color: $gray-dark;
 }
 
 .navButtons a:nth-child(2) {
-  background-color: #E6E6E6;
+  background-color: $gray-light;
 }
