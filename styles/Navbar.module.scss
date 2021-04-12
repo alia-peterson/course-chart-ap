@@ -5,10 +5,12 @@
   width: 200px;
   background-color: $blue-dark;
   font-family: 'Rajdhani', sans-serif;
+  // font-size: 18px;
+  font-weight: bold;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: flex-end;
+  justify-content: space-between;
 }
 
 .container {

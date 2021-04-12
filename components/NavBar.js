@@ -40,7 +40,7 @@ export default function NavBar() {
     <nav className={styles.navbar}>
       <secton className={styles.container}>
         <div className={styles.logo}>
-          <Image src='/icon.png' height={50} width={50} />
+          <Image src='/icon.png' alt='Course chart icon' height={50} width={50} />
         </div>
         <h1>CourseChart</h1>
       </secton>

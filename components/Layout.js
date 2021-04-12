@@ -4,24 +4,24 @@ import NavBar from './NavBar'
 import styles from '../styles/Home.module.scss'
 
 const Layout = ({ children }) => {
-    return (
-        <>
-            <Head>
-                <title>Course Chart</title>
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
+  return (
+    <html lang="en">
+      <Head>
+        <title>Course Chart</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
 
-            <div className={styles.container}>
-                <NavBar />
+      <div className={styles.container}>
+        <NavBar />
 
-                <main className={styles.main}>
-                  {children}
+        <main className={styles.main}>
+          {children}
 
-                  <Footer />
-                </main>
-            </div>
-        </>
-    )
+          <Footer />
+        </main>
+      </div>
+    </html>
+  )
 }
 
 export default Layout;
