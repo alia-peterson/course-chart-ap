@@ -1,7 +1,7 @@
 @import 'variables';
 
 .navbar {
-  min-height: 100vh;
+  height: 100vh;
   width: 200px;
   background-color: $blue-dark;
   font-family: 'Rajdhani', sans-serif;
@@ -18,6 +18,10 @@
   align-items: center;
   /* height: 160px; */
   width: 100%;
+
+  h1 {
+    margin-top: 0;
+  }
 }
 
 .logo {
@@ -36,7 +40,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  width: 80%;
+  width: 100%;
+  overflow-y: scroll;
 }
 
 .navButtons {
@@ -51,20 +56,30 @@
   }
 }
 
-.link,
+.course,
+.module,
 .add {
   padding: 0.5rem 0;
   text-align: center;
   margin-top: 0.5rem;
+}
+
+.course,
+.module {
+  background-color: $blue-medium;
+}
+
+.course {
   width: 100%;
 }
 
-.link {
-  background-color: $blue-medium;
+.module {
+  width: 90%;
 }
 
 .add {
   background-color: $blue-light;
+  width: 100%;
 }
 
 .navButtons a:nth-child(1) {

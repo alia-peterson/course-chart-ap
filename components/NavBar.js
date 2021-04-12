@@ -2,7 +2,27 @@ import Image from 'next/image'
 import Link from 'next/link'
 import styles from '../styles/Navbar.module.scss'
 
+import { useAppContext } from '../context/app-context'
+
 export default function NavBar() {
+  const { sharedState } = useAppContext()
+  
+  const courses = sharedState.courses.map((course, i) => {
+    return (
+      <Link key={i} href='/courseDashboard'>
+        <a className={styles.course}>{course.Name}</a>
+      </Link>
+    )
+  })
+
+  const modules = sharedState.courses[0].Modules.map((mod, i) => {
+    return (
+      <Link key={i} href='/moduleDashboard'>
+        <a className={styles.module}>{mod.name}</a>
+      </Link>
+    )
+  })
+
   return (
     <nav className={styles.navbar}>
       <secton className={styles.container}>
@@ -14,24 +34,20 @@ export default function NavBar() {
 
       <secton className={styles.courseButtons}>
         <Link href='/'>
-          <a className={styles.link}>All Courses</a>
+          <a className={styles.course}>All Courses</a>
         </Link>
 
-        <Link href='/courseDashboard'>
-          <a className={styles.link}>Course 1</a>
-        </Link>
+        {courses}
 
         <Link href='/addCourseForm'>
           <a className={styles.add}>+ Add New Course</a>
         </Link>
 
         <Link href='/moduleDashboard'>
-          <a className={styles.link}>All Modules</a>
+          <a className={styles.module}>All Modules</a>
         </Link>
 
-        <Link href='/moduleDashboard'>
-          <a className={styles.link}>Module 1</a>
-        </Link>
+        {modules}
 
         <Link href='/addModuleForm'>
           <a className={styles.add}>+ Add New Module</a>
