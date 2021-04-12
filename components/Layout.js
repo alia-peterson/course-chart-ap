@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Footer from './Footer'
 import NavBar from './NavBar'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Home.module.scss'
 
 const Layout = ({ children }) => {
     return (
@@ -10,13 +10,15 @@ const Layout = ({ children }) => {
                 <title>Course Chart</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            
+
             <div className={styles.container}>
                 <NavBar />
 
-                {children}
+                <div className={styles.main}>
+                  {children}
 
-                <Footer />
+                  <Footer />
+                </div>
             </div>
         </>
     )
