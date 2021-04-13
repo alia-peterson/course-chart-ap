@@ -63,10 +63,10 @@ const BarChart = () => {
                     Quizzes
                 </button>
                 <button className={styles.thirdActivity}>
-                    Writing
+                    Writings
                 </button>
                 <button className={styles.forthActivity}>
-                    Reading
+                    Readings
                 </button>
                 <button className={styles.fifthActivity}>
                     Videos
