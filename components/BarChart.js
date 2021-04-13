@@ -1,16 +1,18 @@
-import React, {Component} from 'react';
-import {Bar} from 'react-chartjs-2';
-//import PropTypes from 'prop-types';
+import { Bar } from 'react-chartjs-2';
+import { useAppContext } from '../context/app-context';
+import styles from '../styles/BarChart.module.scss'
 
 const BarChart = () => {
 
+    const { sharedState } = useAppContext()
+
     const data = {
-        labels: ['1', '2', '3', '4', '5', '6'],
+        labels: sharedState.courses[0].Modules.map(mod => mod.number),
         datasets: [{
           label: 'Reading',
           data: [12, 19, 3, 5, 2, 3],
-          backgroundColor: 'rgba(255, 99, 132, 0.2)',
-          borderColor: 'rgba(255, 99, 132, 1)',
+          backgroundColor: 'rgba(242, 71, 38, 0.2)',
+          borderColor: 'rgba(242, 71, 38, 1)',
           borderWidth: 1
         }]
     }
@@ -19,7 +21,7 @@ const BarChart = () => {
         maintainAspectRatio: true,
         title: {
             display: true,
-            text: "Comparison of Individual Task for Courses",
+            text: `Comparison of Individual Task for ${sharedState.courses[0].Name}`,
             fontSize: 16,
         },
         scales: {
@@ -47,20 +49,35 @@ const BarChart = () => {
 
     return (
         <>
-        <h2>Bar Chart</h2>
-        <Bar 
-            data={data}
-            maxWidth={'auto'}
-            height={700}
-            options={opts}
-        />
+            <Bar 
+                data={data}
+                maxWidth={700}
+                height={500}
+                options={opts}
+            />
+            <section className={styles.activityOptions}>
+               <button className={styles.firstActivity}>
+                    Lessons Objects
+                </button>
+                <button className={styles.secondActivity}>
+                    Quizzes
+                </button>
+                <button className={styles.thirdActivity}>
+                    Writing
+                </button>
+                <button className={styles.forthActivity}>
+                    Reading
+                </button>
+                <button className={styles.fifthActivity}>
+                    Videos
+                </button>
+                <button className={styles.sixthActivity}>
+                    Discussion Boards
+                </button> 
+            </section>
         </>
     )
 }
 
 export default BarChart;
 
-//PropTypes
-//BarChart.propTypes = {
-
-//}
