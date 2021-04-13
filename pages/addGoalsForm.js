@@ -15,57 +15,72 @@ export default function addGoalsForm() {
 
       <div className={styles.goal}>
         <div className={styles.total}>
-          <p>0</p>
+          <p className={styles.totalNum}>0</p>
           <p className={styles.type}>Reading</p>
         </div>
         <p># of Pages:</p>
-        <input type='text'></input>
-        <p>130 wpm; 10 pages an hour</p>
-        <p>Description</p>
+        <div className={styles.circle}>
+          <input className={styles.goalInput} type='text'></input>
+          <label className={styles.goalLabel}>Pages Read</label>
+        </div>
+        <p className={styles.description}>130 wpm; 10 pages an hour</p>
+        <p className={styles.description}>Description</p>
       </div>
 
       <div className={styles.goal}>
         <div className={styles.total}>
-          <p>0</p>
-          <p>Writing</p>
+          <p className={styles.totalNum}>0</p>
+          <p className={styles.type}>Reading</p>
         </div>
         <p># of Pages:</p>
-        <input type='text'></input>
-        <p>130 wpm; 10 pages an hour</p>
-        <p>Description</p>
+        <div className={styles.circle}>
+          <input className={styles.goalInput} type='text'></input>
+          <label className={styles.goalLabel}>Pages Read</label>
+        </div>
+        <p className={styles.description}>130 wpm; 10 pages an hour</p>
+        <p className={styles.description}>Description</p>
       </div>
 
       <div className={styles.goal}>
         <div className={styles.total}>
-          <p>0</p>
-          <p>Reading</p>
+          <p className={styles.totalNum}>0</p>
+          <p className={styles.type}>Reading</p>
         </div>
         <p># of Pages:</p>
-        <input type='text'></input>
-        <p>130 wpm; 10 pages an hour</p>
-        <p>Description</p>
+        <div className={styles.circle}>
+          <input className={styles.goalInput} type='text'></input>
+          <label className={styles.goalLabel}>Pages Read</label>
+        </div>
+        <p className={styles.description}>130 wpm; 10 pages an hour</p>
+        <p className={styles.description}>Description</p>
       </div>
 
       <div className={styles.goal}>
         <div className={styles.total}>
-          <p>0</p>
-          <p>Reading</p>
+          <p className={styles.totalNum}>0</p>
+          <p className={styles.type}>Reading</p>
         </div>
         <p># of Pages:</p>
-        <input type='text'></input>
-        <p>130 wpm; 10 pages an hour</p>
-        <p>Description</p>
+        <div className={styles.circle}>
+          <input className={styles.goalInput} type='text'></input>
+          <label className={styles.goalLabel}>Pages Read</label>
+        </div>
+        <p className={styles.description}>130 wpm; 10 pages an hour</p>
+        <p className={styles.description}>Description</p>
       </div>
 
       <div className={styles.goal}>
         <div className={styles.total}>
-          <p>0</p>
-          <p>Reading</p>
+          <p className={styles.totalNum}>0</p>
+          <p className={styles.type}>Reading</p>
         </div>
         <p># of Pages:</p>
-        <input type='text'></input>
-        <p>130 wpm; 10 pages an hour</p>
-        <p>Description</p>
+        <div className={styles.circle}>
+          <input className={styles.goalInput} type='text'></input>
+          <label className={styles.goalLabel}>Pages Read</label>
+        </div>
+        <p className={styles.description}>130 wpm; 10 pages an hour</p>
+        <p className={styles.description}>Description</p>
       </div>
     
     </form>
