@@ -6,27 +6,29 @@ const AppContext = createContext();
 
 export function AppWrapper({ children }) {
     // Possibly necessary to wrap allCourses in a useEffect() with an [] as parameter
-    const allCourses = Promise.resolve(getData('courses'))
-        .then(data => {
-            const courseInfo = data.data.map(course => getData(`courses/${course.id}`))
-            Promise.all(courseInfo)
-                .then(data => data)
-        })
+    // const allCourses = Promise.resolve(getData('courses'))
+    //     .then(data => {
+    //         const courseInfo = data.data.map(course => getData(`courses/${course.id}`))
+    //         Promise.all(courseInfo)
+    //             .then(data => data)
+    //     })
     
-    const post = (postType, postBody) => {
-        let url = 'https://course-chart-be.herokuapp.com/modules'
-        if (postType === 'course') {
-            url = 'https://course-chart-be.herokuapp.com/courses'
-        }
-        Promise.resolve(postData(url, postBody)).then(response => {
-            if (!response) {
-                return alert(`Sorry, there was an error adding your ${postType}.` )
-            }
-            setSharedState(...sharedState, postBody)
-            // based on the value of postType we add it to the necessary array (maybe spread operator)
-        })
-    }
-    const [sharedState, setSharedState] = useState(allCourses)
+    const allCourses = Promise.resolve(getData('courses'))
+    console.log(allCourses.then(data => console.log(data)))
+    // const post = (postType, postBody) => {
+    //     let url = 'https://course-chart-be.herokuapp.com/modules'
+    //     if (postType === 'course') {
+    //         url = 'https://course-chart-be.herokuapp.com/courses'
+    //     }
+    //     Promise.resolve(postData(url, postBody)).then(response => {
+    //         if (!response) {
+    //             return alert(`Sorry, there was an error adding your ${postType}.` )
+    //         }
+    //         setSharedState(...sharedState, postBody)
+    //         // based on the value of postType we add it to the necessary array (maybe spread operator)
+    //     })
+    // }
+    const [sharedState, setSharedState] = useState(mockData)
     // Cleaning function to assign the null values an empty string ('') for useState()
     const value = { setSharedState, sharedState }
 
