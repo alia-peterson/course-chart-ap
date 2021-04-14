@@ -5,6 +5,7 @@ import { getData, postData } from './apiCalls';
 const AppContext = createContext();
 
 export function AppWrapper({ children }) {
+    // Possibly necessary to wrap allCourses in a useEffect() with an [] as parameter
     const allCourses = Promise.resolve(getData('courses'))
         .then(data => {
             const courseInfo = data.data.map(course => getData(`courses/${course.id}`))
