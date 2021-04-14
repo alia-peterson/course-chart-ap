@@ -1,11 +1,11 @@
-export const activites = {
+export const activities = {
     readingUnderstand: {
       id: 1,
       name: 'Reading (understand)',
       description: '130 wpm; 10 pages per hour',
       metric: '# of pages',
       multiplier: 6,
-      custom: FALSE
+      custom: false
     },
     readingStudyGuide: {
       id: 2,
@@ -13,7 +13,7 @@ export const activites = {
       description: '65 wpm; 5 pages per hour',
       metric: '# of pages',
       multiplier: 12,
-      custom: FALSE
+      custom: false
     },
     writingReflection: {
       id: 3,
@@ -21,7 +21,7 @@ export const activites = {
       description: '6 hours per page (500 words, single-spaced)',
       metric: '# of pages',
       multiplier: 360,
-      custom: FALSE
+      custom: false
     },
     writingResearch: {
       id: 4,
@@ -29,7 +29,7 @@ export const activites = {
       description: '90 minutes per page (500 words, single-spaced)',
       metric: '# of pages',
       multiplier: 90,
-      custom: FALSE
+      custom: false
     },
     learningObjectMatching: {
       id: 5,
@@ -37,7 +37,7 @@ export const activites = {
       description: '10 minutes per object',
       metric: '# of LOs',
       multiplier: 10,
-      custom: FALSE
+      custom: false
     },
     learningObjectCaseStudy: {
       id: 6,
@@ -45,7 +45,7 @@ export const activites = {
       description: '20 minutes per object',
       metric: '# of LOs',
       multiplier: 20,
-      custom: FALSE
+      custom: false
     },
     lecture: {
       id: 7,
@@ -53,7 +53,7 @@ export const activites = {
       description: 'Factor 1.25x the actual lecture runtime',
       metric: '# of minutes',
       multiplier: 1.25,
-      custom: FALSE
+      custom: false
     },
     videos: {
       id: 8,
@@ -61,7 +61,7 @@ export const activites = {
       description: 'Factor the full length of video',
       metric: '# of minutes',
       multiplier: 1,
-      custom: FALSE
+      custom: false
     },
     websites: {
       id: 9,
@@ -69,7 +69,7 @@ export const activites = {
       description: '10-20 minutes',
       metric: '',
       multiplier: 1,
-      custom: FALSE
+      custom: false
     },
     discussionBoards: {
       id: 10,
@@ -77,7 +77,7 @@ export const activites = {
       description: '250 words/60 minutes for initial post or 2 replies',
       metric: '# of discussion boards',
       multiplier: 60,
-      custom: FALSE
+      custom: false
     },
     quizzes: {
       id: 11,
@@ -85,7 +85,7 @@ export const activites = {
       description: 'Average 1.5 minutes per question',
       metric: '# of questions',
       multiplier: 1.5,
-      custom: FALSE
+      custom: false
   },
   exam: {
     id: 12,
@@ -93,7 +93,7 @@ export const activites = {
     description: 'Average 1.5 minutes per question',
     metric: '# of questions',
     multiplier: 1.5,
-    custom: FALSE
+    custom: false
 },
 selfAssessments: {
     id: 13,
@@ -101,7 +101,7 @@ selfAssessments: {
     description: 'Average 1 minute per question',
     metric: '# of questions',
     multiplier: 1,
-    custom: FALSE
+    custom: false
   },
   miscellaneous: {
     id: 14,
@@ -109,6 +109,6 @@ selfAssessments: {
     description: 'any additional assignments not listed',
     metric: '',
     multiplier: 1,
-    custom: FALSE
+    custom: false
   }
 }
