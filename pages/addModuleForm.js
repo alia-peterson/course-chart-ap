@@ -105,7 +105,7 @@ export default function addModuleForm() {
           {/*{courses}*/}
         </select>
         
-        {makeInputs(activities)}
+        {/*makeInputs(activities)*/}
 
         <label htmlFor="module-name" aria-label="Module Name">Module Name</label>
         <input ref={moduleName} id="module-name" type="text" required/>
@@ -113,48 +113,105 @@ export default function addModuleForm() {
         <label htmlFor="description" aria-label="description">Description</label>
         <input ref={description} id="description" type="text"/>
 
-        <label htmlFor="reading-understand" aria-label="reading understand">{activities["readingUnderstand"].name}</label>
+        <div className="totalMinutes">
+          <p>Total Minutes {activities["readingUnderstand"].name}: {readingUnderstand * activities["readingUnderstand"].multiplier}</p>
+        </div>
+
+        <label htmlFor="reading-understand" aria-label="reading understand">{activities["readingUnderstand"].metric}</label>
         <input ref={readingUnderstand} id="readingUnderstand" type="text" />
 
-        <label htmlFor="reading-StudyGuide" aria-label="reading study guide">{activities["readingStudyGuide"].name}</label>
+        <div></div>
+        <div className="description">{description}</div>
+
+        <div className="totalMinutes">
+          <p>Total Minutes {activities["readingStudyGuide"].name}: {readingStudyGuide * activities["readingStudyGuide"].multiplier}</p>
+        </div>
+
+        <label htmlFor="reading-StudyGuide" aria-label="reading study guide">{activities["readingStudyGuide"].metric}</label>
         <input ref={readingStudyGuide} id="readingStudyGuide" type="text" />
 
-        <div><p>has shit</p></div>
+        <div className="totalMinutes">
+          <p>Total Minutes {activities["writingReflection"].name}: {writingReflection * activities["writingReflection"].multiplier}</p>
+        </div>
 
-        <label htmlFor="writingReflection" aria-label="writing reflection">{activities["readingStudyGuide"].name}</label>
+        <label htmlFor="writingReflection" aria-label="writing reflection">{activities["writingReflection"].metric}</label>
         <input ref={writingReflection} id="writingReflection" type="text" />
 
-        <label htmlFor="writingResearch" aria-label="writing research">{activities["readingStudyGuide"].name}</label>
+        <div className="totalMinutes">
+          <p>Total Minutes {activities["writingResearch"].name}: {writingResearch * activities["writingResearch"].multiplier}</p>
+        </div>
+
+        <label htmlFor="writingResearch" aria-label="writing research">{activities["writingResearch"].metric}</label>
         <input ref={writingResearch} id="writingResearch" type="text" />
 
-        <label htmlFor="learningObjectMatching" aria-label="learning object matching">Reading</label>
+        <div className="totalMinutes">
+          <p>Total Minutes {activities["learningObjectMatching"].name}: {learningObjectMatching * activities["learningObjectMatching"].multiplier}</p>
+        </div>
+
+        <label htmlFor="learningObjectMatching" aria-label="learning object matching">{activities["learningObjectMatching"].metric}</label>
         <input ref={learningObjectMatching} id="learningObjectMatching" type="text" />
 
-        <label htmlFor="learningObjectCaseStudy" aria-label="learning Object case study">Reading</label>
+        <div className="totalMinutes">
+          <p>Total Minutes {activities["learningObjectCaseStudy"].name}: {learningObjectCaseStudy * activities["learningObjectCaseStudy"].multiplier}</p>
+        </div>
+
+        <label htmlFor="learningObjectCaseStudy" aria-label="learning Object case study">{activities["learningObjectCaseStudy"].metric}</label>
         <input ref={learningObjectCaseStudy} id="learningObjectCaseStudy" type="text" />
 
-        <label htmlFor="lecture" aria-label="lecture">Reading</label>
+        <div className="totalMinutes">
+          <p>Total Minutes {activities["lecture"].name}: {lecture * activities["lecture"].multiplier}</p>
+        </div>
+
+        <label htmlFor="lecture" aria-label="lecture">{activities["lecture"].metric}</label>
         <input ref={lecture} id="lecture" type="text" />
 
-        <label htmlFor="videos" aria-label="videos">Reading</label>
+        <div className="totalMinutes">
+          <p>Total Minutes {activities["videos"].name}: {videos * activities["videos"].multiplier}</p>
+        </div>
+
+        <label htmlFor="videos" aria-label="videos">{activities["videos"].metric}</label>
         <input ref={videos} id="videos" type="text" />
 
-        <label htmlFor="websites" aria-label="websites">Reading</label>
+        <div className="totalMinutes">
+          <p>Total Minutes {activities["websites"].name}: {websites * activities["websites"].multiplier}</p>
+        </div>
+
+        <label htmlFor="websites" aria-label="websites">{activities["websites"].metric}</label>
         <input ref={websites} id="websites" type="text" />
 
-        <label htmlFor="discussionBoards" aria-label="discussion boards">Reading</label>
+        <div className="totalMinutes">
+          <p>Total Minutes {activities["discussionBoards"].name}: {discussionBoards * activities["discussionBoards"].multiplier}</p>
+        </div>
+
+        <label htmlFor="discussionBoards" aria-label="discussion boards">{activities["discussionBoards"].metric}</label>
         <input ref={discussionBoards} id="discussionBoards" type="text" />
 
-        <label htmlFor="quizzes" aria-label="quizzes">Reading</label>
+        <div className="totalMinutes">
+          <p>Total Minutes {activities["quizzes"].name}: {quizzes * activities["quizzes"].multiplier}</p>
+        </div>
+
+        <label htmlFor="quizzes" aria-label="quizzes">{activities["quizzes"].metric}</label>
         <input ref={quizzes} id="quizzes" type="text" />
 
-        <label htmlFor="exam" aria-label="exam">Reading</label>
+        <div className="totalMinutes">
+          <p>Total Minutes {activities["exam"].name}: {exam * activities["exam"].multiplier}</p>
+        </div>
+
+        <label htmlFor="exam" aria-label="exam">{activities["exam"].metric}</label>
         <input ref={exam} id="exam" type="text" />
 
-        <label htmlFor="selfAssessments" aria-label="self assessments">Reading</label>
+        <div className="totalMinutes">
+          <p>Total Minutes {activities["selfAssessments"].name}: {selfAssessments * activities["selfAssessments"].multiplier}</p>
+        </div>
+
+        <label htmlFor="selfAssessments" aria-label="self assessments">{activities["selfAssessments"].metric}</label>
         <input ref={selfAssessments} id="selfAssessments" type="text" />
 
-        <label htmlFor="miscellaneous" aria-label="miscellaneous">Reading</label>
+        <div className="totalMinutes">
+          <p>Total Minutes {activities["miscellaneous"].name}: {miscellaneous * activities["miscellaneous"].multiplier}</p>
+        </div>
+
+        <label htmlFor="miscellaneous" aria-label="miscellaneous">{activities["miscellaneous"].metric}</label>
         <input ref={miscellaneous} id="writingResearch" type="text" />
 
         <button type="submit">Add Module</button>
