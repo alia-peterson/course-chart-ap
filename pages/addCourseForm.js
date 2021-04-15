@@ -21,7 +21,7 @@ export default function addCourseForm() {
       Modules: []
     }
 
-    console.log(newCourse)
+    // POST new course object to server
   }
 
   return (
@@ -30,6 +30,7 @@ export default function addCourseForm() {
       <input
         type='text'
         id='institution'
+        className={styles.input}
         value={institution}
         onChange={(event) => setInstitution(event.target.value)}
         required
@@ -39,6 +40,7 @@ export default function addCourseForm() {
       <input
         type='text'
         id='course'
+        className={styles.input}
         value={course}
         onChange={(event) => setCourse(event.target.value)}
         required
@@ -48,6 +50,7 @@ export default function addCourseForm() {
       <input
         type='number'
         id='hours'
+        className={styles.input}
         value={hours}
         onChange={(event) => setHours(event.target.value)}
         required
@@ -57,12 +60,13 @@ export default function addCourseForm() {
       <input
         type='number'
         id='length'
+        className={styles.input}
         value={length}
         onChange={(event) => setLength(event.target.value)}
         required
         />
 
-      <button type='submit'>Submit</button>
+      <button type='submit' className={styles.button}>Submit</button>
     </form>
   )
 }
