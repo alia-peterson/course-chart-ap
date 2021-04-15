@@ -7,38 +7,11 @@ export default function addModuleForm() {
   const course = useRef('')
   const moduleName = useRef('')
   const description = useRef('')
-  const readingUnderstand = useRef('')
-  const readingStudyGuide = useRef('')
-  const writingReflection = useRef('')
-  const writingResearch = useRef('')
-  const learningObjectMatching = useRef('')
-  const learningObjectCaseStudy = useRef('')
-  const lecture = useRef('')
-  const videos = useRef('')
-  const websites = useRef('')
-  const discussionBoards = useRef('')
-  const quizzes = useRef('')
-  const exam = useRef('')
-  const selfAssessments = useRef('')
-  const miscellaneous = useRef('')
 
-  const refs = ['', readingUnderstand,
-    readingStudyGuide,
-    writingReflection,
-    writingResearch,
-    learningObjectMatching,
-    learningObjectCaseStudy,
-    lecture,
-    videos,
-    websites,
-    discussionBoards,
-    quizzes,
-    exam,
-    selfAssessments,
-    miscellaneous]
-    // Object.keys(activities).map(key => {
-    //   return {[key]: useRef('')}
-    // })
+  const refs = 
+    Object.fromEntries(Object.keys(activities).map(key => {
+      return [key, useState(0)]
+    }))
 
   //we need to figure out how to default/grab this chosen course to enable us to find the right hours per week to show the user as they're seeing the inputs and totals
   // const chosenCourse = sharedState.courses.find(c => c.name === course)
@@ -61,36 +34,91 @@ export default function addModuleForm() {
       number: chosenCourse.modules.length,
       ...refs
     }
+    console.log('MODULEPOST', modulePost)
 
     alert('Module Added!')
   }
 
   const makeInputs = (activities) => {
     
-    const allInputs = Object.keys(activities).map(key => {
-      const name = activities[key].name
-      const id = activities[key].id
-      const multiplier = activities[key].multiplier
-      const metric = activities[key].metric
-      const ref = refs[parseInt(id)]
-      
-      console.log(name, id, multiplier, metric, ref)
-      return (
-        <>
-        <div className="totalMinutes">
-          <p>Total Minutes {name}: {ref * multiplier}</p>
+    const allInputs = Object.keys(activities).map(key => (
+        <div className="inputStyle">
+          <div className="titleMinutes">
+            <p className="minutesTotal">{refs[key][0] * activities[key].multiplier}</p>
+            <p className="title">{activities[key].name}</p>
+          </div>
+          <label className="circleLabel" htmlFor={key} aria-label={activities[key].name}>{activities[key].metric}</label>
+          <input className="circleInput" value={refs[key][0]} id={activities[key].id} type="number" onChange={(event) => refs[key][1](event.target.value)}/>
+          <div className="description">
+            <p>{activities[key].description}</p>
+          </div>
+          <style jsx>{`
+          .inputStyle {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 2rem;
+            z-index: 1;
+            align-items: baseline;
+            
+          }
+          .titleMinutes {
+            display: flex;
+            flex-direction: row;
+            width: 40%;
+            height: 4rem;
+            text-align: center;
+          }
+          .title {
+            height: 100%;
+            width: 20rem;
+            border: 2px solid #1A3D59;
+            padding: 2.5rem 2rem 0rem 2rem;
+            text-align: center;
+            margin: 0.7rem 4rem 3rem -2rem;
+            font-weight: bold;
+            padding: 1rem;
+            margin: 2.5rem 4rem 5rem -2rem;
+            word-break: break-word;
+          }
+          .minutesTotal {
+            height: 100%;
+            width: 5rem;
+            background-color: #E6E6E6;
+            padding: 1rem;
+            text-align: center;
+            margin: 2.5rem 2rem 5rem 2rem
+          }
+          .circleLabel {
+            width: 15%;
+            padding-left: 2rem;
+            background-color: #E6E6E6;
+            height: 2rem;
+          }
+          .circleInput {
+            padding: 1.5rem;
+            width: 8rem;
+            height: 8rem;
+            border: 7px solid #1A3D59;
+            border-radius: 70px;
+            font-size: large;
+            z-index: 2;
+          }
+          .description {
+            background-color: #E6E6E6;
+            width: 40%;
+            height: 4rem;
+            text-align: center;
+            position: relative;
+            padding-left: 3rem;
+            z-index: 1;
+            left: -2rem;
+            bottom: .5rem;
+          }
+        `}</style>
         </div>
-
-        <label htmlFor={key} aria-label={name}>{metric}</label>
-        <input ref={ref} id={id} type="text" />
-
-        <div></div>
-        <div className="description">{description}</div>
-        </>
       )
-    })
-
-    return allInputs.join(' ')
+    )
+    return allInputs
   }
   
   return (
@@ -98,123 +126,85 @@ export default function addModuleForm() {
       <h1>Add A Module</h1>
 
       <form onSubmit={addModule}>
+        <div className="moduleMetaData">
+          <label htmlFor="course" aria-label="Course">Course:</label>
+          <select ref={course} id="course">
+            <option value="">--Please choose an option--</option>
+            {/*{courses}*/}
+          </select>
 
-        <label htmlFor="course" aria-label="Course">Course:</label>
-        <select ref={course} id="course">
-          <option value="">--Please choose an option--</option>
-          {/*{courses}*/}
-        </select>
+          <label htmlFor="module-name" aria-label="Module Name">Module  Name</label>
+          <input ref={moduleName} id="module-name" type="text" required/>
+
+          <label htmlFor="description"  aria-label="description">Description</label>
+          <input ref={description} id="description" type="text"/>
+
+          <style jsx>{`
+            .moduleMetaData {
+              display: flex;
+              flex-flow: column;
+              width: 50%;
+              margin-left: 25%;
+            }
+            input, select, label {
+              padding: .5rem;
+            }
+            label {
+              padding-top: 1rem;
+              padding-right: 2rem;
+            }
+          `}</style>
+        </div>
         
-        {/*makeInputs(activities)*/}
+      <div className="timeBar">
+        <p className="timeLabel">Total Recommended Time per Week: {10}</p>
+        <div className="timeMeter">
+          <div className="timeUsed" ></div>
+          
+      </div>
+      <style jsx>{`
+          .timeBar {
+            text-align: center;
+            margin-top: 3rem;
+          }
+            .timeMeter {
+              height: 1rem; 
+              background-color: #E6E6E6;
+              border: 2px solid #1A3D59;
+              margin-bottom: 2rem;
+              z-index: 1;
+              margin-top: 1rem;
+            }
+            .timeUsed {
+              width: 50%;
+              height: 100%;
+              z-index: 2;
+              background-color: #FAC70F;
+            }
+          `}</style>
+      </div>
 
-        <label htmlFor="module-name" aria-label="Module Name">Module Name</label>
-        <input ref={moduleName} id="module-name" type="text" required/>
+      <div className="topLabels" >
+        <p className="topLabelMinutes">Total Minutes</p>
+        <p className="topLabelInput">INPUT 🖊</p>
+        <p>Time Per Task</p>
+        <style jsx>{`
+          .topLabels {
+            display: flex;
+            flex-direction: row;
+            margin-left: 5%;
+          }
+          .topLabelMinutes {
+            margin-right: 28rem;
+          }
+          .topLabelInput {
+            margin-right: 8rem;
+          }
+        `}</style>
+      </div>
 
-        <label htmlFor="description" aria-label="description">Description</label>
-        <input ref={description} id="description" type="text"/>
-
-        <div className="totalMinutes">
-          <p>Total Minutes {activities["readingUnderstand"].name}: {readingUnderstand * activities["readingUnderstand"].multiplier}</p>
-        </div>
-
-        <label htmlFor="reading-understand" aria-label="reading understand">{activities["readingUnderstand"].metric}</label>
-        <input ref={readingUnderstand} id="readingUnderstand" type="text" />
-
-        <div></div>
-        <div className="description">{description}</div>
-
-        <div className="totalMinutes">
-          <p>Total Minutes {activities["readingStudyGuide"].name}: {readingStudyGuide * activities["readingStudyGuide"].multiplier}</p>
-        </div>
-
-        <label htmlFor="reading-StudyGuide" aria-label="reading study guide">{activities["readingStudyGuide"].metric}</label>
-        <input ref={readingStudyGuide} id="readingStudyGuide" type="text" />
-
-        <div className="totalMinutes">
-          <p>Total Minutes {activities["writingReflection"].name}: {writingReflection * activities["writingReflection"].multiplier}</p>
-        </div>
-
-        <label htmlFor="writingReflection" aria-label="writing reflection">{activities["writingReflection"].metric}</label>
-        <input ref={writingReflection} id="writingReflection" type="text" />
-
-        <div className="totalMinutes">
-          <p>Total Minutes {activities["writingResearch"].name}: {writingResearch * activities["writingResearch"].multiplier}</p>
-        </div>
-
-        <label htmlFor="writingResearch" aria-label="writing research">{activities["writingResearch"].metric}</label>
-        <input ref={writingResearch} id="writingResearch" type="text" />
-
-        <div className="totalMinutes">
-          <p>Total Minutes {activities["learningObjectMatching"].name}: {learningObjectMatching * activities["learningObjectMatching"].multiplier}</p>
-        </div>
-
-        <label htmlFor="learningObjectMatching" aria-label="learning object matching">{activities["learningObjectMatching"].metric}</label>
-        <input ref={learningObjectMatching} id="learningObjectMatching" type="text" />
-
-        <div className="totalMinutes">
-          <p>Total Minutes {activities["learningObjectCaseStudy"].name}: {learningObjectCaseStudy * activities["learningObjectCaseStudy"].multiplier}</p>
-        </div>
-
-        <label htmlFor="learningObjectCaseStudy" aria-label="learning Object case study">{activities["learningObjectCaseStudy"].metric}</label>
-        <input ref={learningObjectCaseStudy} id="learningObjectCaseStudy" type="text" />
-
-        <div className="totalMinutes">
-          <p>Total Minutes {activities["lecture"].name}: {lecture * activities["lecture"].multiplier}</p>
-        </div>
-
-        <label htmlFor="lecture" aria-label="lecture">{activities["lecture"].metric}</label>
-        <input ref={lecture} id="lecture" type="text" />
-
-        <div className="totalMinutes">
-          <p>Total Minutes {activities["videos"].name}: {videos * activities["videos"].multiplier}</p>
-        </div>
-
-        <label htmlFor="videos" aria-label="videos">{activities["videos"].metric}</label>
-        <input ref={videos} id="videos" type="text" />
-
-        <div className="totalMinutes">
-          <p>Total Minutes {activities["websites"].name}: {websites * activities["websites"].multiplier}</p>
-        </div>
-
-        <label htmlFor="websites" aria-label="websites">{activities["websites"].metric}</label>
-        <input ref={websites} id="websites" type="text" />
-
-        <div className="totalMinutes">
-          <p>Total Minutes {activities["discussionBoards"].name}: {discussionBoards * activities["discussionBoards"].multiplier}</p>
-        </div>
-
-        <label htmlFor="discussionBoards" aria-label="discussion boards">{activities["discussionBoards"].metric}</label>
-        <input ref={discussionBoards} id="discussionBoards" type="text" />
-
-        <div className="totalMinutes">
-          <p>Total Minutes {activities["quizzes"].name}: {quizzes * activities["quizzes"].multiplier}</p>
-        </div>
-
-        <label htmlFor="quizzes" aria-label="quizzes">{activities["quizzes"].metric}</label>
-        <input ref={quizzes} id="quizzes" type="text" />
-
-        <div className="totalMinutes">
-          <p>Total Minutes {activities["exam"].name}: {exam * activities["exam"].multiplier}</p>
-        </div>
-
-        <label htmlFor="exam" aria-label="exam">{activities["exam"].metric}</label>
-        <input ref={exam} id="exam" type="text" />
-
-        <div className="totalMinutes">
-          <p>Total Minutes {activities["selfAssessments"].name}: {selfAssessments * activities["selfAssessments"].multiplier}</p>
-        </div>
-
-        <label htmlFor="selfAssessments" aria-label="self assessments">{activities["selfAssessments"].metric}</label>
-        <input ref={selfAssessments} id="selfAssessments" type="text" />
-
-        <div className="totalMinutes">
-          <p>Total Minutes {activities["miscellaneous"].name}: {miscellaneous * activities["miscellaneous"].multiplier}</p>
-        </div>
-
-        <label htmlFor="miscellaneous" aria-label="miscellaneous">{activities["miscellaneous"].metric}</label>
-        <input ref={miscellaneous} id="writingResearch" type="text" />
-
-        <button type="submit">Add Module</button>
+        {makeInputs(activities)}
+        
       </form>
       </>
   )
