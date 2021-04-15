@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 import mockData from './mock-data';
 import { getData, postData } from './apiCalls';
 
@@ -12,25 +12,33 @@ export function AppWrapper({ children }) {
     //         Promise.all(courseInfo)
     //             .then(data => data)
     //     })
+    const [sharedState, setSharedState] = useState(mockData)
 
-    let allCourses;
-    let allCourseModules;
-    let promises;
-    Promise.resolve(getData('courses'))
-        .then(courses => {
-            allCourses = courses.data;
-            promises = allCourses.map(course => {
-                return getData(`courses/${course.id}`)
-                    .then(courseModules => {
-                        return courseModules.data
-                    })
-            })
-            Promise.all(promises)
-                .then(courses => {
-                    allCourseModules = courses
+    useEffect(() => {
+        let allCourses;
+        let allCourseModules;
+        let promises;
+        Promise.resolve(getData('courses'))
+            .then(courses => {
+                allCourses = courses.data;
+                console.log(allCourses)
+                promises = allCourses.map(course => {
+                    return getData(`courses/${course.id}`)
+                        .then(courseModules => {
+                            return courseModules.data
+                        })
                 })
-        })
-   
+                Promise.all(promises)
+                    .then(courses => {
+                        allCourseModules = courses
+                        console.log(allCourseModules)
+                    })
+                    .then(() => setSharedState( {allCourses, allCourseModules} ))
+            })
+    }, []);
+        
+        console.log(sharedState)
+        // console.log(allCourseModules)
     // const post = (postType, postBody) => {
     //     let url = 'https://course-chart-be.herokuapp.com/modules'
     //     if (postType === 'course') {
@@ -44,7 +52,6 @@ export function AppWrapper({ children }) {
     //         // based on the value of postType we add it to the necessary array (maybe spread operator)
     //     })
     // }
-    const [sharedState, setSharedState] = useState(mockData)
     // Cleaning function to assign the null values an empty string ('') for useState()
     const value = { setSharedState, sharedState }
 
