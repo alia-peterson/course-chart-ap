@@ -1,11 +1,12 @@
 export default function Instructions() {
   return (
     <section className="instructions">
-      <h1>Instructions</h1>
+      <h1 className="instructionsTitle">Instructions</h1>
       <p className="purpose">
         CourseChart is used to track and visualize the tasks assigned to students and an estimate of the time needed to complete them. This allows you to see the breakdown of time on task for each module, and wholistically, each course.
-        <b />
-        This can be used for auditors looking to see if a course meets the standards for accredition. It can also be used for teachers in order to plan module lessons and estimate the needed time contributions for students based on their inputs. It can furthermore be used for 
+        <br />
+        <br />
+        This can be used for auditors looking to see if a course meets the standards for accredition. It can also be used for teachers in order to plan module lessons and estimate the needed time contributions for students based on their inputs. It's also a great tool for teaching consultants and subject matter experts (SMEs) to provide insight on course design.
       </p>
       <p className="general">
         To use CourseChart:
@@ -21,6 +22,17 @@ export default function Instructions() {
         <li>click on the "Add Module" button, you will be taken to your new page for that module</li>
         <li>click on the 'See All Courses' or logo in the sidebar to see all courses dashboard</li>
       </ul>
+      <style jsx>{`
+        .instructions {
+          margin: 5rem;
+        }
+        .instructionsTitle {
+          text-align: center;
+        }
+        li {
+          padding: .5rem;
+        }
+      `}</style>
     </section>
   )
 }
