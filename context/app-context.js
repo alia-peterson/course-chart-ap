@@ -12,9 +12,25 @@ export function AppWrapper({ children }) {
     //         Promise.all(courseInfo)
     //             .then(data => data)
     //     })
-    
-    const allCourses = Promise.resolve(getData('courses'))
-    console.log(allCourses.then(data => console.log(data)))
+
+    let allCourses;
+    let allCourseModules;
+    let promises;
+    Promise.resolve(getData('courses'))
+        .then(courses => {
+            allCourses = courses.data;
+            promises = allCourses.map(course => {
+                return getData(`courses/${course.id}`)
+                    .then(courseModules => {
+                        return courseModules.data
+                    })
+            })
+            Promise.all(promises)
+                .then(courses => {
+                    allCourseModules = courses
+                })
+        })
+   
     // const post = (postType, postBody) => {
     //     let url = 'https://course-chart-be.herokuapp.com/modules'
     //     if (postType === 'course') {
