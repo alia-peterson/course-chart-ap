@@ -4,6 +4,7 @@ import mockData from '../context/mock-data';
 
 const chartLabels = Object.keys(mockData.miscMultipliers).filter(each => !each.includes('Id'));
 
+
 const chartData = chartLabels.map(label => mockData.miscMultipliers[label])
 
 // console.log(chartLabels)
