@@ -12,14 +12,15 @@ export function AppWrapper({ children }) {
     //         Promise.all(courseInfo)
     //             .then(data => data)
     //     })
-    const [sharedState, setSharedState] = useState(mockData)
+    const [sharedState, setSharedState] = useState({})
 
-    useEffect(() => {
+    useEffect( async () => {
         let allCourses;
         let allCourseModules;
         let promises;
-        Promise.resolve(getData('courses'))
+        const data = await Promise.resolve(getData('courses'))
             .then(courses => {
+                let cow;
                 allCourses = courses.data;
                 console.log(allCourses)
                 promises = allCourses.map(course => {
@@ -28,16 +29,20 @@ export function AppWrapper({ children }) {
                             return courseModules.data
                         })
                 })
-                Promise.all(promises)
-                    .then(courses => {
-                        allCourseModules = courses
-                        console.log(allCourseModules)
-                    })
-                    .then(() => setSharedState( {allCourses, allCourseModules} ))
+                    Promise.all(promises)
+                        .then(courses => {
+                            allCourseModules = courses
+                            console.log(allCourseModules)
+                        })
+                        .then(() => {
+                            cow = { allCourses, allCourseModules }
+                        })
+                return cow
             })
+            console.log('data', data)
+            setSharedState( {data} )
     }, []);
         
-        console.log(sharedState)
         // console.log(allCourseModules)
     // const post = (postType, postBody) => {
     //     let url = 'https://course-chart-be.herokuapp.com/modules'
