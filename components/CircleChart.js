@@ -1,6 +1,7 @@
 import React from 'react';
 import {Doughnut} from 'react-chartjs-2';
 import mockData from '../context/mock-data';
+import styles from '../styles/CircleChart.module.scss'
 
 const chartLabels = Object.keys(mockData.miscMultipliers).filter(each => !each.includes('Id'));
 
@@ -45,17 +46,18 @@ const config = {
       '#ffa500',
       '#ff2500'
     ]
-  }],
+  }]
 };
 
 export default () => (
-<div>
+<div className={styles.chartContainer}>
   <h2>Circle Chart</h2>
   <Doughnut
      data={config}
      width={400}
      height={400}
   />
+  <p># Total Hours</p>
 </div>
 );
 
