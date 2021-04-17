@@ -1,0 +1,119 @@
+@import 'variables';
+
+.navbar {
+  height: 100vh;
+  width: 200px;
+  background-color: $blue-dark;
+  font-family: 'Rajdhani', sans-serif;
+  // font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.container {
+  background-color: $blue-light;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* height: 160px; */
+  width: 100%;
+
+  h1 {
+    margin-top: 0;
+  }
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  width: 80px;
+  border: 2px solid black;
+  border-radius: 50%;
+  background-color: $off-white;
+  margin-top: 1rem;
+}
+
+.courseButtons {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  // overflow-y: scroll;
+  height: 100%;
+  width: 100%;
+}
+
+.navButtons {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  a {
+    padding: 0.5rem 0;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+.content {
+  display: none;
+  position: absolute;
+  background-color: $gray-light;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  transform: translate(200px, -30px);
+
+  a {
+    padding: 0.5rem 0;
+    text-decoration: none;
+    display: block;
+  }
+
+  a:hover {
+    background-color: $gray-dark;
+  }
+}
+
+.course:hover {
+  .content {
+    display: block !important;
+  }
+}
+
+.course {
+  position: relative;
+  display: inline-block;
+}
+
+.course,
+.addCourse {
+  padding: 0.5rem 0;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.course {
+  background-color: $blue-medium;
+}
+
+.course,
+.addCourse {
+  width: 100%;
+}
+
+.addCourse {
+  background-color: $blue-light;
+}
+
+.navButtons a:nth-child(1) {
+  background-color: $gray-dark;
+}
+
+.navButtons a:nth-child(2) {
+  background-color: $gray-light;
+}
