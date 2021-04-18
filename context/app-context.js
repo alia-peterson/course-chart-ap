@@ -12,36 +12,33 @@ export function AppWrapper({ children }) {
     //         Promise.all(courseInfo)
     //             .then(data => data)
     //     })
-    const [sharedState, setSharedState] = useState({})
+    const [sharedState, setSharedState] = useState({
+        courses: [{
+            modules:[]
+        }]
+    })
 
     useEffect( async () => {
-        let allCourses;
-        let allCourseModules;
-        let promises;
-        const data = await Promise.resolve(getData('courses'))
+        Promise.resolve(getData('courses'))
             .then(courses => {
-                let cow;
-                allCourses = courses.data;
-                console.log(allCourses)
-                promises = allCourses.map(course => {
-                    return getData(`courses/${course.id}`)
-                        .then(courseModules => {
-                            return courseModules.data
-                        })
+                console.log('GET COURSES', courses.data)
+                setSharedState({ 
+                    courses: courses.data 
                 })
-                    Promise.all(promises)
-                        .then(courses => {
-                            allCourseModules = courses
-                            console.log(allCourseModules)
-                        })
-                        .then(() => {
-                            cow = { allCourses, allCourseModules }
-                        })
-                return cow
             })
-            console.log('data', data)
-            setSharedState( {data} )
     }, []);
+
+
+    const getSpecificCourseData = (courseId) => {
+        return getData(`courses/${courseId}`)
+        .then(courseModules => {
+            console.log('GET SINGLE COURSE', courseModules)
+            setSharedState({
+                ...sharedState, 
+                [courseId]: courseModules.data
+            })
+        })
+    }
         
         // console.log(allCourseModules)
     // const post = (postType, postBody) => {
@@ -58,7 +55,11 @@ export function AppWrapper({ children }) {
     //     })
     // }
     // Cleaning function to assign the null values an empty string ('') for useState()
-    const value = { setSharedState, sharedState }
+    const value = { 
+        setSharedState, 
+        sharedState,
+        getSpecificCourseData
+    }
 
     return (
         <AppContext.Provider value={value}>

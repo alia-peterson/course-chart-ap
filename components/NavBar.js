@@ -4,11 +4,10 @@ import styles from '../styles/Navbar.module.scss'
 
 import { useAppContext } from '../context/app-context'
 
-export default function NavBar() {
-  const { sharedState } = useAppContext()
+export default function NavBar() {const { sharedState, getSpecificCourseData } = useAppContext()
 
   const courses = sharedState.courses.map((course, i) => {
-    const modules = course.Modules.map((mod, j) => {
+    const modules = course.modules.map((mod, j) => {
       return (
         <Link key={j} href='/moduleDashboard'>
           <a>{mod.name}</a>
@@ -19,7 +18,7 @@ export default function NavBar() {
     return (
       <div key={i} className={styles.course}>
         <Link href='/courseDashboard'>
-          <a>{course.Name}</a>
+          <a>{course.name}</a>
         </Link>
         <div className={styles.content}>
           <Link href='/moduleDashboard'>

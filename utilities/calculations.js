@@ -9,6 +9,7 @@ export const calculations = {
         return arrayOfActivityTotals.map(total => {
             return total / totalMinsAllActivities
         })
+
     },
 
     getActivityMinTotal = (activity) => {
