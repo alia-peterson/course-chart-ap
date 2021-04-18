@@ -1,42 +1,63 @@
 export const calculations = {
-    // To get an array of activity totals
-    // map through either course or module activities and for each activity return a number
-    // and that number is input times multiplier
-    getPercentages = (module) => {
-        // can pass module or course as a parameter
-        const arrayOfActivityTotals = this.getArrayOfActivityTotals(module)
-        const totalMinsAllActivities = arrayOfActivityTotals.reduce((total, activity) => total + activity, 0)
-        return arrayOfActivityTotals.map(total => {
-            return total / totalMinsAllActivities
-        })
+  getPercentages(activities, type = '') {
+    const activityTotals = activities.map(activity => {
+      return activity.minutes
+    })
 
-    },
+    const totalMinsAllActivities = activityTotals.reduce((total, activity) => {
+      return total + activity
+    }, 0)
 
-    getActivityMinTotal = (activity) => {
-        return activity.input * activity.multiplier
-    },
+    const compiledActivityData = activityTotals.map((total, i) => {
+      return {
+        name: activities[i].activityName,
+        percentage: Math.round(total / totalMinsAllActivities * 100),
+        moduleId: activities[i].moduleId
+      }
+    })
 
-    getArrayOfActivityTotals = (module) => {
-        return module.activities.map(activity => this.getActivityMinTotal(activty))
-    },
+    if (type === 'activity') {
+      return compiledActivityData.reduce((acc, curr) => {
+        if (acc[curr.name]) {
+          acc[curr.name] += curr.percentage
 
-    formatData = (data) => {
-        return {
-            courses: data.courses.map(course => {
-                return {
-                    name: course.name,
-                    totalMins: // build reducer function to get this
-                    percentages: // use this.getPercentages() but for full course
-                }
-            }),
-            modules: ,
-            activities: data.activities.map(activity => {
-                return {
-                    name: ,
-                    description: ,
-                    color: ,
-                }
-            }),
+        } else {
+          acc[curr.name] = curr.percentage
         }
+
+        return acc
+      }, {})
+
+    } else {
+      return compiledActivityData
     }
+  },
+
+    // getActivityMinTotal(activity) {
+    //     return activity.input * activity.multiplier
+    // },
+    //
+    // getArrayOfActivityTotals(array) {
+    //     return module.activities.map(activity => this.getActivityMinTotal(activity))
+    // },
+
+    // formatData(data) {
+        // return {
+        //     courses: data.courses.map(course => {
+        //         return {
+        //             name: course.name,
+        //             totalMins: // build reducer function to get this
+        //             percentages: // use this.getPercentages() but for full course
+        //         }
+        //     }),
+        //     modules: ,
+        //     activities: data.activities.map(activity => {
+        //         return {
+        //             name: ,
+        //             description: ,
+        //             color: ,
+        //         }
+        //     }),
+        // }
+    // }
 }
