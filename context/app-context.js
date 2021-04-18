@@ -16,13 +16,13 @@ export function AppWrapper({ children }) {
     useEffect( async () => {
         getData('courses')
             .then(courses => {
-                setSharedState({ 
-                    courses: courses.data 
+                setSharedState({
+                    courses: courses.data
                 })
             })
     }, []);
 
-        
+
         // console.log(allCourseModules)
     // const post = (postType, postBody) => {
     //     let url = 'https://course-chart-be.herokuapp.com/modules'
@@ -38,8 +38,8 @@ export function AppWrapper({ children }) {
     //     })
     // }
     // Cleaning function to assign the null values an empty string ('') for useState()
-    const value = { 
-        setSharedState, 
+    const value = {
+        setSharedState,
         sharedState
     }
 

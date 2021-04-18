@@ -22,7 +22,15 @@ export default function NavBar() {
       <div key={i} className={styles.course}>
         <Link href={`/courseDashboard`}>
           <div>
-            <a onClick={() => setSharedState({...sharedState, currentCourse: course.id})}>{course.name}</a>
+            <a
+              onClick={() =>
+                setSharedState({
+                  ...sharedState,
+                  currentCourse: course.id,
+                })
+              }>
+                {course.name}
+              </a>
           </div>
         </Link>
         {(sharedState.currentCourse === course.id) &&

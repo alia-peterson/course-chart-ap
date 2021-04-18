@@ -1,27 +1,29 @@
 import React, { useContext, useState, useEffect } from 'react';
-import {useAppContext} from '../context/app-context'
+import { useAppContext } from '../context/app-context'
 import styles from '../styles/Home.module.scss'
 import { getData } from '../context/apiCalls';
 
 export default function courseDashboard() {
-  const { sharedState } = useAppContext()
-  const [courseState, setCourse] = useState({})
-  const [activityTotals, setActivityTotals] = useState([{}])
+  const { sharedState, setSharedState } = useAppContext()
+  const courseId = sharedState.currentCourse
+  const [course, setCourse] = useState({})
 
   useEffect(() => {
-    const courseId = sharedState.currentCourse
     getData(`courses/${courseId}`)
       .then(courseModules => {
         setCourse(courseModules.data.course)
-        setActivityTotals(courseModules.data.activityTotals)
+
+        setSharedState({
+          ...sharedState,
+          [courseId]: course
+        })
       })
-  }, []) 
+  }, [])
 
   return (
     <div>
-      <h1>{courseState.name}</h1>
-      <p>{courseState.description} grahps and shit</p>
-      {activityTotals[0].activityName}
+      <h1>{course.name}</h1>
+      <p>{course.name} graphs and shit</p>
     </div>
   )
 }
