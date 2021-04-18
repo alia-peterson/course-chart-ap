@@ -11,16 +11,14 @@ export default function addCourseForm() {
     event.preventDefault()
 
     const newCourse = {
-      Id: Date.now(),
       Institution: institution,
       Name: course,
       CreditHours: hours,
       Length: length,
-      CreatedAt: Date.now(),
-      UpdatedAt: Date.now(),
-      Modules: []
+      goal: '' // find goal based on credit hours and length 
     }
 
+    console.log(newCourse);
     // POST new course object to server
   }
 
