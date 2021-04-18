@@ -5,40 +5,23 @@ import { getData, postData } from './apiCalls';
 const AppContext = createContext();
 
 export function AppWrapper({ children }) {
-    // Possibly necessary to wrap allCourses in a useEffect() with an [] as parameter
-    // const allCourses = Promise.resolve(getData('courses'))
-    //     .then(data => {
-    //         const courseInfo = data.data.map(course => getData(`courses/${course.id}`))
-    //         Promise.all(courseInfo)
-    //             .then(data => data)
-    //     })
     const [sharedState, setSharedState] = useState({
         courses: [{
             modules:[]
-        }]
+        }],
+        currentCourse: '',
+        currentModule: ''
     })
 
     useEffect( async () => {
-        Promise.resolve(getData('courses'))
+        getData('courses')
             .then(courses => {
-                console.log('GET COURSES', courses.data)
                 setSharedState({ 
                     courses: courses.data 
                 })
             })
     }, []);
 
-
-    const getSpecificCourseData = (courseId) => {
-        return getData(`courses/${courseId}`)
-        .then(courseModules => {
-            console.log('GET SINGLE COURSE', courseModules)
-            setSharedState({
-                ...sharedState, 
-                [courseId]: courseModules.data
-            })
-        })
-    }
         
         // console.log(allCourseModules)
     // const post = (postType, postBody) => {
@@ -57,8 +40,7 @@ export function AppWrapper({ children }) {
     // Cleaning function to assign the null values an empty string ('') for useState()
     const value = { 
         setSharedState, 
-        sharedState,
-        getSpecificCourseData
+        sharedState
     }
 
     return (
