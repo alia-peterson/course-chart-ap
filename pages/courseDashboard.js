@@ -15,7 +15,7 @@ export default function courseDashboard() {
 
         setSharedState({
           ...sharedState,
-          [courseId]: course
+          [courseId]: courseModules.data.course
         })
       })
   }, [])

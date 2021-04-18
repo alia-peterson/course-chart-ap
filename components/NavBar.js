@@ -12,7 +12,15 @@ export default function NavBar() {
       return (
         <Link key={j} href={`/moduleDashboard`}>
           <div>
-            <a onClick={() => console.log('HOWDY')}>{mod.name}</a>
+            <a
+              onClick={() =>
+                setSharedState({
+                  ...sharedState,
+                  currentModule: mod.id
+                })
+              }>
+              {mod.name}
+            </a>
           </div>
         </Link>
       )
