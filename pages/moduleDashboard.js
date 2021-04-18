@@ -14,6 +14,8 @@ export default function moduleDashboard() {
   }, [])
 
   return (
-    <div>{module.name}</div>
+    <div>
+      <h1>{module.name}</h1>
+    </div>
   )
 }

@@ -23,7 +23,7 @@ export default function courseDashboard() {
   return (
     <div>
       <h1>{course.name}</h1>
-      <p>{course.name} graphs and shit</p>
+      <p>graphs!</p>
     </div>
   )
 }
