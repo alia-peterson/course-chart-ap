@@ -64,6 +64,11 @@ export default function addModuleForm() {
   const addModule = event => {
     event.preventDefault()
 
+    const modulesWithSameNameAsInput = currentCourse.modules.filter(mod => mod.name === moduleName)
+    if (modulesWithSameNameAsInput.length) {
+      return alert('Please use a unique module name!')
+    }
+    
     const allModActivites =  [
       ...Object.values(states).map((activity, i) => {
         return {

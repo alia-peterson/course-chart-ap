@@ -6,10 +6,23 @@ context('Add Module Form', () => {
   })
 
   it('Has labeled inputs for all module information', () => {
+    cy.get('.Navbar_course__38dhK').click()
+      .get('.Navbar_addCourse__20rr5').click()
     
+    cy.url().should('include', '/addModuleForm')
+      .get('h1').should('have.text', 'Add A Module')
+      .get('span').should('have.text', 'Course:')
+      .get('p').includes('Foundations of Nursing')
+      .get('.addModuleForm_moduleMetaData__2BWxT').childen('label', 'input[type=text]')
+        .get('.addModuleForm_formLabel__3aY8V').should('have.text', 'Module Name')
+        .get('.addModuleForm_formInput__3JPT8').should('exist')
+
+      .get('input').should('have.length', '13' )
   })
 
   it('Lets user add information to all module inputs', () => {
+    cy.get('.addModuleForm_formInput__3JPT8').type('Test Module')
+    cy.get('')
     
   })
 
