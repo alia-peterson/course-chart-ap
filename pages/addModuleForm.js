@@ -1,15 +1,15 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useAppContext } from '../context/app-context'
 import styles from '../styles/addModuleForm.module.scss'
+import { postData } from '../context/apiCalls';
 
 export default function addModuleForm() {
   const { sharedState, setSharedState } = useAppContext()
   const moduleName = useRef('')
-  const [totalHours, setTotalHours] = useState(0)
-  // const [inputTotal, inputTotal] = useState(0)
-  const currentCourse = sharedState[sharedState.currentCourse]
-  const activities =  sharedState.activities
-  
+  const [totalInputMinutes, setTotalInputMinutes] = useState(0)
+  let currentCourse = sharedState[sharedState.currentCourse]
+  let activities = sharedState.activities
+  let timeUsed
 
   const calculateGoalMinutesRange = () => {
     const splitString = currentCourse.goal.replace(' hours', '').split('-')
@@ -20,18 +20,30 @@ export default function addModuleForm() {
   }
 
   const [courseGoalMinutesMin, courseGoalMinutesMax] = calculateGoalMinutesRange()
-  console.log(courseGoalMinutesMin, courseGoalMinutesMax)
-  // useEffect(() => {
-  //   const courseGoalHours = sharedState.courses[sharedState.currentCourse].goal ? parseInt(sharedState.courses[sharedState.currentCourse].goal) : 0
-  //   setTotalHours(courseGoalHours)
-  // }, [])
+
+  const rangeWidth = (min, max) => {
+    return ((max - min) / max) *100 + '%'
+  }
+
+  let range = rangeWidth(courseGoalMinutesMin, courseGoalMinutesMax)
 
   const states = 
-    Object.fromEntries(Object.keys(activities).map(key => {
-      return [key, useState(0)]
-    }))
+  Object.fromEntries(Object.keys(activities).map(key => {
+    return [key, [useState(0), useState('')] ]
+  }))
 
+  useEffect(() => {
+    const totalMins = Object.values(states).reduce((total, state, i) => {
+      const mins = parseInt(state[0][0]) * activities[i].multiplier
+      return total + mins
+    }, 0)
+    const percentMax = (totalMins/courseGoalMinutesMax) * 100 + '%'
+    setTotalInputMinutes(percentMax)
     
+  })
+
+
+
     // {
 		// 	"name": "Module 9",
 		// 	"number": 9,
@@ -55,6 +67,17 @@ export default function addModuleForm() {
 		// 	]
 		// }
 
+    const post = (postType, postBody) => {
+        let url = 'https://course-chart-be.herokuapp.com/modules'
+    
+      Promise.resolve(postData(url, postBody))
+        .then(response => {
+          if (!response) {
+              return alert(`Sorry, there was an error adding your ${postType}.` )
+          }
+          setSharedState(...sharedState, postBody)
+        })
+    }
 
   const addModule = event => {
     event.preventDefault()
@@ -64,16 +87,16 @@ export default function addModuleForm() {
       courseId: currentCourse.id,
       number: currentCourse.modules.length,
       moduleActivities: [
-      ...Object.values(states).map(activity => {
+      ...Object.values(states).map((activity, i) => {
         return {
-            input: activity[0].input,
-            notes: activity[0].notes,
-            activityId: activity[0].id
+            input: activity[0][0],
+            notes: activity[1][0],
+            activityId: i-1
           }
       })
       ]
     }
-    console.log('MODULEPOST', Object.values(states).map(activity => activity))
+    console.log('MODULEPOST', modulePost )
 
     alert('Module Added!')
   }
@@ -85,7 +108,7 @@ export default function addModuleForm() {
 
           <div className={styles.titleMinutes}>
             <p className={styles.minutesTotal}>
-              {states[key][0] * activities[key].multiplier}
+              {states[key][0][0] * activities[key].multiplier}
             </p>
             <p className={styles.title}>
               {activities[key].name}
@@ -100,10 +123,11 @@ export default function addModuleForm() {
           </label>
           <input 
             className={styles.circleInput} 
-            value={states[key][0]} 
+            value={states[key][0][0]} 
             id={activities[key].id} 
             type="number" 
-            onChange={(event) => states[key][1](event.target.value)}/>
+            min='0'
+            onChange={(event) => states[key][0][1](event.target.value)}/>
           <div className={styles.description}>
             <p>{activities[key].description}</p>
           </div>
@@ -112,15 +136,16 @@ export default function addModuleForm() {
             className={styles.formLabel} 
             htmlFor="notes"  
             aria-label="notes">
-              Notes
           </label>
           <textarea
-            className={styles.formInput} 
-            value={states[key][0]}
+            className={styles.formNotes} 
+            value={states[key][1][0]}
             id="notes" 
             rows="4" 
             cols="50"
-            />
+            onChange={(event) => states[key][1][1](event.target.value)}
+          />
+            
 
         </div>
       )
@@ -164,7 +189,8 @@ export default function addModuleForm() {
           <p className={styles.topLabelInput}>
             INPUT 🖊
           </p>
-          <p>Time Per Task</p>
+          <p className={styles.topLabelTime}>Time Per Task</p>
+          <p className={styles.topLabelNotes}>Notes</p>
         </div>
 
         {makeInputs(activities)}
@@ -176,15 +202,18 @@ export default function addModuleForm() {
         </button>
       </form>
   
-      {/* <div className={styles.timeBar}>
+      <div className={styles.timeBar}>
+
         <p className={styles.timeLabel}>
           Total Recommended Time per Week: {currentCourse ? currentCourse.goal : ''}
         </p>
+
         <div className={styles.timeMeter}>
-          <div className={styles.timeUsed} >
-          </div>
+          <div className={styles.range} style={{width: `${range}`}} ></div>
+          <div className={styles.timeUsed} style={{width: `${totalInputMinutes}`}} ></div>
         </div>
-      </div> */}
+
+      </div>
 
       </div>
   )
