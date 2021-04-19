@@ -6,7 +6,7 @@ workflows:
     jobs:
       - cypress/install:
           build: 'npm run build'
-      - cypress/run:
+      - tests/run:
           requires:
             - cypress/install
           record: false
