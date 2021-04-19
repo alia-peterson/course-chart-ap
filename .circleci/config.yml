@@ -1,8 +1,12 @@
 version: 2.1
 jobs:
   install:
+    docker:
+      - image: node:14
     steps:
       - run: 'npm run build'
   tests:
+    docker:
+      - image: node:14
     steps:
       - run: 'npm run test'
