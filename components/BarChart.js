@@ -4,23 +4,24 @@ import { useAppContext } from '../context/app-context';
 import { formatDataForBarChart } from '../utilities/calculations';
 import styles from '../styles/BarChart.module.scss';
 
-const BarChart = () => {
-    const { sharedState } = useAppContext()
+const BarChart = (props) => {
+    // const { sharedState } = useAppContext()
+    console.log(props)
     const [barData, setData] = useState({
         label: 'Reading (understand)',
         dataToDisplay: {},
-        color: '242, 71, 38,'
+        color: '242, 71, 38,',
+        course: props.course,
+        activityTotals: props.activityTotals
     })
 
     useEffect(() => {
-        // props.course props.activityTotals
-        let dataToDisplay = formatDataForBarChart(sharedState.courses[0], barData.label)
+        let dataToDisplay = formatDataForBarChart(props.course, barData.label, props.activityTotals)
         setData({ ...barData, dataToDisplay })
     }, [])
 
     const changeData = (dataType, color) => {
-        // props.course props.activityTotals
-            let dataToDisplay = formatDataForBarChart(sharedState.courses[0], dataType)
+            let dataToDisplay = formatDataForBarChart(props.course, dataType, props.activityTotals)
             setData({ label: dataType, dataToDisplay, color })
         }
 
@@ -39,8 +40,7 @@ const BarChart = () => {
         maintainAspectRatio: true,
         title: {
             display: true,
-            // text: `Comparison of Individual Task for ${props.course.name}`
-            text: `Comparison of Individual Task for ${sharedState.courses[0].Name}`,
+            text: `Comparison of Individual Task for ${props.course.name}`,
             fontSize: 16,
         },
         scales: {
