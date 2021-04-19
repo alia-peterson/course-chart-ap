@@ -1,9 +1,14 @@
 describe('Dashboard View', () => {
-    const baseUrl = 'http://localhost:3000/'
+  const baseUrl = 'http://localhost:3000/'
+  const coursesApi = 'https://course-chart-be.herokuapp.com/courses'
+  const course1Api = 'https://course-chart-be.herokuapp.com/courses/1'
   
-    beforeEach(() => {
-      cy.visit(baseUrl)
-    })
+  beforeEach(() => {
+    cy.intercept('GET', coursesApi, { fixture: 'courses-api' })
+    cy.intercept('GET', course1Api, { fixture: 'course1-api' })
+    cy.visit(baseUrl)
+    cy.get('#1').click()
+  })
   
     it('Has a canvas', () => {
       cy.get('canvas')

@@ -16,7 +16,7 @@ const BarChart = (props) => {
     useEffect(() => {
         let dataToDisplay = formatDataForBarChart(props.course, barData.label, props.activityTotals)
         setData({ ...barData, dataToDisplay })
-    }, [])
+    }, [props.activityTotals])
 
     const changeData = (dataType, color) => {
             let dataToDisplay = formatDataForBarChart(props.course, dataType, props.activityTotals)
