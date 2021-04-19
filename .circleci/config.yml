@@ -4,9 +4,11 @@ jobs:
     docker:
       - image: node:14
     steps:
+      - checkout
       - run: 'npm run build'
   test:
     docker:
       - image: node:14
     steps:
+      - checkout
       - run: 'npm run test'
