@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { getData, postData } from '../context/apiCalls'
+import findGoal from '../utilities/courseGoal'
 import styles from '../styles/CourseForm.module.scss'
 
 export default function addCourseForm() {
@@ -9,13 +11,15 @@ export default function addCourseForm() {
 
   const submitForm = (event) => {
     event.preventDefault()
+    const goal = findGoal(hours, length)
+    console.log(goal);
 
     const newCourse = {
-      Institution: institution,
-      Name: course,
-      CreditHours: hours,
-      Length: length,
-      goal: '' // find goal based on credit hours and length 
+      name: course,
+      institution: institution,
+      creditHours: hours,
+      length: length,
+      goal: goal
     }
 
     console.log(newCourse);
@@ -50,24 +54,40 @@ export default function addCourseForm() {
 
         <div className={styles.inner}>
           <label htmlFor='hours'>Credit Hours: </label>
-          <input
-            type='number'
-            id='hours'
-            className={styles.input}
-            value={hours}
+          <select
             onChange={(event) => setHours(event.target.value)}
+            className={styles.input}
+            id='hours'
+            defaultValue='Select Credit Hours'
             required
-            />
+            >
+            <option disabled value='Select Credit Hours'>Select Credit Hours</option>
+            <option value='1'>1 Credit</option>
+            <option value='2'>2 Credits</option>
+            <option value='3'>3 Credits</option>
+            <option value='4'>4 Credits</option>
+            <option value='5'>5 Credits</option>
+          </select>
 
           <label htmlFor='length'>Course Length in Weeks: </label>
-          <input
-            type='number'
-            id='length'
-            className={styles.input}
-            value={length}
+          <select
             onChange={(event) => setLength(event.target.value)}
+            className={styles.input}
+            id='length'
+            defaultValue='Select Course Length'
             required
-            />
+            >
+            <option disabled value='Select Course Length'>Select Course Length</option>
+            <option value='4'>4 Weeks</option>
+            <option value='5'>5 Weeks</option>
+            <option value='7'>7 Weeks</option>
+            <option value='7.5'>7.5 Weeks</option>
+            <option value='8'>8 Weeks</option>
+            <option value='10'>10 Weeks</option>
+            <option value='12'>12 Weeks</option>
+            <option value='15'>15 Weeks</option>
+            <option value='16'>16 Weeks</option>
+          </select>
         </div>
       </div>
 
