@@ -1,8 +1,8 @@
 // For all courses: endpoint = 'courses'
 // For single course: endpoint = 'courses/:id'
 // For single module: endpoint = 'modules/:id'
+
 export const getData =  (endpoint) => {
-    // const settings = {mode: 'no-cors'}
     return fetch(`https://course-chart-be.herokuapp.com/${endpoint}`)
         .then(response => {
             if (!response.ok) {
