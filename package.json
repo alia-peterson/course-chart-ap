@@ -9,7 +9,7 @@
     "cypress": "cypress open",
     "cy:run": "cypress run --config video=false",
     "jest:test": "jest",
-    "cy:test": "start-server-and-test start http://localhost:3000",
+    "cy:test": "start-server-and-test start http://localhost:3000 cy:run",
     "test": "npm run cy:test && npm run jest:test"
   },
   "dependencies": {
