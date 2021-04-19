@@ -8,8 +8,7 @@
     "start": "next start",
     "cypress": "cypress open",
     "cy:run": "cypress run",
-    "jest": "jest utilities",
-    "test": "start-server-and-test start http://localhost:3000 cy:run && jest"
+    "test": "start-server-and-test start http://localhost:3000 jest & cypress run"
   },
   "dependencies": {
     "next": "10.1.3",
