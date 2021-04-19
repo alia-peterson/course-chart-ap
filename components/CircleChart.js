@@ -3,7 +3,7 @@ import {Doughnut} from 'react-chartjs-2';
 import mockData from '../context/mock-data';
 import styles from '../styles/CircleChart.module.scss'
 
-const chartLabels = Object.keys(mockData.miscMultipliers).filter(each => !each.includes('Id'));
+
 
 
 const chartData = chartLabels.map(label => mockData.miscMultipliers[label])
@@ -11,7 +11,22 @@ const chartData = chartLabels.map(label => mockData.miscMultipliers[label])
 // console.log(chartLabels)
 // console.log(chartData)
 
-export default function CircleChart({modData}) {
+export default function CircleChart({id, activities}) {
+  const currentModData = activities.map(activity => {
+    if (activity.moduleId === id) {
+      return {
+        [activity.name]: activity.percentage
+      }
+    }
+  })
+
+  const filteredData = currentModData.reduce((sum, activity) => {
+    switch (activity.name.includes()) {
+      case 'Reading'
+    }
+  })
+  const modLabels = currentModData.
+  const chartLabels = Object.keys(mockData.miscMultipliers).filter(each => !each.includes('Id'));
   const config = {
     labels: [...chartLabels],
     datasets: [{
