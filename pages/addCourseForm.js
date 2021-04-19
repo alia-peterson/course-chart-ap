@@ -1,33 +1,65 @@
 import { useState } from 'react'
 import { getData, postData } from '../context/apiCalls'
+import { useAppContext } from '../context/app-context'
+
 import findGoal from '../utilities/courseGoal'
 import styles from '../styles/CourseForm.module.scss'
 
 export default function addCourseForm() {
+  const { sharedState, setSharedState } = useAppContext()
+  // const { hasBeenUpdated, setHasBeenUpdated } = useAppContext()
   const [institution, setInstitution] = useState('')
   const [course, setCourse] = useState('')
   const [hours, setHours] = useState('')
   const [length, setLength] = useState('')
+  let errorMessage = '' // why isn't this error message updating???
 
-  const submitForm = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault()
-    const goal = findGoal(hours, length)
-    console.log(goal);
 
+    if (hours === '' || length === '') {
+      errorMessage = 'Please fill out all fields of form.'
+
+      setTimeout(() => {
+        errorMessage = ''
+      }, 1000)
+
+    } else {
+      submitForm()
+    }
+  }
+
+  const submitForm = () => {
+    const goal = findGoal(hours, length)
     const newCourse = {
       name: course,
       institution: institution,
-      creditHours: hours,
-      length: length,
+      creditHours: parseInt(hours),
+      length: parseInt(length),
       goal: goal
     }
 
     console.log(newCourse);
-    // POST new course object to server
+    postCourse(newCourse)
+  }
+
+  const postCourse = async (postBody) => {
+    let url = 'https://course-chart-be.herokuapp.com/courses'
+    const response = await postData(url, postBody)
+
+    if (response.message !== 'Course created successfully') {
+      return alert('Sorry, there was an error adding your course.')
+
+    } else {
+      // setHasBeenUpdated(!hasBeenUpdated)
+      const newCourseIndex = sharedState.courses.length - 1
+      const newCourseId = sharedState.courses[newCourseIndex].id
+      setSharedState({...sharedState, currentCourse: newCourseId})
+    }
   }
 
   return (
-    <form className={styles.form} onSubmit={submitForm}>
+    <form className={styles.form} onSubmit={handleSubmit}>
 
       <div className={styles.container}>
         <div className={styles.inner}>
@@ -59,7 +91,6 @@ export default function addCourseForm() {
             className={styles.input}
             id='hours'
             defaultValue='Select Credit Hours'
-            required
             >
             <option disabled value='Select Credit Hours'>Select Credit Hours</option>
             <option value='1'>1 Credit</option>
@@ -75,7 +106,6 @@ export default function addCourseForm() {
             className={styles.input}
             id='length'
             defaultValue='Select Course Length'
-            required
             >
             <option disabled value='Select Course Length'>Select Course Length</option>
             <option value='4'>4 Weeks</option>
@@ -91,6 +121,9 @@ export default function addCourseForm() {
         </div>
       </div>
 
+      <div className={styles.error}>
+        <p>{errorMessage}</p>
+      </div>
       <button type='submit' className={styles.button}>Submit</button>
     </form>
   )

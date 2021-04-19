@@ -34,6 +34,17 @@
   // width: 50%;
 }
 
+.error {
+  height: 39px;
+
+  p {
+    margin-top: 0;
+    text-align: center;
+    padding-right: 1rem;
+    transition: 1s;
+  }
+}
+
 .button {
   @include button-primary;
 }
