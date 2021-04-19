@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useAppContext } from '../context/app-context'
 import { activities } from '../context/activities'
 import styles from '../styles/addModuleForm.module.scss'
@@ -8,19 +8,19 @@ export default function addModuleForm() {
   const course = useRef('')
   const moduleName = useRef('')
   const description = useRef('')
+  const [totalHours, setTotalHours] = useState(0)
+  // const [inputTotal, inputTotal] = useState(0)
+
+
+  // useEffect(() => {
+  //   const courseGoalHours = sharedState.courses[sharedState.currentCourse].goal ? parseInt(sharedState.courses[sharedState.currentCourse].goal) : 0
+  //   setTotalHours(courseGoalHours)
+  // }, [])
 
   const states = 
     Object.fromEntries(Object.keys(activities).map(key => {
       return [key, useState(0)]
     }))
-
-  const courses = sharedState.courses.map((course) => {
-    return (
-      <option value={course} >
-        {course.name}
-      </option>
-    )
-  })
 
   const addModule = event => {
     event.preventDefault()
@@ -74,25 +74,15 @@ export default function addModuleForm() {
   
   return (
     <div className={styles.addModuleForm}>
-      <h1>Add A Module</h1>
+      <h1 className={styles.formPageTitle}>Add A Module</h1>
+      <p>
+        Course: 
+        {sharedState.courses[sharedState.currentCourse].name}
+      </p>
 
       <form onSubmit={addModule}>
+
         <div className={styles.moduleMetaData}>
-          <label 
-            className={styles.formLabel} 
-            htmlFor="course" 
-            aria-label="Course">
-              Course:
-          </label>
-          <select 
-            className={styles.formSelect} 
-            ref={course} 
-            id="course">
-
-            <option value="">--Please choose an option--</option>
-            {courses}
-
-          </select>
 
           <label 
             className={styles.formLabel} 
@@ -121,15 +111,15 @@ export default function addModuleForm() {
 
         </div>
 
-      <div className={styles.topLabels}>
-        <p className={styles.topLabelMinutes}>
-          Total Minutes
-        </p>
-        <p className={styles.topLabelInput}>
-          INPUT 🖊
-        </p>
-        <p>Time Per Task</p>
-      </div>
+        <div className={styles.topLabels}>
+          <p className={styles.topLabelMinutes}>
+            Total Minutes
+          </p>
+          <p className={styles.topLabelInput}>
+            INPUT 🖊
+          </p>
+          <p>Time Per Task</p>
+        </div>
 
         {makeInputs(activities)}
         
