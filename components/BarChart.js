@@ -5,8 +5,6 @@ import { formatDataForBarChart } from '../utilities/calculations';
 import styles from '../styles/BarChart.module.scss';
 
 const BarChart = (props) => {
-    // const { sharedState } = useAppContext()
-    console.log(props)
     const [barData, setData] = useState({
         label: 'Reading (understand)',
         dataToDisplay: {},

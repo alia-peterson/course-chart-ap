@@ -35,36 +35,9 @@ export const calculations = {
   }
 }
 
-    // getActivityMinTotal(activity) {
-    //     return activity.input * activity.multiplier
-    // },
-    //
-    // getArrayOfActivityTotals(array) {
-    //     return module.activities.map(activity => this.getActivityMinTotal(activity))
-    // },
+const numOfMods = (course) => course.modules.map(mod => mod.name)
 
-    // formatData(data) {
-        // return {
-        //     courses: data.courses.map(course => {
-        //         return {
-        //             name: course.name,
-        //             totalMins: // build reducer function to get this
-        //             percentages: // use this.getPercentages() but for full course
-        //         }
-        //     }),
-        //     modules: ,
-        //     activities: data.activities.map(activity => {
-        //         return {
-        //             name: ,
-        //             description: ,
-        //             color: ,
-        //         }
-        //     }),
-        // }
-    // }
-export const numOfMods = (course) => course.modules.map(mod => mod.name)
-
-export const specificActivities = (activityTotals, label) => activityTotals.filter(activity => {
+const specificActivities = (activityTotals, label) => activityTotals.filter(activity => {
     return activity.activityName.includes(label)
 })
 
