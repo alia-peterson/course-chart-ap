@@ -5,21 +5,24 @@ import { postData } from '../context/apiCalls';
 
 export default function addModuleForm() {
   const { sharedState, setSharedState } = useAppContext()
-  const moduleName = useRef('')
+  const { hasBeenUpdated, setHasBeenUpdated } = useAppContext()
+  const [moduleName, setModuleName] = useState('')
   const [totalInputMinutes, setTotalInputMinutes] = useState(0)
-  let currentCourse = sharedState[sharedState.currentCourse]
+  const [totalInputPercent, setTotalInputPercent] = useState(0)
+  const [barColor, setBarColor] = useState('')
+  const [currentCourse, setCurrentCourse] = useState(sharedState[sharedState.currentCourse])
   let activities = sharedState.activities
   let timeUsed
 
-  const calculateGoalMinutesRange = () => {
-    const splitString = currentCourse.goal.replace(' hours', '').split('-')
+  const calculateGoalMinutesRange = (course) => {
+    const splitString = course.goal.replace(' hours', '').split('-')
     const makeMinutes = num => {
       return parseInt(num)*60
     }
     return [makeMinutes(splitString[0]), makeMinutes(splitString[1])]
   }
 
-  const [courseGoalMinutesMin, courseGoalMinutesMax] = calculateGoalMinutesRange()
+  const [courseGoalMinutesMin, courseGoalMinutesMax] = calculateGoalMinutesRange(currentCourse)
 
   const rangeWidth = (min, max) => {
     return ((max - min) / max) *100 + '%'
@@ -37,68 +40,50 @@ export default function addModuleForm() {
       const mins = parseInt(state[0][0]) * activities[i].multiplier
       return total + mins
     }, 0)
-    const percentMax = (totalMins/courseGoalMinutesMax) * 100 + '%'
-    setTotalInputMinutes(percentMax)
-    
+    const percentMax = ((totalMins/courseGoalMinutesMax) * 100) < 100 ? ((totalMins/courseGoalMinutesMax) * 100) : 100
+    const color = percentMax === 100 ? 'red' : '#FAC70F'
+    setTotalInputMinutes(totalMins)
+    setTotalInputPercent(percentMax + '%')
+    setBarColor(color)
   })
 
-
-
-    // {
-		// 	"name": "Module 9",
-		// 	"number": 9,
-		// 	"courseId": 1,
-		// 	"moduleActivities": [
-		// 		{
-		// 			"input": 30,
-		// 			"notes": "Notes go here",
-		// 			"activityId": 1
-		// 		},
-		// 		{
-		// 			"input": 8,
-		// 			"notes": "Notes go here",
-		// 			"activityId": 2
-		// 		},
-		// 		{
-		// 			"input": 180,
-		// 			"notes": "Notes go here",
-		// 			"activityId": 3
-		// 		}
-		// 	]
-		// }
-
-    const post = (postType, postBody) => {
-        let url = 'https://course-chart-be.herokuapp.com/modules'
-    
-      Promise.resolve(postData(url, postBody))
-        .then(response => {
-          if (!response) {
-              return alert(`Sorry, there was an error adding your ${postType}.` )
-          }
-          setSharedState(...sharedState, postBody)
-        })
+  const post = async (postBody) => {
+    let url = 'https://course-chart-be.herokuapp.com/modules'
+    const response = await postData(url, postBody)
+    if (response.message !== 'Module created successfully') {
+        return alert(`Sorry, there was an error adding your module.` )
+    } else {
+      alert('Module Added!')
+      setHasBeenUpdated(!hasBeenUpdated)
     }
+    const updatedCourse = currentCourse.modules.push(postBody)
+    setCurrentCourse(updatedCourse)
+    setSharedState({...sharedState, [sharedState.currentCourse]: currentCourse})
+  }
 
   const addModule = event => {
     event.preventDefault()
 
-    const modulePost = {
-      name: moduleName,
-      courseId: currentCourse.id,
-      number: currentCourse.modules.length,
-      moduleActivities: [
+    const allModActivites =  [
       ...Object.values(states).map((activity, i) => {
         return {
-            input: activity[0][0],
+            input: parseInt(activity[0][0]),
             notes: activity[1][0],
-            activityId: i-1
+            activityId: parseInt(i+1)
           }
       })
-      ]
-    }
-    console.log('MODULEPOST', modulePost )
+    ]
 
-    alert('Module Added!')
+    const onlyChangedModActivities = allModActivites.filter(activity => activity.input !== 0 || activity.notes !== '')
+  
+    const modulePost = {
+      name: moduleName,
+      number: parseInt(currentCourse.modules.length+1),
+      courseId: parseInt(currentCourse.id),
+      moduleActivities: onlyChangedModActivities
+    }
+
+    post(modulePost)
   }
 
   const makeInputs = (activities) => {
@@ -177,7 +162,9 @@ export default function addModuleForm() {
           <input 
             className={styles.formInput}  
             id="module-name" 
-            type="text" 
+            type="text"
+            value={moduleName}
+            onChange={(event) => {setModuleName(event.target.value)}} 
             required />
 
         </div>
@@ -201,16 +188,24 @@ export default function addModuleForm() {
             Add Module
         </button>
       </form>
-  
+
       <div className={styles.timeBar}>
 
         <p className={styles.timeLabel}>
           Total Recommended Time per Week: {currentCourse ? currentCourse.goal : ''}
         </p>
 
+        <p className={styles.totalInputLabel}>
+          Total Assigned in Hours: {totalInputMinutes / 60}
+        </p>
+
+        <p className={styles.totalInputLabel}>
+          Total Assigned in Minutes: {totalInputMinutes}
+        </p>
+
         <div className={styles.timeMeter}>
           <div className={styles.range} style={{width: `${range}`}} ></div>
-          <div className={styles.timeUsed} style={{width: `${totalInputMinutes}`}} ></div>
+          <div className={styles.timeUsed} style={{width: `${totalInputPercent}`, backgroundColor: `${barColor}`}} ></div>
         </div>
 
       </div>
@@ -218,3 +213,5 @@ export default function addModuleForm() {
       </div>
   )
 }
+
+//use a chartJS horizontal bar chart to make this look nicer?

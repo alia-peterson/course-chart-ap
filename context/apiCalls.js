@@ -14,9 +14,18 @@ export const getData =  (endpoint) => {
 }
 
 export const postData = (postUrl, postBody) => {
-    const settings = {method: 'POST', body: JSON.stringify(postBody)}
+    const settings = {
+        method: 'POST', 
+        headers: {
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(postBody)
+    }
+    console.log('INPOST', settings)
+    
     return fetch(postUrl, settings)
         .then(response => {
+            console.log('SERVER RESPONSE', response.statusText)
             if (!response.ok) {
                 throw Error(response.statusText)
             }

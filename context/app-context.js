@@ -6,6 +6,7 @@ import data from './mock-data';
 const AppContext = createContext();
 
 export function AppWrapper({ children }) {
+    const [hasBeenUpdated, setHasBeenUpdated] = useState(false)
     const [sharedState, setSharedState] = useState({
         courses: [{
             modules:[]
@@ -16,6 +17,7 @@ export function AppWrapper({ children }) {
     })
 
     useEffect( async () => {
+        console.log('TRIGGERD', Date.now(), hasBeenUpdated)
         const courses = await getData('courses')
         const activities = await getData('activities')
         setSharedState({
@@ -23,11 +25,13 @@ export function AppWrapper({ children }) {
             courses: courses.data,
             activities: activities.data
         })
-    }, []);
+    }, [hasBeenUpdated]);
  
     const value = {
         setSharedState,
-        sharedState
+        sharedState,
+        hasBeenUpdated,
+        setHasBeenUpdated
     }
 
     return (
