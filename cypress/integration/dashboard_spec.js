@@ -36,7 +36,7 @@ context('Dashboard View', () => {
       .url().should('include', 'moduleDashboard')
   })
 
-  it.only('Should change url path to selected addModuleForm page', () => {
+  it('Should change url path to selected addModuleForm page', () => {
     cy.intercept('GET', course1Api, { fixture: 'course1-api' })
       .get('nav').find('a[id=1]').click().wait(500)
       .get('nav').find('a').eq(13).click()
