@@ -44,3 +44,724 @@ describe("calculations", () => {
     ).toHaveProperty("Reading (understand)", 32);
   });
 });
+
+// import { numOfMods, specificActivities, formatDataForBarChart } from './calculations.js';
+
+// describe('Bar chart calculations', () => {
+//     beforeEach(() => {
+//         let course = {
+//         "id": 1,
+//         "name": "Foundations of Nursing",
+//         "institution": "Colorado Nursing College",
+//         "creditHours": 3,
+//         "length": 8,
+//         "modules": [
+//             {
+//                 "id": 1,
+//                 "name": "Module 1",
+//                 "number": 1,
+//                 "courseId": 1,
+//                 "moduleActivities": [
+//                     {
+//                         "id": 1,
+//                         "input": 107,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 1,
+//                             "name": "Reading (understand)",
+//                             "description": "130 wpm; 10 pages per hour",
+//                             "metric": "# of pages",
+//                             "multiplier": 6
+//                         }
+//                     },
+//                     {
+//                         "id": 2,
+//                         "input": 6,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 2,
+//                             "name": "Reading (study guide)",
+//                             "description": "65 wpm; 5 pages per hour",
+//                             "metric": "# of pages",
+//                             "multiplier": 12
+//                         }
+//                     },
+//                     {
+//                         "id": 3,
+//                         "input": 7,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 5,
+//                             "name": "Learning Objects (matching/multiple choice)",
+//                             "description": "10 minutes per object",
+//                             "metric": "# of LOs",
+//                             "multiplier": 10
+//                         }
+//                     },
+//                     {
+//                         "id": 4,
+//                         "input": 95,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 8,
+//                             "name": "Videos",
+//                             "description": "Factor the full length of video",
+//                             "metric": "# of minutes",
+//                             "multiplier": 1
+//                         }
+//                     },
+//                     {
+//                         "id": 5,
+//                         "input": 1,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 10,
+//                             "name": "Discussion Boards",
+//                             "description": "250 words/60 minutes for initial post or 2 replies",
+//                             "metric": "# of discussion boards",
+//                             "multiplier": 60
+//                         }
+//                     },
+//                     {
+//                         "id": 6,
+//                         "input": 450,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 11,
+//                             "name": "Quizzes",
+//                             "description": "Average 1.5 minutes per question",
+//                             "metric": "# of questions",
+//                             "multiplier": 2
+//                         }
+//                     },
+//                     {
+//                         "id": 7,
+//                         "input": 50,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 13,
+//                             "name": "Self Assessments",
+//                             "description": "Average 1 minute per question",
+//                             "metric": "# of questions",
+//                             "multiplier": 1
+//                         }
+//                     }
+//                 ]
+//             },
+//             {
+//                 "id": 2,
+//                 "name": "Module 2",
+//                 "number": 2,
+//                 "courseId": 1,
+//                 "moduleActivities": [
+//                     {
+//                         "id": 8,
+//                         "input": 53,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 1,
+//                             "name": "Reading (understand)",
+//                             "description": "130 wpm; 10 pages per hour",
+//                             "metric": "# of pages",
+//                             "multiplier": 6
+//                         }
+//                     },
+//                     {
+//                         "id": 9,
+//                         "input": 5,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 2,
+//                             "name": "Reading (study guide)",
+//                             "description": "65 wpm; 5 pages per hour",
+//                             "metric": "# of pages",
+//                             "multiplier": 12
+//                         }
+//                     },
+//                     {
+//                         "id": 10,
+//                         "input": 5,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 5,
+//                             "name": "Learning Objects (matching/multiple choice)",
+//                             "description": "10 minutes per object",
+//                             "metric": "# of LOs",
+//                             "multiplier": 10
+//                         }
+//                     },
+//                     {
+//                         "id": 11,
+//                         "input": 71,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 8,
+//                             "name": "Videos",
+//                             "description": "Factor the full length of video",
+//                             "metric": "# of minutes",
+//                             "multiplier": 1
+//                         }
+//                     },
+//                     {
+//                         "id": 12,
+//                         "input": 1,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 10,
+//                             "name": "Discussion Boards",
+//                             "description": "250 words/60 minutes for initial post or 2 replies",
+//                             "metric": "# of discussion boards",
+//                             "multiplier": 60
+//                         }
+//                     },
+//                     {
+//                         "id": 13,
+//                         "input": 100,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 11,
+//                             "name": "Quizzes",
+//                             "description": "Average 1.5 minutes per question",
+//                             "metric": "# of questions",
+//                             "multiplier": 2
+//                         }
+//                     }
+//                 ]
+//             },
+//             {
+//                 "id": 3,
+//                 "name": "Module 3",
+//                 "number": 3,
+//                 "courseId": 1,
+//                 "moduleActivities": [
+//                     {
+//                         "id": 14,
+//                         "input": 66,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 1,
+//                             "name": "Reading (understand)",
+//                             "description": "130 wpm; 10 pages per hour",
+//                             "metric": "# of pages",
+//                             "multiplier": 6
+//                         }
+//                     },
+//                     {
+//                         "id": 15,
+//                         "input": 4,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 2,
+//                             "name": "Reading (study guide)",
+//                             "description": "65 wpm; 5 pages per hour",
+//                             "metric": "# of pages",
+//                             "multiplier": 12
+//                         }
+//                     },
+//                     {
+//                         "id": 16,
+//                         "input": 1,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 4,
+//                             "name": "Writing (reflection)",
+//                             "description": "90 minutes per page (500 words, single-spaced)",
+//                             "metric": "# of pages",
+//                             "multiplier": 90
+//                         }
+//                     },
+//                     {
+//                         "id": 17,
+//                         "input": 4,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 5,
+//                             "name": "Learning Objects (matching/multiple choice)",
+//                             "description": "10 minutes per object",
+//                             "metric": "# of LOs",
+//                             "multiplier": 10
+//                         }
+//                     },
+//                     {
+//                         "id": 18,
+//                         "input": 2,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 6,
+//                             "name": "Learning Objects (case study)",
+//                             "description": "20 minutes per object",
+//                             "metric": "# of LOs",
+//                             "multiplier": 20
+//                         }
+//                     },
+//                     {
+//                         "id": 19,
+//                         "input": 86,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 8,
+//                             "name": "Videos",
+//                             "description": "Factor the full length of video",
+//                             "metric": "# of minutes",
+//                             "multiplier": 1
+//                         }
+//                     },
+//                     {
+//                         "id": 20,
+//                         "input": 1,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 10,
+//                             "name": "Discussion Boards",
+//                             "description": "250 words/60 minutes for initial post or 2 replies",
+//                             "metric": "# of discussion boards",
+//                             "multiplier": 60
+//                         }
+//                     },
+//                     {
+//                         "id": 21,
+//                         "input": 240,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 11,
+//                             "name": "Quizzes",
+//                             "description": "Average 1.5 minutes per question",
+//                             "metric": "# of questions",
+//                             "multiplier": 2
+//                         }
+//                     },
+//                     {
+//                         "id": 22,
+//                         "input": 50,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 13,
+//                             "name": "Self Assessments",
+//                             "description": "Average 1 minute per question",
+//                             "metric": "# of questions",
+//                             "multiplier": 1
+//                         }
+//                     }
+//                 ]
+//             },
+//             {
+//                 "id": 4,
+//                 "name": "Module 4",
+//                 "number": 4,
+//                 "courseId": 1,
+//                 "moduleActivities": [
+//                     {
+//                         "id": 23,
+//                         "input": 105,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 1,
+//                             "name": "Reading (understand)",
+//                             "description": "130 wpm; 10 pages per hour",
+//                             "metric": "# of pages",
+//                             "multiplier": 6
+//                         }
+//                     },
+//                     {
+//                         "id": 24,
+//                         "input": 7,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 2,
+//                             "name": "Reading (study guide)",
+//                             "description": "65 wpm; 5 pages per hour",
+//                             "metric": "# of pages",
+//                             "multiplier": 12
+//                         }
+//                     },
+//                     {
+//                         "id": 25,
+//                         "input": 2,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 4,
+//                             "name": "Writing (reflection)",
+//                             "description": "90 minutes per page (500 words, single-spaced)",
+//                             "metric": "# of pages",
+//                             "multiplier": 90
+//                         }
+//                     },
+//                     {
+//                         "id": 26,
+//                         "input": 3,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 5,
+//                             "name": "Learning Objects (matching/multiple choice)",
+//                             "description": "10 minutes per object",
+//                             "metric": "# of LOs",
+//                             "multiplier": 10
+//                         }
+//                     },
+//                     {
+//                         "id": 27,
+//                         "input": 75,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 8,
+//                             "name": "Videos",
+//                             "description": "Factor the full length of video",
+//                             "metric": "# of minutes",
+//                             "multiplier": 1
+//                         }
+//                     },
+//                     {
+//                         "id": 28,
+//                         "input": 390,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 11,
+//                             "name": "Quizzes",
+//                             "description": "Average 1.5 minutes per question",
+//                             "metric": "# of questions",
+//                             "multiplier": 2
+//                         }
+//                     },
+//                     {
+//                         "id": 29,
+//                         "input": 50,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 13,
+//                             "name": "Self Assessments",
+//                             "description": "Average 1 minute per question",
+//                             "metric": "# of questions",
+//                             "multiplier": 1
+//                         }
+//                     }
+//                 ]
+//             },
+//             {
+//                 "id": 5,
+//                 "name": "Module 5",
+//                 "number": 5,
+//                 "courseId": 1,
+//                 "moduleActivities": [
+//                     {
+//                         "id": 30,
+//                         "input": 52,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 1,
+//                             "name": "Reading (understand)",
+//                             "description": "130 wpm; 10 pages per hour",
+//                             "metric": "# of pages",
+//                             "multiplier": 6
+//                         }
+//                     },
+//                     {
+//                         "id": 31,
+//                         "input": 5,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 2,
+//                             "name": "Reading (study guide)",
+//                             "description": "65 wpm; 5 pages per hour",
+//                             "metric": "# of pages",
+//                             "multiplier": 12
+//                         }
+//                     },
+//                     {
+//                         "id": 32,
+//                         "input": 1,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 4,
+//                             "name": "Writing (reflection)",
+//                             "description": "90 minutes per page (500 words, single-spaced)",
+//                             "metric": "# of pages",
+//                             "multiplier": 90
+//                         }
+//                     },
+//                     {
+//                         "id": 33,
+//                         "input": 5,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 5,
+//                             "name": "Learning Objects (matching/multiple choice)",
+//                             "description": "10 minutes per object",
+//                             "metric": "# of LOs",
+//                             "multiplier": 10
+//                         }
+//                     },
+//                     {
+//                         "id": 34,
+//                         "input": 1,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 6,
+//                             "name": "Learning Objects (case study)",
+//                             "description": "20 minutes per object",
+//                             "metric": "# of LOs",
+//                             "multiplier": 20
+//                         }
+//                     },
+//                     {
+//                         "id": 35,
+//                         "input": 62,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 8,
+//                             "name": "Videos",
+//                             "description": "Factor the full length of video",
+//                             "metric": "# of minutes",
+//                             "multiplier": 1
+//                         }
+//                     },
+//                     {
+//                         "id": 36,
+//                         "input": 1,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 10,
+//                             "name": "Discussion Boards",
+//                             "description": "250 words/60 minutes for initial post or 2 replies",
+//                             "metric": "# of discussion boards",
+//                             "multiplier": 60
+//                         }
+//                     },
+//                     {
+//                         "id": 37,
+//                         "input": 300,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 11,
+//                             "name": "Quizzes",
+//                             "description": "Average 1.5 minutes per question",
+//                             "metric": "# of questions",
+//                             "multiplier": 2
+//                         }
+//                     }
+//                 ]
+//             },
+//             {
+//                 "id": 6,
+//                 "name": "Module 6",
+//                 "number": 6,
+//                 "courseId": 1,
+//                 "moduleActivities": [
+//                     {
+//                         "id": 38,
+//                         "input": 36,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 1,
+//                             "name": "Reading (understand)",
+//                             "description": "130 wpm; 10 pages per hour",
+//                             "metric": "# of pages",
+//                             "multiplier": 6
+//                         }
+//                     },
+//                     {
+//                         "id": 39,
+//                         "input": 5,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 2,
+//                             "name": "Reading (study guide)",
+//                             "description": "65 wpm; 5 pages per hour",
+//                             "metric": "# of pages",
+//                             "multiplier": 12
+//                         }
+//                     },
+//                     {
+//                         "id": 40,
+//                         "input": 5,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 5,
+//                             "name": "Learning Objects (matching/multiple choice)",
+//                             "description": "10 minutes per object",
+//                             "metric": "# of LOs",
+//                             "multiplier": 10
+//                         }
+//                     },
+//                     {
+//                         "id": 41,
+//                         "input": 1,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 6,
+//                             "name": "Learning Objects (case study)",
+//                             "description": "20 minutes per object",
+//                             "metric": "# of LOs",
+//                             "multiplier": 20
+//                         }
+//                     },
+//                     {
+//                         "id": 42,
+//                         "input": 40,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 8,
+//                             "name": "Videos",
+//                             "description": "Factor the full length of video",
+//                             "metric": "# of minutes",
+//                             "multiplier": 1
+//                         }
+//                     },
+//                     {
+//                         "id": 43,
+//                         "input": 1,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 10,
+//                             "name": "Discussion Boards",
+//                             "description": "250 words/60 minutes for initial post or 2 replies",
+//                             "metric": "# of discussion boards",
+//                             "multiplier": 60
+//                         }
+//                     },
+//                     {
+//                         "id": 44,
+//                         "input": 90,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 11,
+//                             "name": "Quizzes",
+//                             "description": "Average 1.5 minutes per question",
+//                             "metric": "# of questions",
+//                             "multiplier": 2
+//                         }
+//                     },
+//                     {
+//                         "id": 45,
+//                         "input": 50,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 13,
+//                             "name": "Self Assessments",
+//                             "description": "Average 1 minute per question",
+//                             "metric": "# of questions",
+//                             "multiplier": 1
+//                         }
+//                     }
+//                 ]
+//             },
+//             {
+//                 "id": 7,
+//                 "name": "Module 7",
+//                 "number": 7,
+//                 "courseId": 1,
+//                 "moduleActivities": [
+//                     {
+//                         "id": 46,
+//                         "input": 88,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 1,
+//                             "name": "Reading (understand)",
+//                             "description": "130 wpm; 10 pages per hour",
+//                             "metric": "# of pages",
+//                             "multiplier": 6
+//                         }
+//                     },
+//                     {
+//                         "id": 47,
+//                         "input": 5,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 2,
+//                             "name": "Reading (study guide)",
+//                             "description": "65 wpm; 5 pages per hour",
+//                             "metric": "# of pages",
+//                             "multiplier": 12
+//                         }
+//                     },
+//                     {
+//                         "id": 48,
+//                         "input": 4,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 5,
+//                             "name": "Learning Objects (matching/multiple choice)",
+//                             "description": "10 minutes per object",
+//                             "metric": "# of LOs",
+//                             "multiplier": 10
+//                         }
+//                     },
+//                     {
+//                         "id": 49,
+//                         "input": 2,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 6,
+//                             "name": "Learning Objects (case study)",
+//                             "description": "20 minutes per object",
+//                             "metric": "# of LOs",
+//                             "multiplier": 20
+//                         }
+//                     },
+//                     {
+//                         "id": 50,
+//                         "input": 42,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 8,
+//                             "name": "Videos",
+//                             "description": "Factor the full length of video",
+//                             "metric": "# of minutes",
+//                             "multiplier": 1
+//                         }
+//                     },
+//                     {
+//                         "id": 51,
+//                         "input": 240,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 11,
+//                             "name": "Quizzes",
+//                             "description": "Average 1.5 minutes per question",
+//                             "metric": "# of questions",
+//                             "multiplier": 2
+//                         }
+//                     }
+//                 ]
+//             },
+//             {
+//                 "id": 8,
+//                 "name": "Module 8",
+//                 "number": 8,
+//                 "courseId": 1,
+//                 "moduleActivities": [
+//                     {
+//                         "id": 52,
+//                         "input": 3,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 3,
+//                             "name": "Writing (research)",
+//                             "description": "6 hours per page (500 words, single-spaced)",
+//                             "metric": "# of pages",
+//                             "multiplier": 360
+//                         }
+//                     },
+//                     {
+//                         "id": 53,
+//                         "input": 100,
+//                         "notes": "",
+//                         "activity": {
+//                             "id": 13,
+//                             "name": "Self Assessments",
+//                             "description": "Average 1 minute per question",
+//                             "metric": "# of questions",
+//                             "multiplier": 1
+//                         }
+//                     }
+//                 ]
+//             }
+//           ]
+//         }
+//     })
+
+//     it.skip('Should map the modules of a given course', () => {
+//     expect(numOfMods(course)).toEqual([1,2,3,4,5,6,7,8])
+//     })
+
+// })

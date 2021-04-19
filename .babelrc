@@ -1,3 +1,7 @@
 {
     "presets": ["next/babel"]
+<<<<<<< HEAD
   }
+=======
+}
+>>>>>>> 606b0de... Add calculations testing using jest to get the number of mods in a course

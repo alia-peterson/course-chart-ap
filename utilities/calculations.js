@@ -62,3 +62,18 @@ export const calculations = {
         //     }),
         // }
     // }
+export const numOfMods = (course) => course.modules.map(mod => mod.number)
+
+export const specificActivities = (course, label) => course.activityTotals.filter(activity => {
+    return activity.activityName.includes(label)
+})
+
+export const formatDataForBarChart = (course, label, activityTotals) => numOfMods(course).reduce((accumulator, modNum) => {
+    let found = specificActivities(course, label).find(mod => mod.moduleId === modNum)
+    if (found) {
+        accumulator[modNum] = found.minutes 
+    } else {
+        accumulator[modNum] = 0
+    }
+    return accumulator
+}, {})

@@ -13,11 +13,13 @@ const BarChart = () => {
     })
 
     useEffect(() => {
+        // props.course props.activityTotals
         let dataToDisplay = formatDataForBarChart(sharedState.courses[0], barData.label)
         setData({ ...barData, dataToDisplay })
     }, [])
 
     const changeData = (dataType, color) => {
+        // props.course props.activityTotals
             let dataToDisplay = formatDataForBarChart(sharedState.courses[0], dataType)
             setData({ label: dataType, dataToDisplay, color })
         }
