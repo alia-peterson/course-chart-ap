@@ -5,23 +5,44 @@ import styles from '../styles/Navbar.module.scss'
 import { useAppContext } from '../context/app-context'
 
 export default function NavBar() {
-  const { sharedState } = useAppContext()
+    const { sharedState, setSharedState} = useAppContext()
 
   const courses = sharedState.courses.map((course, i) => {
-    const modules = course.Modules.map((mod, j) => {
+    const modules = course.modules.map((mod, j) => {
       return (
-        <Link key={j} href='/moduleDashboard'>
-          <a>{mod.name}</a>
+        <Link key={j} href={`/moduleDashboard`}>
+          <div>
+            <a
+              onClick={() =>
+                setSharedState({
+                  ...sharedState,
+                  currentModule: mod.id
+                })
+              }>
+              {mod.name}
+            </a>
+          </div>
         </Link>
       )
     })
 
     return (
       <div key={i} className={styles.course}>
-        <Link href='/courseDashboard'>
-          <a>{course.Name}</a>
+        <Link href={`/courseDashboard`}>
+          <div>
+            <a
+              onClick={() =>
+                setSharedState({
+                  ...sharedState,
+                  currentCourse: course.id,
+                })
+              }>
+                {course.name}
+              </a>
+          </div>
         </Link>
-        <div className={styles.content}>
+        {(sharedState.currentCourse === course.id) &&
+        <div className={styles.content} >
           <Link href='/moduleDashboard'>
             <a>All Modules</a>
           </Link>
@@ -32,6 +53,7 @@ export default function NavBar() {
             <a>+ Add New Module</a>
           </Link>
         </div>
+        }
       </div>
     )
   })
