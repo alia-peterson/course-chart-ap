@@ -501,7 +501,7 @@ const data = {
     },
   ],
 
-  percentageData: [
+  coursePercentageData: [
     { name: "Reading (understand)", percentage: 7, moduleId: 1 },
     { name: "Reading (understand)", percentage: 3, moduleId: 2 },
     { name: "Reading (understand)", percentage: 4, moduleId: 3 },
@@ -584,6 +584,19 @@ const data = {
     { name: "Self Assessments", percentage: 1, moduleId: 6 },
     { name: "Self Assessments", percentage: 1, moduleId: 8 },
   ],
+
+  activtyTotals: {
+    "Reading (understand)": 32,
+    "Reading (study guide)": 7,
+    "Writing (research)": 12,
+    "Writing (reflection)": 4,
+    "Learning Objects (matching/multiple choice)": 4,
+    "Learning Objects (case study)": 0,
+    Videos: 5,
+    "Discussion Boards": 5,
+    Quizzes: 29,
+    "Self Assessments": 5,
+  },
 };
 
 export default data;
