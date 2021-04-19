@@ -1,47 +1,67 @@
 .activityOptions {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     margin-top: 25px;
 }
 
+@mixin buttonFormat {
+    background-color: #ffffff;
+    border: 2px solid;
+    margin: 2px;
+}
+
 .firstActivity {
-    background-color: #ffffff;
-    border: 2px solid;
-    margin: 2px;
-    border-color: rgba(13, 167, 137);
-}
-
-.secondActivity {
-    background-color: #ffffff;
-    border: 2px solid;
-    margin: 2px;
-    border-color: rgba(250, 199, 17);
-}
-
-.thirdActivity {
-    background-color: #ffffff;
-    border: 2px solid;
-    margin: 2px;
-    border-color: rgba(143, 209, 80);
-}
-
-.forthActivity {
-    background-color: #ffffff;
-    border: 2px solid;
-    margin: 2px;
+    @include buttonFormat;
     border-color: rgba(242, 71, 38);
 }
 
+.secondActivity {
+    @include buttonFormat;
+    border-color: rgba(143, 209, 80);
+}
+
+.thirdActivity {
+    @include buttonFormat;
+    border-color: rgba(13, 167, 137);
+}
+
+.forthActivity {
+    @include buttonFormat;
+    border-color: rgba(45, 155, 240);
+}
+
 .fifthActivity {
-    background-color: #ffffff;
-    border: 2px solid;
-    margin: 2px;
+    @include buttonFormat;
     border-color: rgba(149, 16, 172);
 }
 
 .sixthActivity {
-    background-color: #ffffff;
-    border: 2px solid;
-    margin: 2px;
-    border-color: rgba(45, 155, 240);
+    @include buttonFormat;
+    border-color: rgba(250, 199, 17);
+}
+
+.seventhActivity {
+    @include buttonFormat;
+    border-color: rgba(250, 199, 17);
+}
+
+.eighthActivity {
+    @include buttonFormat;
+    border-color: rgba(250, 199, 17);
+}
+
+.ninthActivity {
+    @include buttonFormat;
+    border-color: rgba(250, 199, 17);
+}
+
+.tenthActivity {
+    @include buttonFormat;
+    border-color: rgba(250, 199, 17);
+}
+
+.eleventhActivity {
+    @include buttonFormat;
+    border-color: rgba(250, 199, 17);
 }

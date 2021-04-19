@@ -1,41 +1,34 @@
+import { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { useAppContext } from '../context/app-context';
-import styles from '../styles/BarChart.module.scss'
+import { formatDataForBarChart } from '../utilities/calculations';
+import styles from '../styles/BarChart.module.scss';
 
 const BarChart = () => {
-
     const { sharedState } = useAppContext()
-    
-    let label = 'Writing'
+    const [barData, setData] = useState({
+        label: 'Reading (understand)',
+        dataToDisplay: {},
+        color: '242, 71, 38,'
+    })
 
-    // let example = sharedState.courses[0].modules.map(mod => {
-    //     let found = mod.moduleActivities.filter(act => act.activity.name.includes(label))
-    //     console.log(found)
-    //     let totals = 0
-    //     found.forEach(act => {
-    //          totals += (act.activity.multiplier * act.input)
-    //     })
-    //     return totals
-    // })
+    useEffect(() => {
+        let dataToDisplay = formatDataForBarChart(sharedState.courses[0], barData.label)
+        setData({ ...barData, dataToDisplay })
+    }, [])
 
-    
-
-    // console.log(example, 'example')
+    const changeData = (dataType, color) => {
+            let dataToDisplay = formatDataForBarChart(sharedState.courses[0], dataType)
+            setData({ label: dataType, dataToDisplay, color })
+        }
 
     const data = {
-        labels: sharedState.courses[0].modules.map(mod => mod.number),
+        labels: Object.keys(barData.dataToDisplay),
         datasets: [{
-          label: label,
-          data: sharedState.courses[0].modules.map(mod => {
-            let found = mod.moduleActivities.filter(act => act.activity.name.includes(label))
-            let totals = 0
-            found.forEach(act => {
-                 totals += (act.activity.multiplier * act.input)
-            })
-            return totals
-          }),
-          backgroundColor: 'rgba(242, 71, 38, 0.2)',
-          borderColor: 'rgba(242, 71, 38, 1)',
+          label: barData.label,
+          data: Object.values(barData.dataToDisplay),
+          backgroundColor: `rgba(${barData.color} 0.2)`,
+          borderColor: `rgba(${barData.color} 1)`,
           borderWidth: 1
         }]
     }
@@ -44,6 +37,7 @@ const BarChart = () => {
         maintainAspectRatio: true,
         title: {
             display: true,
+            // text: `Comparison of Individual Task for ${props.course.name}`
             text: `Comparison of Individual Task for ${sharedState.courses[0].Name}`,
             fontSize: 16,
         },
@@ -70,55 +64,100 @@ const BarChart = () => {
         }
     }
 
-    const changeData = (dataType) => {
-        label = dataType
-        console.log(label)
-    }
+    
 
     return (
         <>
             <Bar 
                 data={data}
-                maxWidth={300}
-                height={300}
+                width={200}
+                height={200}
                 options={opts}
             />
             <section className={styles.activityOptions}>
                 <button 
                     className={styles.firstActivity}
-                    onClick={() => changeData('Lessons Objects')}
+                    onClick={() => changeData('Reading (understand)', '242, 71, 38,')}
                 >
-                    Lessons Objects
+                    Readings (understand)
+                </button>
+                <button 
+                    className={styles.firstActivity}
+                    onClick={() => changeData('Reading (study guide)', '242, 71, 38,')}
+                >
+                    Readings (study guide)
                 </button>
                 <button 
                     className={styles.secondActivity}
-                    onClick={() => changeData('Quizzes')}
+                    onClick={() => changeData('Writings (research)', '143, 209, 80,')}
                 >
-                    Quizzes
+                    Writings (research)
+                </button>
+                <button 
+                    className={styles.secondActivity}
+                    onClick={() => changeData('Writings (reflection)', '143, 209, 80,')}
+                >
+                    Writings (reflection)
                 </button>
                 <button 
                     className={styles.thirdActivity}
-                    onClick={() => changeData('Writings')}
+                    onClick={() => changeData('Lessons Objects (matching/multiple choice)', '13, 167, 137,')}
                 >
-                    Writings
+                    Lessons Objects (matching/multiple choice)
+                </button>
+                <button 
+                    className={styles.thirdActivity}
+                    onClick={() => changeData('Lessons Objects (case study)', '13, 167, 137,')}
+                >
+                    Lessons Objects (case study)
                 </button>
                 <button 
                     className={styles.forthActivity}
-                    onClick={() => changeData('Reading')}
+                    onClick={() => changeData('Lecture', '45, 155, 240,')}
                 >
-                    Readings
+                    Lecture
                 </button>
                 <button 
                     className={styles.fifthActivity}
-                    onClick={() => changeData('Videos')}
+                    onClick={() => changeData('Videos', '149, 16, 172,')}
                 >
                     Videos
                 </button>
                 <button 
                     className={styles.sixthActivity}
-                    onClick={() => changeData('Discussion Boards')}
+                    onClick={() => changeData('Websites', '250, 199, 17,')}
+                >
+                    Websites
+                </button>
+                <button 
+                    className={styles.seventhActivity}
+                    onClick={() => changeData('Discussion Boards', '250, 199, 17,')}
                 >
                     Discussion Boards
+                </button>
+                <button 
+                    className={styles.eighthActivity}
+                    onClick={() => changeData('Quizzes', '250, 199, 17,')}
+                >
+                    Quizzes
+                </button>
+                <button 
+                    className={styles.ninthActivity}
+                    onClick={() => changeData('Exams', '250, 199, 17,')}
+                >
+                    Exams
+                </button>
+                <button 
+                    className={styles.tenthActivity}
+                    onClick={() => changeData('Self Assessments', '250, 199, 17,')}
+                >
+                    Self Assessments
+                </button> 
+                <button 
+                    className={styles.eleventhActivity}
+                    onClick={() => changeData('Miscellaneous', '250, 199, 17,')}
+                >
+                    Miscellaneous
                 </button> 
             </section>
         </>
