@@ -52,13 +52,18 @@ export default function addModuleForm() {
     const response = await postData(url, postBody)
     if (response.message !== 'Module created successfully') {
         return alert(`Sorry, there was an error adding your module.` )
-    } else {
-      alert('Module Added!')
-      setHasBeenUpdated(!hasBeenUpdated)
-    }
+    } 
+    
+    setHasBeenUpdated(!hasBeenUpdated)
     const updatedCourse = currentCourse.modules.push(postBody)
     setCurrentCourse(updatedCourse)
-    setSharedState({...sharedState, [sharedState.currentCourse]: currentCourse})
+    setSharedState({
+      ...sharedState, 
+      currentModule: postBody.id, 
+      [sharedState.currentCourse]: currentCourse})
+    setTimeOut(alert('Module Added!'), 3000)
+    window.visit('/moduleDashboard')
+    
   }
 
   const addModule = event => {
@@ -68,7 +73,7 @@ export default function addModuleForm() {
     if (modulesWithSameNameAsInput.length) {
       return alert('Please use a unique module name!')
     }
-    
+
     const allModActivites =  [
       ...Object.values(states).map((activity, i) => {
         return {

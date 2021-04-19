@@ -13,11 +13,13 @@ context('Add Module Form', () => {
       .get('h1').should('have.text', 'Add A Module')
       .get('span').should('have.text', 'Course:')
       .get('p').includes('Foundations of Nursing')
+      .get('form').should('exisit')
+      .get('input').should('have.length', '13' )
       .get('.addModuleForm_moduleMetaData__2BWxT').childen('label', 'input[type=text]')
         .get('.addModuleForm_formLabel__3aY8V').should('have.text', 'Module Name')
         .get('.addModuleForm_formInput__3JPT8').should('exist')
 
-      .get('input').should('have.length', '13' )
+      
   })
 
   it('Lets user add information to all module inputs', () => {

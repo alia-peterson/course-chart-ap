@@ -69,7 +69,9 @@ export default function NavBar() {
     <nav className={styles.navbar}>
       <section className={styles.container}>
         <div className={styles.logo}>
+        <Link href='/'>
           <Image src='/icon.png' alt='Course chart icon' height={50} width={50} />
+        </Link>
         </div>
         <h1>CourseChart</h1>
       </section>
