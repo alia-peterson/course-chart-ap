@@ -8,6 +8,11 @@
   font-size: small;
   padding: 0;
 }
+
+.courseLabel {
+  font-weight: bold;
+}
+
 .inputStyle {
   display: flex;
   flex-direction: row;
@@ -139,4 +144,10 @@
   height: 100%;
   z-index: 2;
   background-color: #FAC70F;
+}
+
+.submitButton {
+  background-color: $blue-medium;
+  color: $off-white;
+  font-weight: bold;
 }

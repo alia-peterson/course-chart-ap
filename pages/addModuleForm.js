@@ -1,17 +1,26 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useAppContext } from '../context/app-context'
-import { activities } from '../context/activities'
 import styles from '../styles/addModuleForm.module.scss'
 
 export default function addModuleForm() {
   const { sharedState, setSharedState } = useAppContext()
-  const course = useRef('')
   const moduleName = useRef('')
-  const description = useRef('')
   const [totalHours, setTotalHours] = useState(0)
   // const [inputTotal, inputTotal] = useState(0)
+  const currentCourse = sharedState[sharedState.currentCourse]
+  const activities =  sharedState.activities
+  
 
+  const calculateGoalMinutesRange = () => {
+    const splitString = currentCourse.goal.replace(' hours', '').split('-')
+    const makeMinutes = num => {
+      return parseInt(num)*60
+    }
+    return [makeMinutes(splitString[0]), makeMinutes(splitString[1])]
+  }
 
+  const [courseGoalMinutesMin, courseGoalMinutesMax] = calculateGoalMinutesRange()
+  console.log(courseGoalMinutesMin, courseGoalMinutesMax)
   // useEffect(() => {
   //   const courseGoalHours = sharedState.courses[sharedState.currentCourse].goal ? parseInt(sharedState.courses[sharedState.currentCourse].goal) : 0
   //   setTotalHours(courseGoalHours)
@@ -22,16 +31,49 @@ export default function addModuleForm() {
       return [key, useState(0)]
     }))
 
+    
+    // {
+		// 	"name": "Module 9",
+		// 	"number": 9,
+		// 	"courseId": 1,
+		// 	"moduleActivities": [
+		// 		{
+		// 			"input": 30,
+		// 			"notes": "Notes go here",
+		// 			"activityId": 1
+		// 		},
+		// 		{
+		// 			"input": 8,
+		// 			"notes": "Notes go here",
+		// 			"activityId": 2
+		// 		},
+		// 		{
+		// 			"input": 180,
+		// 			"notes": "Notes go here",
+		// 			"activityId": 3
+		// 		}
+		// 	]
+		// }
+
+
   const addModule = event => {
     event.preventDefault()
 
     const modulePost = {
-      id: Date.now(),
-      course: chosesCourse,
-      number: chosenCourse.modules.length,
-      ...states
+      name: moduleName,
+      courseId: currentCourse.id,
+      number: currentCourse.modules.length,
+      moduleActivities: [
+      ...Object.values(states).map(activity => {
+        return {
+            input: activity[0].input,
+            notes: activity[0].notes,
+            activityId: activity[0].id
+          }
+      })
+      ]
     }
-    console.log('MODULEPOST', modulePost)
+    console.log('MODULEPOST', Object.values(states).map(activity => activity))
 
     alert('Module Added!')
   }
@@ -66,6 +108,20 @@ export default function addModuleForm() {
             <p>{activities[key].description}</p>
           </div>
 
+          <label 
+            className={styles.formLabel} 
+            htmlFor="notes"  
+            aria-label="notes">
+              Notes
+          </label>
+          <textarea
+            className={styles.formInput} 
+            value={states[key][0]}
+            id="notes" 
+            rows="4" 
+            cols="50"
+            />
+
         </div>
       )
     )
@@ -76,8 +132,11 @@ export default function addModuleForm() {
     <div className={styles.addModuleForm}>
       <h1 className={styles.formPageTitle}>Add A Module</h1>
       <p>
-        Course: 
-        {sharedState.courses[sharedState.currentCourse].name}
+        <span className={styles.courseLabel}>
+          Course:
+        </span>
+        <br /> 
+        {currentCourse ? currentCourse.name : ''}
       </p>
 
       <form onSubmit={addModule}>
@@ -91,23 +150,10 @@ export default function addModuleForm() {
               Module Name
           </label>
           <input 
-            className={styles.formInput} 
-            ref={moduleName} 
+            className={styles.formInput}  
             id="module-name" 
             type="text" 
             required />
-
-          <label 
-            className={styles.formLabel} 
-            htmlFor="description"  
-            aria-label="description">
-              Description
-          </label>
-          <input 
-            className={styles.formInput} 
-            ref={description} 
-            id="description" 
-            type="text"/>
 
         </div>
 
@@ -123,17 +169,22 @@ export default function addModuleForm() {
 
         {makeInputs(activities)}
         
+        <button 
+          className={styles.submitButton} 
+          type="submit">
+            Add Module
+        </button>
       </form>
   
-      <div className={styles.timeBar}>
+      {/* <div className={styles.timeBar}>
         <p className={styles.timeLabel}>
-          Total Recommended Time per Week: {10}
+          Total Recommended Time per Week: {currentCourse ? currentCourse.goal : ''}
         </p>
         <div className={styles.timeMeter}>
           <div className={styles.timeUsed} >
           </div>
         </div>
-      </div>
+      </div> */}
 
       </div>
   )
