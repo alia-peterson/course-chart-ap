@@ -5,13 +5,14 @@ import styles from '../styles/Navbar.module.scss'
 import { useAppContext } from '../context/app-context'
 
 export default function NavBar() {
-    const { sharedState, setSharedState} = useAppContext()
+  const { sharedState, setSharedState} = useAppContext()
 
   const courses = sharedState.courses.map((course, i) => {
+
     const modules = course.modules.map((mod, j) => {
       return (
         <Link key={j} href={`/moduleDashboard`}>
-          <div>
+          <div className={styles.module}>
             <a
               onClick={() =>
                 setSharedState({
@@ -27,10 +28,11 @@ export default function NavBar() {
     })
 
     return (
-      <div key={i} className={styles.course}>
+      <div key={i}>
         <Link href={`/courseDashboard`}>
-          <div>
+          <div className={styles.course}>
             <a
+              id={i}
               onClick={() =>
                 setSharedState({
                   ...sharedState,
@@ -41,16 +43,21 @@ export default function NavBar() {
               </a>
           </div>
         </Link>
+
         {(sharedState.currentCourse === course.id) &&
-        <div className={styles.content} >
+        <div className={styles.courseButtons}>
           <Link href='/moduleDashboard'>
-            <a>All Modules</a>
+            <div className= {styles.module}>
+              <a>All Modules</a>
+            </div>
           </Link>
 
           {modules}
 
           <Link href='/addModuleForm'>
-            <a>+ Add New Module</a>
+            <div className={styles.addCourse}>
+              <a>+ Add New Module</a>
+            </div>
           </Link>
         </div>
         }
@@ -69,14 +76,18 @@ export default function NavBar() {
 
       <section className={styles.courseButtons}>
         <Link href='/'>
-          <a className={styles.course}>All Course Dashboard</a>
+          <div className={styles.course}>
+            <a>Home</a>
+          </div>
+        </Link>
+
+        <Link href='/addCourseForm'>
+          <div className={styles.addCourse}>
+            <a>+ Add New Course</a>
+          </div>
         </Link>
 
         {courses}
-
-        <Link href='/addCourseForm'>
-        <a className={styles.addCourse}>+ Add New Course</a>
-        </Link>
       </section>
 
       <section className={styles.navButtons}>
