@@ -12,7 +12,7 @@ export default function moduleDashboard() {
     setModule(sharedState[sharedState.currentCourse].modules.find(mod => {
       return mod.id === parseInt(sharedState.currentModule)
     }))
-  }, [])
+  })
 
   return (
     <div>
