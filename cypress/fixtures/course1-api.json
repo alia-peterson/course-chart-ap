@@ -1,0 +1,53 @@
+{
+  "data": {
+    "activityTotals": [
+      {
+        "activityId": 1,
+        "activityName": "Reading (understand)",
+        "moduleId": 1,
+        "moduleName": "Module 1",
+        "minutes": 642
+      },
+      {
+        "activityId": 1,
+        "activityName": "Reading (understand)",
+        "moduleId": 2,
+        "moduleName": "Module 2",
+        "minutes": 318
+      }
+    ],
+    "course": {
+      "id": 1,
+      "name": "Foundations of Nursing",
+      "institution": "The Bay Nurses United University",
+      "creditHours": 3,
+      "length": 8,
+      "goal": "8-10 hours",
+      "modules": [
+        {
+          "id": 1,
+          "name": "Module 1",
+          "number": 1,
+          "courseId": 1,
+          "moduleActivities": []
+        },
+        {
+          "id": 2,
+          "name": "Module 2",
+          "number": 2,
+          "courseId": 1,
+          "moduleActivities": []
+        },
+        {
+          "id": 3,
+          "name": "Module 3",
+          "number": 3,
+          "courseId": 1,
+          "moduleActivities": []
+        }
+      ]
+    }
+  },
+  "message": "Course found",
+  "status": 200
+}

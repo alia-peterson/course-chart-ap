@@ -39,14 +39,11 @@
 }
 
 .courseButtons {
-  align-items: flex-end;
-  display: flex;
-  flex-direction: column;
-  // overflow-y: scroll;
+  overflow-y: scroll;
   height: 100%;
-  width: 100%;
 }
 
+.courseButtons,
 .navButtons {
   display: flex;
   flex-direction: column;
@@ -59,55 +56,36 @@
   }
 }
 
-.content {
-  display: none;
-  position: absolute;
-  background-color: $gray-light;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-  transform: translate(200px, -30px);
-
-  a {
-    padding: 0.5rem 0;
-    text-decoration: none;
-    display: block;
-  }
-
-  a:hover {
-    background-color: $gray-dark;
-  }
-}
-
-.course:hover {
-  .content {
-    display: block !important;
-  }
-}
-
-.course {
-  position: relative;
-  display: inline-block;
-}
-
 .course,
-.addCourse {
+.addCourse,
+.module {
+  cursor: pointer;
   padding: 0.5rem 0;
   text-align: center;
   margin-top: 0.5rem;
+  width: 100%;
 }
 
+.module {
+  margin-top: 0;
+  border-top: 1px solid $blue-dark;
+}
+
+.module,
 .course {
   background-color: $blue-medium;
-}
 
-.course,
-.addCourse {
-  width: 100%;
+  :hover {
+    text-decoration: underline;
+  }
 }
 
 .addCourse {
   background-color: $blue-light;
+
+  :hover {
+    text-decoration: underline;
+  }
 }
 
 .navButtons a:nth-child(1) {
