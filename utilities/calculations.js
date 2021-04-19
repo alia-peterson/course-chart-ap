@@ -1,5 +1,6 @@
 export const calculations = {
   getPercentages(activities, type = '') {
+    
     const activityTotals = activities.map(activity => {
       return activity.minutes
     })
@@ -31,7 +32,8 @@ export const calculations = {
     } else {
       return compiledActivityData
     }
-  },
+  }
+}
 
     // getActivityMinTotal(activity) {
     //     return activity.input * activity.multiplier
@@ -60,4 +62,3 @@ export const calculations = {
         //     }),
         // }
     // }
-}
