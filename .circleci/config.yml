@@ -5,10 +5,18 @@ jobs:
       - image: node:14
     steps:
       - checkout
+      - run: 'npm install'
       - run: 'npm run build'
   test:
     docker:
       - image: node:14
     steps:
-      - checkout
       - run: 'npm run test'
+
+workflows:
+  my_workflow:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
