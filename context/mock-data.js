@@ -123,7 +123,381 @@ const data = {
     exam: 6,
     selfAssessment: 7,
     courseId: 3
-  }
+  },
+
+  allActivities: [
+    {
+        "activityId": 1,
+        "activityName": "Reading (understand)",
+        "moduleId": 1,
+        "moduleName": "Module 1",
+        "minutes": 642
+    },
+    {
+        "activityId": 1,
+        "activityName": "Reading (understand)",
+        "moduleId": 2,
+        "moduleName": "Module 2",
+        "minutes": 318
+    },
+    {
+        "activityId": 1,
+        "activityName": "Reading (understand)",
+        "moduleId": 3,
+        "moduleName": "Module 3",
+        "minutes": 396
+    },
+    {
+        "activityId": 1,
+        "activityName": "Reading (understand)",
+        "moduleId": 4,
+        "moduleName": "Module 4",
+        "minutes": 630
+    },
+    {
+        "activityId": 1,
+        "activityName": "Reading (understand)",
+        "moduleId": 5,
+        "moduleName": "Module 5",
+        "minutes": 312
+    },
+    {
+        "activityId": 1,
+        "activityName": "Reading (understand)",
+        "moduleId": 6,
+        "moduleName": "Module 6",
+        "minutes": 216
+    },
+    {
+        "activityId": 1,
+        "activityName": "Reading (understand)",
+        "moduleId": 7,
+        "moduleName": "Module 7",
+        "minutes": 528
+    },
+    {
+        "activityId": 2,
+        "activityName": "Reading (study guide)",
+        "moduleId": 1,
+        "moduleName": "Module 1",
+        "minutes": 72
+    },
+    {
+        "activityId": 2,
+        "activityName": "Reading (study guide)",
+        "moduleId": 2,
+        "moduleName": "Module 2",
+        "minutes": 60
+    },
+    {
+        "activityId": 2,
+        "activityName": "Reading (study guide)",
+        "moduleId": 3,
+        "moduleName": "Module 3",
+        "minutes": 48
+    },
+    {
+        "activityId": 2,
+        "activityName": "Reading (study guide)",
+        "moduleId": 4,
+        "moduleName": "Module 4",
+        "minutes": 84
+    },
+    {
+        "activityId": 2,
+        "activityName": "Reading (study guide)",
+        "moduleId": 5,
+        "moduleName": "Module 5",
+        "minutes": 60
+    },
+    {
+        "activityId": 2,
+        "activityName": "Reading (study guide)",
+        "moduleId": 6,
+        "moduleName": "Module 6",
+        "minutes": 60
+    },
+    {
+        "activityId": 2,
+        "activityName": "Reading (study guide)",
+        "moduleId": 7,
+        "moduleName": "Module 7",
+        "minutes": 60
+    },
+    {
+        "activityId": 3,
+        "activityName": "Writing (research)",
+        "moduleId": 8,
+        "moduleName": "Module 8",
+        "minutes": 1080
+    },
+    {
+        "activityId": 4,
+        "activityName": "Writing (reflection)",
+        "moduleId": 3,
+        "moduleName": "Module 3",
+        "minutes": 90
+    },
+    {
+        "activityId": 4,
+        "activityName": "Writing (reflection)",
+        "moduleId": 4,
+        "moduleName": "Module 4",
+        "minutes": 180
+    },
+    {
+        "activityId": 4,
+        "activityName": "Writing (reflection)",
+        "moduleId": 5,
+        "moduleName": "Module 5",
+        "minutes": 90
+    },
+    {
+        "activityId": 5,
+        "activityName": "Learning Objects (matching/multiple choice)",
+        "moduleId": 1,
+        "moduleName": "Module 1",
+        "minutes": 70
+    },
+    {
+        "activityId": 5,
+        "activityName": "Learning Objects (matching/multiple choice)",
+        "moduleId": 2,
+        "moduleName": "Module 2",
+        "minutes": 50
+    },
+    {
+        "activityId": 5,
+        "activityName": "Learning Objects (matching/multiple choice)",
+        "moduleId": 3,
+        "moduleName": "Module 3",
+        "minutes": 40
+    },
+    {
+        "activityId": 5,
+        "activityName": "Learning Objects (matching/multiple choice)",
+        "moduleId": 4,
+        "moduleName": "Module 4",
+        "minutes": 30
+    },
+    {
+        "activityId": 5,
+        "activityName": "Learning Objects (matching/multiple choice)",
+        "moduleId": 5,
+        "moduleName": "Module 5",
+        "minutes": 50
+    },
+    {
+        "activityId": 5,
+        "activityName": "Learning Objects (matching/multiple choice)",
+        "moduleId": 6,
+        "moduleName": "Module 6",
+        "minutes": 50
+    },
+    {
+        "activityId": 5,
+        "activityName": "Learning Objects (matching/multiple choice)",
+        "moduleId": 7,
+        "moduleName": "Module 7",
+        "minutes": 40
+    },
+    {
+        "activityId": 6,
+        "activityName": "Learning Objects (case study)",
+        "moduleId": 3,
+        "moduleName": "Module 3",
+        "minutes": 40
+    },
+    {
+        "activityId": 6,
+        "activityName": "Learning Objects (case study)",
+        "moduleId": 5,
+        "moduleName": "Module 5",
+        "minutes": 20
+    },
+    {
+        "activityId": 6,
+        "activityName": "Learning Objects (case study)",
+        "moduleId": 6,
+        "moduleName": "Module 6",
+        "minutes": 20
+    },
+    {
+        "activityId": 6,
+        "activityName": "Learning Objects (case study)",
+        "moduleId": 7,
+        "moduleName": "Module 7",
+        "minutes": 40
+    },
+    {
+        "activityId": 8,
+        "activityName": "Videos",
+        "moduleId": 1,
+        "moduleName": "Module 1",
+        "minutes": 95
+    },
+    {
+        "activityId": 8,
+        "activityName": "Videos",
+        "moduleId": 2,
+        "moduleName": "Module 2",
+        "minutes": 71
+    },
+    {
+        "activityId": 8,
+        "activityName": "Videos",
+        "moduleId": 3,
+        "moduleName": "Module 3",
+        "minutes": 86
+    },
+    {
+        "activityId": 8,
+        "activityName": "Videos",
+        "moduleId": 4,
+        "moduleName": "Module 4",
+        "minutes": 75
+    },
+    {
+        "activityId": 8,
+        "activityName": "Videos",
+        "moduleId": 5,
+        "moduleName": "Module 5",
+        "minutes": 62
+    },
+    {
+        "activityId": 8,
+        "activityName": "Videos",
+        "moduleId": 6,
+        "moduleName": "Module 6",
+        "minutes": 40
+    },
+    {
+        "activityId": 8,
+        "activityName": "Videos",
+        "moduleId": 7,
+        "moduleName": "Module 7",
+        "minutes": 42
+    },
+    {
+        "activityId": 10,
+        "activityName": "Discussion Boards",
+        "moduleId": 1,
+        "moduleName": "Module 1",
+        "minutes": 60
+    },
+    {
+        "activityId": 10,
+        "activityName": "Discussion Boards",
+        "moduleId": 2,
+        "moduleName": "Module 2",
+        "minutes": 60
+    },
+    {
+        "activityId": 10,
+        "activityName": "Discussion Boards",
+        "moduleId": 3,
+        "moduleName": "Module 3",
+        "minutes": 60
+    },
+    {
+        "activityId": 10,
+        "activityName": "Discussion Boards",
+        "moduleId": 5,
+        "moduleName": "Module 5",
+        "minutes": 60
+    },
+    {
+        "activityId": 10,
+        "activityName": "Discussion Boards",
+        "moduleId": 6,
+        "moduleName": "Module 6",
+        "minutes": 60
+    },
+    {
+        "activityId": 11,
+        "activityName": "Quizzes",
+        "moduleId": 1,
+        "moduleName": "Module 1",
+        "minutes": 675
+    },
+    {
+        "activityId": 11,
+        "activityName": "Quizzes",
+        "moduleId": 2,
+        "moduleName": "Module 2",
+        "minutes": 150
+    },
+    {
+        "activityId": 11,
+        "activityName": "Quizzes",
+        "moduleId": 3,
+        "moduleName": "Module 3",
+        "minutes": 360
+    },
+    {
+        "activityId": 11,
+        "activityName": "Quizzes",
+        "moduleId": 4,
+        "moduleName": "Module 4",
+        "minutes": 585
+    },
+    {
+        "activityId": 11,
+        "activityName": "Quizzes",
+        "moduleId": 5,
+        "moduleName": "Module 5",
+        "minutes": 450
+    },
+    {
+        "activityId": 11,
+        "activityName": "Quizzes",
+        "moduleId": 6,
+        "moduleName": "Module 6",
+        "minutes": 135
+    },
+    {
+        "activityId": 11,
+        "activityName": "Quizzes",
+        "moduleId": 7,
+        "moduleName": "Module 7",
+        "minutes": 360
+    },
+    {
+        "activityId": 13,
+        "activityName": "Self Assessments",
+        "moduleId": 1,
+        "moduleName": "Module 1",
+        "minutes": 50
+    },
+    {
+        "activityId": 13,
+        "activityName": "Self Assessments",
+        "moduleId": 3,
+        "moduleName": "Module 3",
+        "minutes": 50
+    },
+    {
+        "activityId": 13,
+        "activityName": "Self Assessments",
+        "moduleId": 4,
+        "moduleName": "Module 4",
+        "minutes": 50
+    },
+    {
+        "activityId": 13,
+        "activityName": "Self Assessments",
+        "moduleId": 6,
+        "moduleName": "Module 6",
+        "minutes": 50
+    },
+    {
+        "activityId": 13,
+        "activityName": "Self Assessments",
+        "moduleId": 8,
+        "moduleName": "Module 8",
+        "minutes": 100
+    }
+]
 }
 
 export default data
