@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import mockData from './mock-data';
 import { getData, postData } from './apiCalls';
+import data from './mock-data';
 
 const AppContext = createContext();
 
@@ -10,16 +11,18 @@ export function AppWrapper({ children }) {
             modules:[]
         }],
         currentCourse: '',
-        currentModule: ''
+        currentModule: '',
+        activities: []
     })
 
     useEffect( async () => {
-        getData('courses')
-            .then(courses => {
-                setSharedState({
-                    courses: courses.data
-                })
-            })
+        const courses = await getData('courses')
+        const activities = await getData('activities')
+        setSharedState({
+            ...sharedState,
+            courses: courses.data,
+            activities: activities.data
+        })
     }, []);
 
 
