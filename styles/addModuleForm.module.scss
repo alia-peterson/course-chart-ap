@@ -138,14 +138,11 @@
   position: fixed;
   z-index: 2;
   bottom: 0;
-  right: 25%;
-  width: 70%;
+  width: 100%;
   background-color: $blue-dark;
   padding: 2rem;
-  border-radius: 80px 80px 0px 0px ;
-  height: 4.5rem;
+  height: 4.7rem;
   align-items: center;
-  transform: translatex(70px);
 }
 
 .timeMeter {
@@ -157,6 +154,13 @@
   z-index: 1;
   position: absolute;
   bottom: 3rem;
+  right: 15%;
+}
+
+.timeBarLabels {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
 .range {

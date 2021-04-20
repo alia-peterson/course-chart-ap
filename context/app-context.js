@@ -26,7 +26,7 @@ export function AppWrapper({ children }) {
             activities: activities.data
         })
     }, [hasBeenUpdated]);
- 
+
     const value = {
         setSharedState,
         sharedState,

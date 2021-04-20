@@ -1,9 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useRouter } from 'next/router'
 import { useAppContext } from '../context/app-context'
 import styles from '../styles/addModuleForm.module.scss'
 import { postData } from '../context/apiCalls';
 
 export default function addModuleForm() {
+  const router = useRouter()
   const { sharedState, setSharedState } = useAppContext()
   const { hasBeenUpdated, setHasBeenUpdated } = useAppContext()
   const [moduleName, setModuleName] = useState('')
@@ -12,14 +14,16 @@ export default function addModuleForm() {
   const [barColor, setBarColor] = useState('')
   const [currentCourse, setCurrentCourse] = useState(sharedState[sharedState.currentCourse])
   let activities = sharedState.activities
-  let timeUsed
 
   const calculateGoalMinutesRange = (course) => {
+    if (course) {
     const splitString = course.goal.replace(' hours', '').split('-')
     const makeMinutes = num => {
       return parseInt(num)*60
     }
     return [makeMinutes(splitString[0]), makeMinutes(splitString[1])]
+    }
+    return [0, 0]
   }
 
   const [courseGoalMinutesMin, courseGoalMinutesMax] = calculateGoalMinutesRange(currentCourse)
@@ -60,10 +64,9 @@ export default function addModuleForm() {
     setSharedState({
       ...sharedState, 
       currentModule: postBody.id, 
-      [sharedState.currentCourse]: currentCourse})
-    setTimeOut(alert('Module Added!'), 3000)
-    window.visit('/moduleDashboard')
-    
+      [sharedState.currentCourse]: currentCourse
+    })
+      alert('Module added!')
   }
 
   const addModule = event => {
@@ -94,6 +97,37 @@ export default function addModuleForm() {
     }
 
     post(modulePost)
+
+    const getActivitesForModuleState = () => {
+      return onlyChangedModActivities.map((activity, i) => {
+        const num = parseInt(i)
+        return {
+          id: num,
+          input: activity.input,
+          notes: activity.notes,
+          activityId: activity.id,
+          activity: {
+              id: num,
+              name: activities[i].name,
+              description: activities[i].description,
+              metric: activities[i].metric,
+              multiplier: activities[i].multiplier
+          }
+        }
+
+      })
+    }
+
+    const moduleForState = {
+      id: modulePost.number,
+      name: modulePost.name,
+      number: modulePost.number,
+      courseId: modulePost.id,
+      moduleActivities: getActivitesForModuleState()
+    }
+
+    console.log('MODULEFORSTATE', moduleForState)
+    router.push('/moduleDashboard')
   }
 
   const makeInputs = (activities) => {
@@ -201,17 +235,18 @@ export default function addModuleForm() {
 
       <div className={styles.timeBar}>
 
-        <p className={styles.timeLabel}>
-          Total Recommended Time per Week: {currentCourse ? currentCourse.goal : ''}
-        </p>
+        <div className={styles.timeBarLabels}>
+          <p className={styles.timeLabel}>
+            Total Recommended Time per Week:  {currentCourse ? currentCourse.goal :  ''}
+          </p>
 
-        <p className={styles.totalInputLabel}>
-          Total Assigned in Hours: {totalInputMinutes / 60}
-        </p>
-
-        <p className={styles.totalInputLabel}>
-          Total Assigned in Minutes: {totalInputMinutes}
-        </p>
+          <p className={styles.totalInputLabel}>
+            Total Assigned in Hours:  {Math.trunc(((totalInputMinutes / 60) * 100)) / 100 }
+          </p>
+          <p className={styles.totalInputLabel}>
+            Total Assigned in Minutes:  {totalInputMinutes}
+          </p>
+        </div>
 
         <div className={styles.timeMeter}>
           <div className={styles.range} style={{width: `${range}`}} ></div>

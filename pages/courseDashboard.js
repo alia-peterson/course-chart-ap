@@ -16,22 +16,24 @@ export default function courseDashboard() {
   useEffect(() => {
     getData(`courses/${courseId}`)
       .then(courseModules => {
+        if (courseModules) {
         setCourse(courseModules.data.course)
-        setActivityTotals(courseModules.data.activityTotals)
-        setPercentageByMod(calculations.getPercentages(courseModules.data.activityTotals))
-        setPercentageByActivity(calculations.getPercentages(courseModules.data.activityTotals, 'activity'))
+        // setActivityTotals(courseModules.data.activityTotals)
+        // setPercentageByMod(calculations.getPercentages(courseModules.data.activityTotals))
+        // setPercentageByActivity(calculations.getPercentages(courseModules.data.activityTotals, 'activity'))
 
         setSharedState({
           ...sharedState,
           [courseId]: courseModules.data.course
         })
+      }
       })
   }, [])
 
   return (
     <div>
-      <h1>{course.name}</h1>
-      <p>graphs!</p>
+      {/* <h1>{course.name}</h1>
+      <p>graphs!</p> */}
     </div>
   )
 }
