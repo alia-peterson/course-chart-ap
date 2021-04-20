@@ -48,7 +48,7 @@ export default function CircleChart({ data }) {
 
   return (
     <div className={styles.chartContainer}>
-      <h2>Circle Chart</h2>
+      <h2>Activity Percentages</h2>
       <Doughnut data={config} width={400} height={400} />
     </div>
   );
