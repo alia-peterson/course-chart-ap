@@ -50,7 +50,7 @@ export default function moduleDashboard() {
       <>
         <h1>{module.name}</h1>
         {percentages.length && 
-        <CircleChart data={percentages} />}
+        <CircleChart data={percentages} view={'Module'}/>}
         <button onClick={deleteMod}>Delete Module</button>
       </>
       } 
