@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { useAppContext } from '../context/app-context';
-import { formatDataForBarChart } from '../utilities/calculations';
+import { calculations } from '../utilities/calculations';
 import styles from '../styles/BarChart.module.scss';
 
 const BarChart = (props) => {
@@ -14,12 +14,12 @@ const BarChart = (props) => {
     })
 
     useEffect(() => {
-        let dataToDisplay = formatDataForBarChart(props.course, barData.label, props.activityTotals)
+        let dataToDisplay = calculations.formatDataForBarChart(props.course, barData.label, props.activityTotals)
         setData({ ...barData, dataToDisplay })
     }, [props.activityTotals])
 
     const changeData = (dataType, color) => {
-            let dataToDisplay = formatDataForBarChart(props.course, dataType, props.activityTotals)
+            let dataToDisplay = calculations.formatDataForBarChart(props.course, dataType, props.activityTotals)
             setData({ label: dataType, dataToDisplay, color })
         }
 

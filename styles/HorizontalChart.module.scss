@@ -1,0 +1,95 @@
+@import 'variables';
+
+.graph {
+  height: 50px;
+  width: 600px;
+  display: flex;
+}
+
+.container {
+  width: 100%;
+}
+
+.box {
+  position: relative;
+  // display: inline-block;
+  border-bottom: 1px dotted black;
+  cursor: pointer;
+
+  div {
+    visibility: hidden;
+    background-color: #555 !important;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    position: absolute;
+    z-index: 1;
+    bottom: 110%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  div::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+  }
+}
+
+.box:hover div {
+  visibility: visible;
+  opacity: 1;
+}
+
+.graph div:nth-child(1) {
+  background-color: pink;
+  height: 100%;
+}
+
+.graph div:nth-child(2) {
+  background-color: purple;
+  height: 100%;
+}
+
+.graph div:nth-child(3) {
+  background-color: red;
+  height: 100%;
+}
+
+.graph div:nth-child(4) {
+  background-color: black;
+  height: 100%;
+}
+
+.graph div:nth-child(5) {
+  background-color: yellow;
+  height: 100%;
+}
+
+.graph div:nth-child(6) {
+  background-color: orange;
+  height: 100%;
+}
+
+.graph div:nth-child(7) {
+  background-color: green;
+  height: 100%;
+}
+
+.graph div:nth-child(8) {
+  background-color: blue;
+  height: 100%;
+}
+
+.graph div:nth-child(9) {
+  background-color: gray;
+  height: 100%;
+}

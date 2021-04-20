@@ -1,47 +1,95 @@
 import React, { useContext, useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import { useAppContext } from '../context/app-context'
-import { getData } from '../context/apiCalls'
+import { getData, deleteData } from '../context/apiCalls'
 import { calculations } from '../utilities/calculations'
 import BarChart from '../components/BarChart'
+import CircleChart from '../components/CircleChart'
 
-import styles from '../styles/Home.module.scss'
+import HorizontalChart from '../components/HorizontalChart'
+
+import styles from '../styles/courseDashboard.module.scss'
 
 export default function courseDashboard() {
-  const { sharedState, setSharedState } = useAppContext()
+  const { sharedState, setSharedState, hasBeenDeleted, hasBeenUpdated } = useAppContext()
   const courseId = sharedState.currentCourse
   const [course, setCourse] = useState({})
-  const [activityTotals, setActivityTotals] = useState([])
-  const [percentageByMod, setPercentageByMod] = useState([])
-  const [percentageByActivity, setPercentageByActivity] = useState([])
+  const [activityTotals, setActivityTotals] = useState({})
+  const router = useRouter()
+  const [courseActivityPercentages, setCourseActivityPercentages] = useState([])
 
   useEffect(() => {
     getData(`courses/${courseId}`)
       .then(courseModules => {
-        if(courseModules) {
+        if (courseModules) {
           setCourse(courseModules.data.course)
-          setActivityTotals(courseModules.data.activityTotals)
-          if(courseModules.data.activityTotals !== null) {
-            setPercentageByMod(calculations.getPercentages(courseModules.data.activityTotals))
-            setPercentageByActivity(calculations.getPercentages(courseModules.data.activityTotals, 'activity'))
+          if (courseModules.data.activityTotals !== null) {
+            const percentages = calculations.getActivityPercentages(courseModules.data.   activityTotals, sharedState.activities)
+            setCourseActivityPercentages(percentages)
+            setActivityTotals(courseModules.data.activityTotals)
+            const updatedCourse = courseModules.data.course
+            const stateCopy = sharedState
+            delete stateCopy[sharedState.currentCourse]
+            stateCopy[sharedState.currentCourse] = updatedCourse
+            stateCopy.currentCourseActivityTotals = courseModules.data.activityTotals
+
+            setSharedState({
+              ...stateCopy
+            })
+
+          } else {
+            setSharedState({
+              ...sharedState,
+              [courseId]: courseModules.data.course,
+            })
           }
-          setSharedState({
-            ...sharedState,
-            [courseId]: courseModules.data.course
-          })
-        } 
+        }
       })
-      
-  }, [sharedState.currentCourse])
+  }, [hasBeenDeleted, sharedState.currentCourse, hasBeenUpdated])
+
+  const deleteCourse = () => {
+    if (confirm('Are you sure you\'d like to delete this course?')) {
+      deleteData('course', sharedState.currentCourse)
+      sharedState[sharedState.currentCourse].modules
+      router.push('/')
+    }
+  }
 
   return (
+    
     <div>
-      <h1>{course.name}</h1>
-      <p>graphs!</p>
-      {course.name && activityTotals !== null && <
-        BarChart 
-        course={course} 
-        activityTotals={activityTotals}
-      />}
+      {course &&
+      <section className={styles.courseMeta}>
+        <h1>{course.name}</h1>
+        <p>
+          Institution: {course.institution}
+          <br />
+          Credit Hours: {course.creditHours}
+          <br />
+          Length: {course.length} Weeks
+        </p>
+      </section>
+      }
+
+      <section className={styles.courseGraphs}>
+        {courseActivityPercentages.length && 
+          <CircleChart data={courseActivityPercentages}/>}
+
+        {activityTotals.length > 0 &&
+          <>
+            <h2>Activities Per Module</h2>
+            <HorizontalChart activities={activityTotals} />
+          </>
+        }
+
+        {course.name && sharedState.currentCourseActivityTotals !== null && <
+          BarChart 
+          course={course} 
+          activityTotals={sharedState.currentCourseActivityTotals}
+        />}
+      </section>
+      <button onClick={deleteCourse}>Delete Course</button>
     </div>
+    
   )
 }

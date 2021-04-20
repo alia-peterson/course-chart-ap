@@ -1,0 +1,79 @@
+.goalsForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 60vh;
+    width: 100vw;
+}
+
+.fields {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.goal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 85%;
+}
+
+.total {
+    display: flex;
+    align-items: center; 
+}
+
+.type {
+    border: solid 3px red;
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    // margin-left: 10px;
+}
+
+.totalNum {
+    background-color: lightgrey;
+    height: 40px; 
+    width: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.circle {
+    height: 140px;
+    width: 12%;
+    border: solid 10px #1A3C59;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;;
+
+}
+
+.goalInput {
+    width: 50%;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 1px solid black;
+    text-align: center;
+    color: #1A3C59
+}
+
+.goalLabel {
+    color: #1A3C59
+}
+
+// .description {
+//     background-color: lightgray;
+//     background-position: inherit;
+//     margin: 0;
+//     height: 100%;
+//     width: 20%;
+//     margin-bottom: 10px;
+// }

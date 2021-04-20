@@ -4,13 +4,13 @@
   height: 100vh;
   width: 200px;
   background-color: $blue-dark;
-  font-family: 'Rajdhani', sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   // font-size: 18px;
-  font-weight: bold;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   justify-content: space-between;
+  color: $gray-light;
 }
 
 .container {
@@ -22,7 +22,9 @@
   width: 100%;
 
   h1 {
-    margin-top: 0;
+    margin-top: 1rem;
+    font-family: 'IBM Plex Mono', monospace;
+    cursor: pointer;
   }
 }
 
@@ -36,6 +38,11 @@
   border-radius: 50%;
   background-color: $off-white;
   margin-top: 1rem;
+  cursor: pointer;
+}
+
+.homeLogo {
+  cursor: pointer;
 }
 
 .courseButtons {
@@ -48,6 +55,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  font-size: .9rem;
 
   a {
     padding: 0.5rem 0;
@@ -67,8 +75,26 @@
 }
 
 .module {
-  margin-top: 0;
   border-top: 1px solid $blue-dark;
+  margin: 4px 0px 4px 25px;
+}
+
+.course {
+  margin: 4px 0px 4px 10px;
+}
+
+.home {
+  background-color: $gray-light;
+  color: $blue-dark;
+  padding: 0.5rem 0;
+  text-align: center;
+  width: 100%;
+  cursor: pointer;
+  margin: 15px 10px 4px 10px;
+
+  :hover {
+    text-decoration: underline;
+  }
 }
 
 .module,
@@ -82,16 +108,30 @@
 
 .addCourse {
   background-color: $blue-light;
+  margin: 4px 0px 4px 25px;
 
   :hover {
     text-decoration: underline;
   }
 }
 
+.navButtons {
+  cursor: pointer;
+
+  :hover {
+    text-decoration: underline;
+  }
+} 
+
 .navButtons a:nth-child(1) {
-  background-color: $gray-dark;
+  background-color: $blue-light;
 }
 
 .navButtons a:nth-child(2) {
+  background-color: $gray-dark;
+}
+
+.navButtons a:nth-child(3) {
   background-color: $gray-light;
+  color: $blue-dark;
 }
