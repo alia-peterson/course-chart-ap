@@ -66,7 +66,7 @@ export default function addModuleForm() {
     setBarColor(color)
   })
 
-  const post = async (postBody) => {
+  const post = async (postBody, stateBody) => {
     let url = 'https://course-chart-be.herokuapp.com/modules'
     const response = await postData(url, postBody)
     if (response.message !== 'Module created successfully') {
@@ -74,7 +74,7 @@ export default function addModuleForm() {
     } 
     
     setHasBeenUpdated(!hasBeenUpdated)
-    const updatedCourse = currentCourse.modules.push(postBody)
+    const updatedCourse = currentCourse.modules.push(stateBody)
     setCurrentCourse(updatedCourse)
     setSharedState({
       ...sharedState, 
@@ -129,8 +129,9 @@ export default function addModuleForm() {
               multiplier: activities[i].multiplier
           }
         }
-
       })
+
+      setSharedState({...sharedState, })
     }
 
     const moduleForState = {
@@ -154,7 +155,7 @@ export default function addModuleForm() {
             <p className={styles.minutesTotal}>
               {states[key][0][0] * activities[key].multiplier}
             </p>
-            <p className={styles.title}>
+            <p className={styles.title} style={{border: `2px solid ${activities[key].color}`}}>
               {activities[key].name}
             </p>
           </div>
@@ -189,8 +190,6 @@ export default function addModuleForm() {
             cols="50"
             onChange={(event) => states[key][1][1](event.target.value)}
           />
-            
-
         </div>
       )
     )
