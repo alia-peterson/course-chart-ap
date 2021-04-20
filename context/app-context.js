@@ -21,7 +21,6 @@ export function AppWrapper({ children }) {
         '#ff2500'
       ]
     const [hasBeenUpdated, setHasBeenUpdated] = useState(false)
-    const [hasBeenDeleted, setHasBeenDeleted] = useState(false)
     const [sharedState, setSharedState] = useState({
         courses: [{
             modules:[]
@@ -44,13 +43,11 @@ export function AppWrapper({ children }) {
             courses: courses.data,
             activities: activitiesWithColor
         })
-    }, [hasBeenUpdated, hasBeenDeleted]);
+    }, [hasBeenUpdated]);
 
     const value = {
         sharedState,
         setSharedState,
-        hasBeenDeleted,
-        setHasBeenDeleted, 
         hasBeenUpdated,
         setHasBeenUpdated
     }

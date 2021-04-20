@@ -8,7 +8,7 @@ import { useRouter } from 'next/router'
 import styles from "../styles/Home.module.scss";
 
 export default function moduleDashboard() {
-  const { sharedState, setSharedState, hasBeenDeleted, setHasBeenDeleted, hasBeenUpdated } = useAppContext();
+  const { sharedState, setSharedState, setHasBeenUpdated, hasBeenUpdated } = useAppContext();
   const [module, setModule] = useState({});
   const [percentages, setPercentages] = useState([]);
  
@@ -34,12 +34,12 @@ export default function moduleDashboard() {
         setPercentages(activityPercentages)
       }
     }
-  }, [hasBeenDeleted, sharedState.currentModule, hasBeenUpdated]);
+  }, [sharedState.currentModule, hasBeenUpdated]);
 
   const deleteMod = () => {
     if (confirm('Are you sure you\'d like to delete this module?')) {
       deleteData('module', sharedState.currentModule)
-      setHasBeenDeleted(!hasBeenDeleted)
+      setHasBeenUpdated(!hasBeenUpdated)
       router.push('/courseDashboard')
     }
   }
