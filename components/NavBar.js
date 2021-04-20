@@ -103,8 +103,8 @@ export default function NavBar() {
           <a>Instructions</a>
         </Link>
 
-        <Link href='/instructions'>
-          <a>About Site</a>
+        <Link href='/contactDevelopers'>
+          <a>Contact the Devs</a>
         </Link>
       </section>
     </nav>
