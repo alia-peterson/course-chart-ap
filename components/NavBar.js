@@ -8,7 +8,7 @@ import { useAppContext } from '../context/app-context'
 export default function NavBar() {
   const { sharedState, setSharedState} = useAppContext()
   const [selected, setSelected ] = useState('home')
-  
+
   const checkIfSelected = (id) => {
       if (id === selected) {
           return styles.selected
@@ -58,11 +58,6 @@ export default function NavBar() {
 
         {(sharedState.currentCourse === course.id) &&
         <div className={styles.courseButtons}>
-          {/* <Link href='/moduleDashboard'>
-            <div className= {styles.module}>
-              <a>All Modules</a>
-            </div>
-          </Link> */}
 
           {modules}
 
@@ -82,7 +77,7 @@ export default function NavBar() {
         <Link href='/' className={styles.homeLogo}>
             <section className={styles.container}>
               <div className={styles.logo}>
-                <Image src='/icon.png' alt='Course chart    icon' height={50} width={50} />
+                <Image src='/icon.png' alt='Course chart icon' height={50} width={50} />
               </div>
               <h1>CourseChart</h1>
             </section>
@@ -90,7 +85,7 @@ export default function NavBar() {
 
       <section className={styles.courseButtons}>
         <Link href='/'>
-          <div className={styles.course, styles.home}>
+          <div className={styles.home}>
             <a>Home</a>
           </div>
         </Link>
@@ -100,7 +95,7 @@ export default function NavBar() {
 
       <section className={styles.navButtons}>
         <Link href='/addCourseForm'>
-          <div className={styles.addCourse, styles.courseButtons}>
+          <div className={styles.courseButtons}>
             <a>+ Add New Course</a>
           </div>
         </Link>
