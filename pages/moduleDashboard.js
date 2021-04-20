@@ -11,7 +11,6 @@ export default function moduleDashboard() {
   const { sharedState, setSharedState, hasBeenDeleted, setHasBeenDeleted, hasBeenUpdated } = useAppContext();
   const [module, setModule] = useState({});
   const [percentages, setPercentages] = useState([]);
-
   const router = useRouter()
 
   useEffect(() => {
@@ -30,6 +29,8 @@ export default function moduleDashboard() {
         const activityPercentages = calculations.getModulePercentages(moduleActivities);
         setPercentages(activityPercentages)
       }
+    } else {
+      router.push('/')
     }
   }, [hasBeenDeleted, sharedState.currentModule, hasBeenUpdated]);
 
