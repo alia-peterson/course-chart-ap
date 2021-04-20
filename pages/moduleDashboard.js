@@ -8,11 +8,10 @@ export default function moduleDashboard() {
   const [module, setModule] = useState({})
 
   useEffect(() => {
-    console.log(sharedState);
     setModule(sharedState[sharedState.currentCourse].modules.find(mod => {
       return mod.id === parseInt(sharedState.currentModule)
     }))
-  })
+  }, [sharedState.currentModule])
 
   return (
     <div>
