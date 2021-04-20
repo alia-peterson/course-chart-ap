@@ -1,12 +1,12 @@
-// import data from "../context/mock-data";
-// import { calculations } from "./calculations";
+import data from "../context/mock-data";
+import { calculations } from "./calculations";
 
-// describe("calculations", () => {
-//   const allActivities = data.allActivities;
+describe("calculations", () => {
+  const allActivities = data.allActivities;
   
-  //   it('should have a get percentages method', () => {
-  //     expect(typeof (calculations.getPercentages(allActivities, 'activity'))).toBe('function')
-  //   });
+    it('should be true', () => {
+      expect(true).toBe(true)
+    });
 
 //   it("should return all the activities for the course", () => {
 //     expect(calculations.getPercentages(allActivities)).toStrictEqual(
@@ -369,4 +369,4 @@
 //         })
 //     })
 
-// })
+})
