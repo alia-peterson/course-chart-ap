@@ -598,11 +598,5 @@ const data = {
     "Self Assessments": 5,
   },
 };
-    courseId: 3
-  },
-  recommeneded: {
-    
-  }
-}
 
 export default data;
