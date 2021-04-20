@@ -3,12 +3,6 @@ export const calculations = {
     return activities.filter((activity) => activity.moduleId === id);
   },
 
-//   getPercentages(activities, type = '') {
-//     const activityTotals = activities.map(activity => {
-//       return activity.minutes
-//     })
-// },
-
   getModulePercentages(moduleActivities) {
     const moduleActivityTotal = moduleActivities.reduce((total, activity) => {
       return total + activity.minutes;
@@ -47,10 +41,10 @@ export const calculations = {
     return percentages;
   },
 
-  formatDataForBarChart(course, label, activityTotals) {
+  formatDataForBarChart(course, label, allActivityTotals) {
     const numOfMods = course.modules.map((mod) => mod.name)
 
-    const specificActivities = activityTotals.filter((activity) => {
+    const specificActivities = allActivityTotals.filter((activity) => {
         return activity.activityName.includes(label);
       });
 
