@@ -3,6 +3,8 @@ import { useAppContext } from '../context/app-context'
 import { getData } from '../context/apiCalls'
 import { calculations } from '../utilities/calculations'
 
+import HorizontalChart from '../components/HorizontalChart'
+
 import styles from '../styles/Home.module.scss'
 
 export default function courseDashboard() {
@@ -29,9 +31,10 @@ export default function courseDashboard() {
   }, [])
 
   return (
-    <div>
+    <>
       <h1>{course.name}</h1>
-      <p>graphs!</p>
-    </div>
+      <h2>Activities Per Module</h2>
+      <HorizontalChart activities={percentageByMod} />
+    </>
   )
 }

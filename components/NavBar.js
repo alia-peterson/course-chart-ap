@@ -5,7 +5,7 @@ import styles from '../styles/Navbar.module.scss'
 import { useAppContext } from '../context/app-context'
 
 export default function NavBar() {
-  const { sharedState, setSharedState} = useAppContext()
+  const { sharedState, setSharedState } = useAppContext()
 
   const courses = sharedState.courses.map((course, i) => {
 
