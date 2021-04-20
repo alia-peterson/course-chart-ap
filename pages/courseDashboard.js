@@ -41,15 +41,15 @@ export default function courseDashboard() {
   return (
     <div>
       <h1>{course.name}</h1>
-      <button onClick={deleteCourse}>Delete Course</button>
       <p>graphs!</p>
-      {course.name && activityTotals !== null && <
-        BarChart 
-        course={course} 
-        activityTotals={activityTotals}
-      />}
       {courseActivityPercentages.length && 
       <CircleChart data={courseActivityPercentages}/>}
+      {course.name && sharedState.currentCourseActivityTotals !== null && <
+        BarChart 
+        course={course} 
+        activityTotals={sharedState.currentCourseActivityTotals}
+      />}
+      <button onClick={deleteCourse}>Delete Course</button>
     </div>
   )
 }

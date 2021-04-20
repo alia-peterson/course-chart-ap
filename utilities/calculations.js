@@ -40,4 +40,24 @@ export const calculations = {
     });
     return percentages;
   },
+
+  formatDataForBarChart(course, label, activityTotals) {
+    const numOfMods = course.modules.map((mod) => mod.name)
+
+    const specificActivities = activityTotals.filter((activity) => {
+        return activity.activityName.includes(label);
+      });
+
+    return numOfMods.reduce((accumulator, modName) => {
+      let found = specificActivities.find(
+        (mod) => mod.moduleName === modName
+      );
+      if (found) {
+        accumulator[modName] = found.minutes;
+      } else {
+        accumulator[modName] = 0;
+      }
+      return accumulator;
+    }, {});
+  }
 };
