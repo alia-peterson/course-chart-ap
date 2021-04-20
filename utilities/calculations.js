@@ -3,11 +3,11 @@ export const calculations = {
     return activities.filter((activity) => activity.moduleId === id);
   },
 
-  getPercentages(activities, type = '') {
-    const activityTotals = activities.map(activity => {
-      return activity.minutes
-    })
-},
+//   getPercentages(activities, type = '') {
+//     const activityTotals = activities.map(activity => {
+//       return activity.minutes
+//     })
+// },
 
   getModulePercentages(moduleActivities) {
     const moduleActivityTotal = moduleActivities.reduce((total, activity) => {

@@ -127,7 +127,7 @@ const data = {
     courseId: 3,
   },
 
-  allActivities: [
+  allActivityTotals: [
     {
       activityId: 1,
       activityName: "Reading (understand)",
@@ -498,7 +498,7 @@ const data = {
       moduleId: 8,
       moduleName: "Module 8",
       minutes: 100,
-    },
+    }
   ],
 
   coursePercentageData: [
@@ -597,6 +597,82 @@ const data = {
     Quizzes: 29,
     "Self Assessments": 5,
   },
+
+  courseActivityTotals: [
+    {
+        "activityId": 1,
+        "activityName": "Reading (understand)",
+        "moduleId": 69,
+        "moduleName": "Wizardry",
+        "minutes": 12
+    },
+    {
+        "activityId": 1,
+        "activityName": "Reading (understand)",
+        "moduleId": 74,
+        "moduleName": "Wowie",
+        "minutes": 18
+    },
+    {
+        "activityId": 1,
+        "activityName": "Reading (understand)",
+        "moduleId": 104,
+        "moduleName": "Horses",
+        "minutes": 18
+    },
+    {
+        "activityId": 2,
+        "activityName": "Reading (study guide)",
+        "moduleId": 74,
+        "moduleName": "Wowie",
+        "minutes": 48
+    },
+    {
+        "activityId": 3,
+        "activityName": "Writing (research)",
+        "moduleId": 74,
+        "moduleName": "Wowie",
+        "minutes": 360
+    },
+    {
+        "activityId": 8,
+        "activityName": "Videos",
+        "moduleId": 81,
+        "moduleName": "oh",
+        "minutes": 14
+    },
+    {
+        "activityId": 14,
+        "activityName": "Miscellaneous",
+        "moduleId": 81,
+        "moduleName": "oh",
+        "minutes": 5
+    }
+  ],
+
+  moduleActivities: [
+    {
+        "activityId": 1,
+        "activityName": "Reading (understand)",
+        "moduleId": 74,
+        "moduleName": "Wowie",
+        "minutes": 18
+    },
+    {
+        "activityId": 2,
+        "activityName": "Reading (study guide)",
+        "moduleId": 74,
+        "moduleName": "Wowie",
+        "minutes": 48
+    },
+    {
+        "activityId": 3,
+        "activityName": "Writing (research)",
+        "moduleId": 74,
+        "moduleName": "Wowie",
+        "minutes": 360
+    }
+]
 };
 
 export default data;
