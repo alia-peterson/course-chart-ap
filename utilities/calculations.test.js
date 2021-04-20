@@ -9,9 +9,9 @@ describe("calculations", () => {
   const label = data.label;
   const allActivityTotals = data.allActivityTotals;
 
-  it('Should have a calculations object', () => {
-    expect(typeof calculations).toBe('object')
-  })
+  it("Should have a calculations object", () => {
+    expect(typeof calculations).toBe("object");
+  });
 
   it("Should be able to return all activities filtered by module", () => {
     expect(
@@ -42,7 +42,9 @@ describe("calculations", () => {
   });
 
   it("Should be able to return all the activities and percentage of totals within a module", () => {
-    expect(calculations.getModulePercentages(activitesByModule)).toStrictEqual([
+    expect(
+      calculations.getModulePercentages(activitesByModule)
+    ).toStrictEqual([
       { "Reading (understand)": 4 },
       { "Reading (study guide)": 11 },
       { "Writing (research)": 84 },
