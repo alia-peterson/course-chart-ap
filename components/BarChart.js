@@ -67,7 +67,7 @@ const BarChart = (props) => {
     
 
     return (
-        <>
+        <div className='barChart'>
             <Bar 
                 data={data}
                 width={200}
@@ -160,7 +160,7 @@ const BarChart = (props) => {
                     Miscellaneous
                 </button> 
             </section>
-        </>
+        </div>
     )
 }
 

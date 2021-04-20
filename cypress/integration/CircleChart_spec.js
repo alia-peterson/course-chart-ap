@@ -1,7 +1,6 @@
 describe('Circle Chart', () => {
     const baseUrl = 'http://localhost:3000/'
 
-  
     beforeEach(() => {
       cy.visit(baseUrl)
       cy.get("#0").click().wait(500);
