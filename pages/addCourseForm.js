@@ -11,17 +11,13 @@ export default function addCourseForm() {
   const [course, setCourse] = useState('')
   const [hours, setHours] = useState('')
   const [length, setLength] = useState('')
-  let errorMessage = '' // why isn't this error message updating???
+  const [errorMessage, setErrorMessage] = useState('')
 
   const handleSubmit = (event) => {
     event.preventDefault()
 
     if (hours === '' || length === '') {
-      errorMessage = 'Please fill out all fields of form.'
-
-      setTimeout(() => {
-        errorMessage = ''
-      }, 1000)
+      setErrorMessage('Please fill out all fields of form.')
 
     } else {
       submitForm()
@@ -38,6 +34,11 @@ export default function addCourseForm() {
       goal: goal
     }
 
+    setInstitution('')
+    setCourse('')
+    setHours('')
+    setLength('')
+    setErrorMessage('')
     postCourse(newCourse)
   }
 

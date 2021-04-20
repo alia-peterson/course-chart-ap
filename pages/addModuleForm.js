@@ -170,7 +170,7 @@ export default function addModuleForm() {
             min='0'
             onChange={(event) => states[key][0][1](event.target.value)}/>
           <div className={styles.description}>
-            <p>{activities[key].description}</p>
+            {activities[key].description}
           </div>
 
           <label

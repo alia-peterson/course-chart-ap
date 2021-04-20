@@ -46,7 +46,7 @@ export default function HorizontalChart({ activities }) {
           style={styleObject}
           >
           <div className={styles.tooltip}>
-            <p>{mod.activityName}: {styleObject.width}</p>
+            {mod.activityName}: {styleObject.width}
           </div>
         </div>
       )

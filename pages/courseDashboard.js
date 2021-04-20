@@ -18,6 +18,7 @@ export default function courseDashboard() {
   const [activityTotals, setActivityTotals] = useState({})
   const [courseActivityPercentages, setCourseActivityPercentages] = useState([])
 
+  console.log(course);
   useEffect(() => {
     getData(`courses/${courseId}`)
       .then(courseModules => {
@@ -29,7 +30,6 @@ export default function courseDashboard() {
             setActivityTotals(courseModules.data.activityTotals)
             const updatedCourse = courseModules.data.course
             const stateCopy = sharedState
-            delete stateCopy[sharedState.currentCourse]
             stateCopy[sharedState.currentCourse] = updatedCourse
             stateCopy.currentCourseActivityTotals = courseModules.data.activityTotals
 
@@ -70,26 +70,29 @@ export default function courseDashboard() {
       </section>
       }
 
-      <section className={styles.courseGraphs}>
-        {courseActivityPercentages.length &&
-          <CircleChart data={courseActivityPercentages}/>}
+      {course.modules &&
+        <section className={styles.courseGraphs}>
+          {courseActivityPercentages.length > 0 &&
+            <CircleChart data={courseActivityPercentages}/>
+          }
 
-        {activityTotals.length > 0 &&
-          <div className={styles.chartContainer}>
-            <h2>Activities Per Module</h2>
-            <HorizontalChart activities={activityTotals} />
-          </div>
-        }
+          {activityTotals.length &&
+            <div className={styles.chartContainer}>
+              <h2>Activities Percentages Per Module</h2>
+              <HorizontalChart activities={activityTotals} />
+            </div>
+          }
 
-        {course.name && sharedState.currentCourseActivityTotals !== null &&
-          <div className={styles.chartContainer}>
-            <BarChart
-              course={course}
-              activityTotals={sharedState.currentCourseActivityTotals}
-              />
-          </div>
-        }
-      </section>
+          {sharedState.currentCourseActivityTotals.length > 0 &&
+            <div className={styles.chartContainer}>
+              <BarChart
+                course={course}
+                activityTotals={sharedState.currentCourseActivityTotals}
+                />
+            </div>
+          }
+        </section>
+      }
       <button onClick={deleteCourse} className={styles.buttonDelete}>Delete Course</button>
     </>
   )

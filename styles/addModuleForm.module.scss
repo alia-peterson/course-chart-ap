@@ -69,6 +69,7 @@
   margin-left: -4rem;
   background-color: $gray-light;
   height: 2rem;
+  min-width: 100px;
 }
 
 .circleInput {
@@ -83,14 +84,17 @@
 
 .description {
   background-color: $gray-light;
-  width: 40%;
   height: 4rem;
   text-align: center;
   position: relative;
-  padding-left: 3rem;
+  padding: 0 3rem;
   z-index: 1;
   left: -2rem;
-  bottom: .5rem;
+  bottom: 0.5rem;
+  width: 270px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .formNotes {
@@ -99,6 +103,7 @@
   z-index: 2;
   padding-left: .5rem;
   border: 2px solid $blue-dark;
+  width: 300px;
 }
 
 .formLabel {
@@ -184,15 +189,7 @@
 
 .submitButton {
   @include button-primary;
-  margin-bottom: 5rem;
-  // padding: 2rem;
-  // margin-left: 17rem;
-}
-
-.submitButton:hover {
-  border: 2px solid $blue-dark;
-  transform: scale(1.2);
-  cursor: pointer;
+  margin-bottom: 8rem;
 }
 
 .selected {
