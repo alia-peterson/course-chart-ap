@@ -34,7 +34,7 @@ export default function addModuleForm() {
 
   let range = rangeWidth(courseGoalMinutesMin, courseGoalMinutesMax)
 
-  const states = 
+  const states =
   Object.fromEntries(Object.keys(activities).map(key => {
     return [key, [useState(0), useState('')] ]
   }))
@@ -45,7 +45,7 @@ export default function addModuleForm() {
       case (percentMax >= 100):
         color = 'red'
         break;
-      case (totalMins >= courseGoalMinutesMin): 
+      case (totalMins >= courseGoalMinutesMin):
         color = 'orange'
         break;
       default:
@@ -72,8 +72,8 @@ export default function addModuleForm() {
     const response = await postData(url, postBody)
     if (response.message !== 'Module created successfully') {
         return alert(`Sorry, there was an error adding your module.` )
-    } 
-    
+    }
+
     setHasBeenUpdated(!hasBeenUpdated)
     setSharedState({
       ...sharedState, 
@@ -101,7 +101,7 @@ export default function addModuleForm() {
     ]
 
     const onlyChangedModActivities = allModActivites.filter(activity => activity.input !== 0 || activity.notes !== '')
-  
+
     const modulePost = {
       name: moduleName,
       number: parseInt(currentCourse.modules.length+1),
@@ -143,9 +143,9 @@ export default function addModuleForm() {
   }
 
   const makeInputs = (activities) => {
-    
-    const allInputs = Object.keys(activities).map(key => (
-        <div className={styles.inputStyle}>
+
+    const allInputs = Object.keys(activities).map((key, i) => (
+        <div className={styles.inputStyle} key={i}>
 
           <div className={styles.titleMinutes}>
             <p className={styles.minutesTotal}>
@@ -156,33 +156,33 @@ export default function addModuleForm() {
             </p>
           </div>
 
-          <label 
-            className={styles.circleLabel} 
-            htmlFor={key} 
+          <label
+            className={styles.circleLabel}
+            htmlFor={key}
             aria-label={activities[key].name}>
               {activities[key].metric}
           </label>
-          <input 
-            className={styles.circleInput} 
-            value={states[key][0][0]} 
-            id={activities[key].id} 
-            type="number" 
+          <input
+            className={styles.circleInput}
+            value={states[key][0][0]}
+            id={activities[key].id}
+            type="number"
             min='0'
             onChange={(event) => states[key][0][1](event.target.value)}/>
           <div className={styles.description}>
             <p>{activities[key].description}</p>
           </div>
 
-          <label 
-            className={styles.formLabel} 
-            htmlFor="notes"  
+          <label
+            className={styles.formLabel}
+            htmlFor="notes"
             aria-label="notes">
           </label>
           <textarea
-            className={styles.formNotes} 
+            className={styles.formNotes}
             value={states[key][1][0]}
-            id="notes" 
-            rows="4" 
+            id="notes"
+            rows="4"
             cols="50"
             onChange={(event) => states[key][1][1](event.target.value)}
           />
@@ -191,7 +191,7 @@ export default function addModuleForm() {
     )
     return allInputs
   }
-  
+
   return (
     <div className={styles.addModuleForm}>
       <h1 className={styles.formPageTitle}>Add A Module</h1>
@@ -199,7 +199,7 @@ export default function addModuleForm() {
         <span className={styles.courseLabel}>
           Course:
         </span>
-        <br /> 
+        <br />
         {currentCourse ? currentCourse.name : ''}
       </p>
 
@@ -207,18 +207,18 @@ export default function addModuleForm() {
 
         <div className={styles.moduleMetaData}>
 
-          <label 
-            className={styles.formLabel} 
-            htmlFor="module-name" 
+          <label
+            className={styles.formLabel}
+            htmlFor="module-name"
             aria-label="Module Name">
               Module Name
           </label>
-          <input 
-            className={styles.formInput}  
-            id="module-name" 
+          <input
+            className={styles.formInput}
+            id="module-name"
             type="text"
             value={moduleName}
-            onChange={(event) => {setModuleName(event.target.value)}} 
+            onChange={(event) => {setModuleName(event.target.value)}}
             required />
 
         </div>
@@ -235,9 +235,9 @@ export default function addModuleForm() {
         </div>
 
         {makeInputs(activities)}
-        
-        <button 
-          className={styles.submitButton} 
+
+        <button
+          className={styles.submitButton}
           type="submit">
             Add Module
         </button>
