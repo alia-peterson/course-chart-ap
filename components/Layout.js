@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Footer from './Footer'
 import NavBar from './NavBar'
 import styles from '../styles/Home.module.scss'
 
@@ -17,7 +16,6 @@ const Layout = ({ children }) => {
         <main className={styles.main}>
           {children}
 
-          <Footer />
         </main>
       </div>
     </>
