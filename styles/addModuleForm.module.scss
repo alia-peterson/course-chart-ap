@@ -137,6 +137,9 @@
   bottom: 0;
   width: calc(100% - 200px);
   background-color: $blue-dark;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   padding: 2rem;
   height: 4.7rem;
   align-items: center;
@@ -148,16 +151,15 @@
   background-color: $gray-light;
   border: 2px solid $blue-dark;
   margin: auto;
-  z-index: 1;
   position: absolute;
   bottom: 3rem;
-  right: 15%;
 }
 
 .timeBarLabels {
   display: flex;
-  flex-direction: row;
+  margin-top: 1rem;
   justify-content: space-evenly;
+  width: 100%;
 }
 
 .range {
