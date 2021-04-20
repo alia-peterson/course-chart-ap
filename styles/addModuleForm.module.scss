@@ -2,7 +2,6 @@
 
 .addModuleForm {
   height: 100vh;
-  width: 90vw;
   overflow-y: scroll;
   text-align: center;
   font-size: small;
@@ -195,4 +194,11 @@
   border: 2px solid $blue-dark;
   transform: scale(1.2);
   cursor: pointer;
+  margin-left: 17rem;
 }
+
+.selected {
+  background-color: $gray-light;
+  color: $blue-dark;
+}
+

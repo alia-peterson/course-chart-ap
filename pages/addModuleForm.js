@@ -39,13 +39,28 @@ export default function addModuleForm() {
     return [key, [useState(0), useState('')] ]
   }))
 
+  const getColor = (percentMax, totalMins, courseGoalMinutesMin) => {
+    let color
+    switch(true) {
+      case (percentMax >= 100):
+        color = 'red'
+        break;
+      case (totalMins >= courseGoalMinutesMin): 
+        color = 'orange'
+        break;
+      default:
+        color = '#FAC70F'
+        break;
+    }
+    return color
+  }
   useEffect(() => {
     const totalMins = Object.values(states).reduce((total, state, i) => {
       const mins = parseInt(state[0][0]) * activities[i].multiplier
       return total + mins
     }, 0)
     const percentMax = ((totalMins/courseGoalMinutesMax) * 100) < 100 ? ((totalMins/courseGoalMinutesMax) * 100) : 100
-    const color = percentMax === 100 ? 'red' : '#FAC70F'
+    const color = getColor(percentMax, totalMins, courseGoalMinutesMin)
     setTotalInputMinutes(totalMins)
     setTotalInputPercent(percentMax + '%')
     setBarColor(color)
