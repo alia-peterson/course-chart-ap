@@ -1,19 +1,3 @@
-const numOfMods = (course) => course.modules.map(mod => mod.name)
-
-const specificActivities = (activityTotals, label) => activityTotals.filter(activity => {
-    return activity.activityName.includes(label)
-})
-
-export const formatDataForBarChart = (course, label, activityTotals) => numOfMods(course).reduce((accumulator, modName) => {
-    let found = specificActivities(activityTotals, label).find(mod => mod.moduleName === modName)
-    if (found) {
-        accumulator[modName] = found.minutes 
-    } else {
-        accumulator[modName] = 0
-    }
-    return accumulator
-}, {})
-
 export const calculations = {
   filterModuleActivities(activities, id) {
     return activities.filter((activity) => activity.moduleId === id);
