@@ -76,8 +76,8 @@ export default function addModuleForm() {
 
     setHasBeenUpdated(!hasBeenUpdated)
     setSharedState({
-      ...sharedState, 
-      currentModule: postBody.id, 
+      ...sharedState,
+      currentModule: postBody.id,
     })
       alert('Module added!')
   }
@@ -132,12 +132,12 @@ export default function addModuleForm() {
     // }
 
     //   console.log('MODULESTATE', getActivitesForModuleState())
-      
+
 
     //   currentCourse.modules.push(getActivitesForModuleState())
     //   console.log('NEWACTIVITIES', currentCourse)
     //   setSharedState({...sharedState, [sharedState.currentCourse]: currentCourse})
-  
+
 
     router.push('/courseDashboard')
   }
@@ -193,20 +193,16 @@ export default function addModuleForm() {
   }
 
   return (
-    <div className={styles.addModuleForm}>
-      <h1 className={styles.formPageTitle}>Add A Module</h1>
-      <p>
-        <span className={styles.courseLabel}>
-          Course:
-        </span>
-        <br />
-        {currentCourse ? currentCourse.name : ''}
-      </p>
+    <>
+      <div className={styles.formHeading}>
+        <h1>Add A Module</h1>
+        <h2>Course:</h2>
+        <p>{currentCourse ? currentCourse.name : ''}</p>
+      </div>
 
-      <form onSubmit={addModule}>
+      <form onSubmit={addModule} className={styles.formBody}>
 
-        <div className={styles.moduleMetaData}>
-
+        <div className={styles.moduleInformation}>
           <label
             className={styles.formLabel}
             htmlFor="module-name"
@@ -214,24 +210,22 @@ export default function addModuleForm() {
               Module Name
           </label>
           <input
-            className={styles.formInput}
             id="module-name"
             type="text"
             value={moduleName}
             onChange={(event) => {setModuleName(event.target.value)}}
             required />
-
         </div>
 
         <div className={styles.topLabels}>
           <p className={styles.topLabelMinutes}>
-            Total Minutes
+            TOTAL MINUTES
           </p>
           <p className={styles.topLabelInput}>
             INPUT 🖊
           </p>
-          <p className={styles.topLabelTime}>Time Per Task</p>
-          <p className={styles.topLabelNotes}>Notes</p>
+          <p>TIME PER TASK</p>
+          <p className={styles.topLabelNotes}>NOTES</p>
         </div>
 
         {makeInputs(activities)}
@@ -265,7 +259,7 @@ export default function addModuleForm() {
 
       </div>
 
-      </div>
+    </>
   )
 }
 
