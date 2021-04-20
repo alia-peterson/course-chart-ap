@@ -76,7 +76,7 @@ export default function NavBar() {
       <section className={styles.courseButtons}>
         <Link href='/'>
           <div className={styles.home}>
-            <a>Home</a>
+            <a>How It Works</a>
           </div>
         </Link>
 
@@ -88,10 +88,6 @@ export default function NavBar() {
           <div className={styles.courseButtons}>
             <a>+ Add New Course</a>
           </div>
-        </Link>
-
-        <Link href='/instructions'>
-          <a>Instructions</a>
         </Link>
 
         <Link href='/contactDevelopers'>
