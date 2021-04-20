@@ -8,35 +8,34 @@ import CircleChart from '../components/CircleChart'
 
 import HorizontalChart from '../components/HorizontalChart'
 
-import styles from '../styles/Home.module.scss'
+import styles from '../styles/courseDashboard.module.scss'
 
 export default function courseDashboard() {
   const { sharedState, setSharedState, hasBeenDeleted} = useAppContext()
   const courseId = sharedState.currentCourse
   const [course, setCourse] = useState({})
   const [activityTotals, setActivityTotals] = useState({})
-  const [courseActivityPercentages, setCourseActivityPercentages] = useState([])
   const router = useRouter()
-  
-  const [activityTotals, setActivityTotals] = useState([])
-  const [percentageByActivity, setPercentageByActivity] = useState([])
+  const [courseActivityPercentages, setCourseActivityPercentages] = useState([])
 
   useEffect(() => {
     getData(`courses/${courseId}`)
       .then(courseModules => {
+        if (courseModules) {
         setCourse(courseModules.data.course)
-        const percentages = calculations.getPercentages(courseModules.data.activityTotals, sharedState.activities)
+        const percentages = calculations.getActivityPercentages(courseModules.data.activityTotals, sharedState.activities)
         setCourseActivityPercentages(percentages)
         setActivityTotals(courseModules.data.activityTotals)
-        setPercentageByActivity(calculations.getPercentages(courseModules.data.activityTotals, 'activity'))
+        // setPercentageByActivity(calculations.getPercentages(courseModules.data.activityTotals, 'activity'))
 
         setSharedState({
           ...sharedState,
           [courseId]: courseModules.data.course,
           currentCourseActivityTotals: courseModules.data.activityTotals
         })
+      }
       })
-  }, [hasBeenDeleted])
+  }, [hasBeenDeleted, sharedState.currentCourse])
 
   const deleteCourse = () => {
     if (confirm('Are you sure you\'d like to delete this course?')) {
@@ -47,25 +46,37 @@ export default function courseDashboard() {
   }
 
   return (
-    <>
     <div>
-      <h1>{course.name}</h1>
-      <p>graphs!</p>
-      {courseActivityPercentages.length && 
-        <CircleChart data={courseActivityPercentages}/>}
-      {course.name && sharedState.currentCourseActivityTotals !== null  && <
-        BarChart 
-        course={course} 
-        activityTotals={sharedState.currentCourseActivityTotals}
-      />}
+      <section className={styles.courseMeta}>
+        <h1>{course.name}</h1>
+        <p>
+          Institution: {course.institution}
+          <br />
+          Credit Hours: {course.creditHours}
+          <br />
+          Length: {course.length} Weeks
+        </p>
+      </section>
+
+      <section className={styles.courseGraphs}>
+        {courseActivityPercentages.length && 
+          <CircleChart data={courseActivityPercentages}/>}
+
+        {activityTotals.length > 0 &&
+          <>
+            <h2>Activities Per Module</h2>
+            <HorizontalChart activities={activityTotals} />
+          </>
+        }
+
+        {course.name && sharedState.currentCourseActivityTotals !== null && <
+          BarChart 
+          course={course} 
+          activityTotals={sharedState.currentCourseActivityTotals}
+        />}
+      </section>
       <button onClick={deleteCourse}>Delete Course</button>
     </div>
-      <>
-      <h2>Activities Per Module</h2>
-      {activityTotals.length > 0 &&
-        <HorizontalChart activities={activityTotals} />
-      }
-      </>
-    </>
+    
   )
 }

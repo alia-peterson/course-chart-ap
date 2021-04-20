@@ -33,7 +33,7 @@ export function AppWrapper({ children }) {
         hasBeenDeleted,
         setHasBeenDeleted, 
         hasBeenUpdated,
-        setHasBeenUpdate
+        setHasBeenUpdated
     }
 
     return (
