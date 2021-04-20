@@ -11,8 +11,8 @@ export default function courseDashboard() {
   const { sharedState, setSharedState } = useAppContext()
   const courseId = sharedState.currentCourse
   const [course, setCourse] = useState({})
-  const [activityTotals, setActivityTotals] = useState({})
-  const [percentageByMod, setPercentageByMod] = useState([])
+  const [activityTotals, setActivityTotals] = useState([])
+  // const [percentageByMod, setPercentageByMod] = useState([])
   const [percentageByActivity, setPercentageByActivity] = useState([])
 
   useEffect(() => {
@@ -20,7 +20,7 @@ export default function courseDashboard() {
       .then(courseModules => {
         setCourse(courseModules.data.course)
         setActivityTotals(courseModules.data.activityTotals)
-        setPercentageByMod(calculations.getPercentages(courseModules.data.activityTotals))
+        // setPercentageByMod(calculations.getPercentages(courseModules.data.activityTotals))
         setPercentageByActivity(calculations.getPercentages(courseModules.data.activityTotals, 'activity'))
 
         setSharedState({
@@ -34,7 +34,10 @@ export default function courseDashboard() {
     <>
       <h1>{course.name}</h1>
       <h2>Activities Per Module</h2>
-      <HorizontalChart activities={percentageByMod} />
+      
+      {activityTotals.length > 0 &&
+        <HorizontalChart activities={activityTotals} />
+      }
     </>
   )
 }
