@@ -18,6 +18,11 @@ export const calculations = {
   filterModuleActivities(activities, id) {
     return activities.filter((activity) => activity.moduleId === id);
   },
+  
+  getPercentages(activities, type = '') {
+    const activityTotals = activities.map(activity => {
+      return activity.minutes
+    })
 
   getModulePercentages(moduleActivities) {
     const moduleActivityTotal = moduleActivities.reduce((total, activity) => {
@@ -32,7 +37,8 @@ export const calculations = {
         [activity.activityName]: truncated,
       };
     });
-  },
+  }
+},
 
   getPercentages(activities, activityTypes) {
     const typeIdAndArrays = activityTypes.map((type) => [type.id, 0]);

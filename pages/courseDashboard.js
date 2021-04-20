@@ -6,6 +6,8 @@ import { calculations } from '../utilities/calculations'
 import BarChart from '../components/BarChart'
 import CircleChart from '../components/CircleChart'
 
+import HorizontalChart from '../components/HorizontalChart'
+
 import styles from '../styles/Home.module.scss'
 
 export default function courseDashboard() {
@@ -16,12 +18,18 @@ export default function courseDashboard() {
   const [courseActivityPercentages, setCourseActivityPercentages] = useState([])
   const router = useRouter()
   
+  const [activityTotals, setActivityTotals] = useState([])
+  const [percentageByActivity, setPercentageByActivity] = useState([])
+
   useEffect(() => {
     getData(`courses/${courseId}`)
       .then(courseModules => {
         setCourse(courseModules.data.course)
         const percentages = calculations.getPercentages(courseModules.data.activityTotals, sharedState.activities)
         setCourseActivityPercentages(percentages)
+        setActivityTotals(courseModules.data.activityTotals)
+        setPercentageByActivity(calculations.getPercentages(courseModules.data.activityTotals, 'activity'))
+
         setSharedState({
           ...sharedState,
           [courseId]: courseModules.data.course,
@@ -39,17 +47,25 @@ export default function courseDashboard() {
   }
 
   return (
+    <>
     <div>
       <h1>{course.name}</h1>
       <p>graphs!</p>
       {courseActivityPercentages.length && 
-      <CircleChart data={courseActivityPercentages}/>}
-      {course.name && sharedState.currentCourseActivityTotals !== null && <
+        <CircleChart data={courseActivityPercentages}/>}
+      {course.name && sharedState.currentCourseActivityTotals !== null  && <
         BarChart 
         course={course} 
         activityTotals={sharedState.currentCourseActivityTotals}
       />}
       <button onClick={deleteCourse}>Delete Course</button>
     </div>
+      <>
+      <h2>Activities Per Module</h2>
+      {activityTotals.length > 0 &&
+        <HorizontalChart activities={activityTotals} />
+      }
+      </>
+    </>
   )
 }
