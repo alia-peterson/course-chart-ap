@@ -24,7 +24,7 @@ export default function courseDashboard() {
         if (courseModules) {
           setCourse(courseModules.data.course)
           if (courseModules.data.activityTotals !== null) {
-            const percentages = calculations.getActivityPercentages(courseModules.data.   activityTotals, sharedState.activities)
+            const percentages = calculations.getActivityPercentages(courseModules.data.activityTotals, sharedState.activities)
             setCourseActivityPercentages(percentages)
             setActivityTotals(courseModules.data.activityTotals)
             const updatedCourse = courseModules.data.course
