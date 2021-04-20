@@ -32,23 +32,26 @@ export default function HorizontalChart({ activities }) {
 
     const activities = moduleActivities[module].map((mod, j) => {
       const styleObject = {
-        "width" : `${mod.minutes / totalMinsPerModule * 100}%`
+        "width" : `${Math.round(mod.minutes / totalMinsPerModule * 100)}%`
       }
 
       return (
         <div
           key={j}
-          className={styles.rUnderstand}
+          className={styles.box}
           id={mod.activityName}
           style={styleObject}
           >
+          <div className={styles.tooltip}>
+            <p>{mod.activityName}: {styleObject.width}</p>
+          </div>
         </div>
       )
     })
 
     return (
       <div key={i} className={styles.container}>
-        <p>Module 1: {moduleActivities[module][0].moduleName}</p>
+        <p>Module Name: {moduleActivities[module][0].moduleName}</p>
         <div className={styles.graph}>{activities}</div>
       </div>
     )

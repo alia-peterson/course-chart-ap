@@ -34,7 +34,7 @@ export default function courseDashboard() {
     <>
       <h1>{course.name}</h1>
       <h2>Activities Per Module</h2>
-      
+
       {activityTotals.length > 0 &&
         <HorizontalChart activities={activityTotals} />
       }
