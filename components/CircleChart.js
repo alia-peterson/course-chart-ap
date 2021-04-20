@@ -1,47 +1,20 @@
 import React from "react";
 import { Doughnut } from "react-chartjs-2";
 import styles from "../styles/CircleChart.module.scss";
+import { useAppContext } from '../context/app-context'
 
 export default function CircleChart({ data }) {
+  const { sharedState } = useAppContext()
   const chartLabels = data.map((p) => Object.keys(p));
   const chartData = data.map((p) => Object.values(p));
+  const chartColors = sharedState.activities.map(activity => activity.color)
   const config = {
     labels: [...chartLabels],
     datasets: [
       {
         data: [...chartData],
-        backgroundColor: [
-          "#FF6384",
-          "#36A2EB",
-          "#FFCE56",
-          "#1dea49",
-          "#ef1aae",
-          "#0b04fa",
-          "#9a1aa0",
-          "#3f218c",
-          "#ebfc05",
-          "#42e6d0",
-          "#bb0935",
-          "#5d9b35",
-          // '#ffa500',
-          // '#ff2500'
-        ],
-        hoverBackgroundColor: [
-          "#FF6384",
-          "#36A2EB",
-          "#FFCE56",
-          "#1dea49",
-          "#ef1aae",
-          "#0b04fa",
-          "#9a1aa0",
-          "#3f218c",
-          "#ebfc05",
-          "#42e6d0",
-          "#bb0935",
-          "#5d9b35",
-          // '#ffa500',
-          // '#ff2500'
-        ],
+        backgroundColor: [...chartColors],
+        hoverBackgroundColor: [...chartColors]
       },
     ],
   };
