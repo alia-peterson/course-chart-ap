@@ -56,6 +56,9 @@ export default function addModuleForm() {
   }
 
   useEffect(() => {
+    if (!sharedState.currentCourse) {
+      router.push('/')
+    } else {
     const totalMins = Object.values(states).reduce((total, state, i) => {
       const mins = parseInt(state[0][0]) * activities[i].multiplier
       return total + mins
@@ -65,6 +68,7 @@ export default function addModuleForm() {
     setTotalInputMinutes(totalMins)
     setTotalInputPercent(percentMax + '%')
     setBarColor(color)
+    }
   })
 
   const post = async (postBody, stateBody) => {
@@ -90,7 +94,7 @@ export default function addModuleForm() {
       return alert('Please use a unique module name!')
     }
 
-    const allModActivites =  [
+    const allModActivities =  [
       ...Object.values(states).map((activity, i) => {
         return {
             input: parseInt(activity[0][0]),
@@ -100,7 +104,7 @@ export default function addModuleForm() {
       })
     ]
 
-    const onlyChangedModActivities = allModActivites.filter(activity => activity.input !== 0 || activity.notes !== '')
+    const onlyChangedModActivities = allModActivities.filter(activity => activity.input !== 0 || activity.notes !== '')
 
     const modulePost = {
       name: moduleName,
@@ -110,34 +114,6 @@ export default function addModuleForm() {
     }
 
     post(modulePost)
-
-    // const getActivitesForModuleState = () => {
-
-    //   return onlyChangedModActivities.map((activity, i) => {
-    //     const num = parseInt(i+1)
-    //     return {
-    //       id: num,
-    //       input: activity.input,
-    //       notes: activity.notes,
-    //       activityId: activities[i].id,
-    //       activity: {
-    //           id: num,
-    //           name: activities[i].name,
-    //           description: activities[i].description,
-    //           metric: activities[i].metric,
-    //           multiplier: activities[i].multiplier
-    //       }
-    //     }
-    //   })
-    // }
-
-    //   console.log('MODULESTATE', getActivitesForModuleState())
-
-
-    //   currentCourse.modules.push(getActivitesForModuleState())
-    //   console.log('NEWACTIVITIES', currentCourse)
-    //   setSharedState({...sharedState, [sharedState.currentCourse]: currentCourse})
-
 
     router.push('/courseDashboard')
   }
