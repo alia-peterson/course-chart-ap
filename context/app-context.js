@@ -1,18 +1,18 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import mockData from './mock-data';
 import { getData } from './apiCalls';
-import data from './mock-data';
 
 const AppContext = createContext();
 
 export function AppWrapper({ children }) {
     const [hasBeenUpdated, setHasBeenUpdated] = useState(false)
+    const [hasBeenDeleted, setHasBeenDeleted] = useState(false)
     const [sharedState, setSharedState] = useState({
         courses: [{
             modules:[]
         }],
         currentCourse: '',
         currentModule: '',
+        currentCourseActivityTotals: [],
         activities: []
     })
 
@@ -25,13 +25,15 @@ export function AppWrapper({ children }) {
             courses: courses.data,
             activities: activities.data
         })
-    }, [hasBeenUpdated]);
+    }, [hasBeenUpdated, hasBeenDeleted]);
 
     const value = {
-        setSharedState,
         sharedState,
+        setSharedState,
+        hasBeenDeleted,
+        setHasBeenDeleted, 
         hasBeenUpdated,
-        setHasBeenUpdated
+        setHasBeenUpdate
     }
 
     return (
