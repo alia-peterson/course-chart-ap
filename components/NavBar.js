@@ -22,7 +22,8 @@ export default function NavBar() {
       return (
         <Link key={j} href={`/moduleDashboard`}>
           <div className={styles.module}>
-            <a
+            <a 
+              id={j}
               onClick={() => {
                 setSharedState({
                   ...sharedState,
