@@ -1,9 +1,37 @@
+@import 'variables';
+
 .courseMeta {
   text-align: center;
 }
 
-.course-graphs {
-  height: 80vh;
-  padding: 3rem;
-  margin: 3rem;
+.courseGraphs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chartContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  padding-bottom: 1rem;
+  width: 80%;
+}
+
+.activityOptions {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 25px;
+}
+
+.buttonChart {
+  background-color: #ffffff;
+  border: 2px solid;
+  margin: 2px;
+}
+
+.buttonDelete {
+  @include button-primary;
 }

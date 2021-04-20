@@ -1,6 +1,6 @@
 import React from "react";
 import { Doughnut } from "react-chartjs-2";
-import styles from "../styles/CircleChart.module.scss";
+import styles from "../styles/courseDashboard.module.scss";
 
 export default function CircleChart({ data }) {
   const chartLabels = data.map((p) => Object.keys(p));
@@ -49,7 +49,7 @@ export default function CircleChart({ data }) {
   return (
     <div className={styles.chartContainer}>
       <h2>Activity Percentages</h2>
-      <Doughnut data={config} width={400} height={400} />
+      <Doughnut data={config} />
     </div>
   );
 }

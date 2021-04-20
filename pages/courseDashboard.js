@@ -13,9 +13,9 @@ import styles from '../styles/courseDashboard.module.scss'
 export default function courseDashboard() {
   const { sharedState, setSharedState, hasBeenDeleted, hasBeenUpdated } = useAppContext()
   const courseId = sharedState.currentCourse
+  const router = useRouter()
   const [course, setCourse] = useState({})
   const [activityTotals, setActivityTotals] = useState({})
-  const router = useRouter()
   const [courseActivityPercentages, setCourseActivityPercentages] = useState([])
 
   useEffect(() => {
@@ -56,8 +56,7 @@ export default function courseDashboard() {
   }
 
   return (
-    
-    <div>
+    <>
       {course &&
       <section className={styles.courseMeta}>
         <h1>{course.name}</h1>
@@ -72,24 +71,26 @@ export default function courseDashboard() {
       }
 
       <section className={styles.courseGraphs}>
-        {courseActivityPercentages.length && 
+        {courseActivityPercentages.length &&
           <CircleChart data={courseActivityPercentages}/>}
 
         {activityTotals.length > 0 &&
-          <>
+          <div className={styles.chartContainer}>
             <h2>Activities Per Module</h2>
             <HorizontalChart activities={activityTotals} />
-          </>
+          </div>
         }
 
-        {course.name && sharedState.currentCourseActivityTotals !== null && <
-          BarChart 
-          course={course} 
-          activityTotals={sharedState.currentCourseActivityTotals}
-        />}
+        {course.name && sharedState.currentCourseActivityTotals !== null &&
+          <div className={styles.chartContainer}>
+            <BarChart
+              course={course}
+              activityTotals={sharedState.currentCourseActivityTotals}
+              />
+          </div>
+        }
       </section>
-      <button onClick={deleteCourse}>Delete Course</button>
-    </div>
-    
+      <button onClick={deleteCourse} className={styles.buttonDelete}>Delete Course</button>
+    </>
   )
 }

@@ -33,7 +33,6 @@ export function AppWrapper({ children }) {
     })
 
     useEffect( async () => {
-        console.log('TRIGGERD', Date.now(), hasBeenUpdated)
         const courses = await getData('courses')
         const activities = await getData('activities')
         const activitiesWithColor = activities.data.map((activity, i) => {
@@ -50,9 +49,10 @@ export function AppWrapper({ children }) {
         sharedState,
         setSharedState,
         hasBeenDeleted,
-        setHasBeenDeleted, 
+        setHasBeenDeleted,
         hasBeenUpdated,
-        setHasBeenUpdated
+        setHasBeenUpdated,
+        activityColors
     }
 
     return (
