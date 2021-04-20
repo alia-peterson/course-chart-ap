@@ -11,7 +11,7 @@ import HorizontalChart from '../components/HorizontalChart'
 import styles from '../styles/courseDashboard.module.scss'
 
 export default function courseDashboard() {
-  const { sharedState, setSharedState, hasBeenDeleted} = useAppContext()
+  const { sharedState, setSharedState, hasBeenDeleted, hasBeenUpdated } = useAppContext()
   const courseId = sharedState.currentCourse
   const [course, setCourse] = useState({})
   const [activityTotals, setActivityTotals] = useState({})
@@ -22,20 +22,30 @@ export default function courseDashboard() {
     getData(`courses/${courseId}`)
       .then(courseModules => {
         if (courseModules) {
-        setCourse(courseModules.data.course)
-        const percentages = calculations.getActivityPercentages(courseModules.data.activityTotals, sharedState.activities)
-        setCourseActivityPercentages(percentages)
-        setActivityTotals(courseModules.data.activityTotals)
-        // setPercentageByActivity(calculations.getPercentages(courseModules.data.activityTotals, 'activity'))
+          setCourse(courseModules.data.course)
+          if (courseModules.data.activityTotals !== null) {
+            const percentages = calculations.getActivityPercentages(courseModules.data.   activityTotals, sharedState.activities)
+            setCourseActivityPercentages(percentages)
+            setActivityTotals(courseModules.data.activityTotals)
+            const updatedCourse = courseModules.data.course
+            const stateCopy = sharedState
+            delete stateCopy[sharedState.currentCourse]
+            stateCopy[sharedState.currentCourse] = updatedCourse
+            stateCopy.currentCourseActivityTotals = courseModules.data.activityTotals
 
-        setSharedState({
-          ...sharedState,
-          [courseId]: courseModules.data.course,
-          currentCourseActivityTotals: courseModules.data.activityTotals
-        })
-      }
+            setSharedState({
+              ...stateCopy
+            })
+
+          } else {
+            setSharedState({
+              ...sharedState,
+              [courseId]: courseModules.data.course,
+            })
+          }
+        }
       })
-  }, [hasBeenDeleted, sharedState.currentCourse])
+  }, [hasBeenDeleted, sharedState.currentCourse, hasBeenUpdated])
 
   const deleteCourse = () => {
     if (confirm('Are you sure you\'d like to delete this course?')) {
@@ -46,7 +56,9 @@ export default function courseDashboard() {
   }
 
   return (
+    
     <div>
+      {course &&
       <section className={styles.courseMeta}>
         <h1>{course.name}</h1>
         <p>
@@ -57,6 +69,7 @@ export default function courseDashboard() {
           Length: {course.length} Weeks
         </p>
       </section>
+      }
 
       <section className={styles.courseGraphs}>
         {courseActivityPercentages.length && 

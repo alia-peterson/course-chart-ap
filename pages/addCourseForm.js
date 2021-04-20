@@ -6,8 +6,7 @@ import findGoal from '../utilities/courseGoal'
 import styles from '../styles/CourseForm.module.scss'
 
 export default function addCourseForm() {
-  const { sharedState, setSharedState } = useAppContext()
-  // const { hasBeenUpdated, setHasBeenUpdated } = useAppContext()
+  const { sharedState, setSharedState, hasBeenUpdated, setHasBeenUpdated  } = useAppContext()
   const [institution, setInstitution] = useState('')
   const [course, setCourse] = useState('')
   const [hours, setHours] = useState('')
@@ -51,7 +50,7 @@ export default function addCourseForm() {
       return alert('Sorry, there was an error adding your course.')
 
     } else {
-      // setHasBeenUpdated(!hasBeenUpdated)
+      setHasBeenUpdated(!hasBeenUpdated)
       const newCourseIndex = sharedState.courses.length - 1
       const newCourseId = sharedState.courses[newCourseIndex].id
       setSharedState({...sharedState, currentCourse: newCourseId})

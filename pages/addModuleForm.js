@@ -16,7 +16,7 @@ export default function addModuleForm() {
   let activities = sharedState.activities
 
   const calculateGoalMinutesRange = (course) => {
-    if (course) {
+    if (course && course.goal) {
     const splitString = course.goal.replace(' hours', '').split('-')
     const makeMinutes = num => {
       return parseInt(num)*60
@@ -54,6 +54,7 @@ export default function addModuleForm() {
     }
     return color
   }
+
   useEffect(() => {
     const totalMins = Object.values(states).reduce((total, state, i) => {
       const mins = parseInt(state[0][0]) * activities[i].multiplier
@@ -74,12 +75,9 @@ export default function addModuleForm() {
     } 
     
     setHasBeenUpdated(!hasBeenUpdated)
-    const updatedCourse = currentCourse.modules.push(stateBody)
-    setCurrentCourse(updatedCourse)
     setSharedState({
       ...sharedState, 
       currentModule: postBody.id, 
-      [sharedState.currentCourse]: currentCourse
     })
       alert('Module added!')
   }
@@ -113,37 +111,35 @@ export default function addModuleForm() {
 
     post(modulePost)
 
-    const getActivitesForModuleState = () => {
-      return onlyChangedModActivities.map((activity, i) => {
-        const num = parseInt(i)
-        return {
-          id: num,
-          input: activity.input,
-          notes: activity.notes,
-          activityId: activity.id,
-          activity: {
-              id: num,
-              name: activities[i].name,
-              description: activities[i].description,
-              metric: activities[i].metric,
-              multiplier: activities[i].multiplier
-          }
-        }
-      })
+    // const getActivitesForModuleState = () => {
 
-      setSharedState({...sharedState, })
-    }
+    //   return onlyChangedModActivities.map((activity, i) => {
+    //     const num = parseInt(i+1)
+    //     return {
+    //       id: num,
+    //       input: activity.input,
+    //       notes: activity.notes,
+    //       activityId: activities[i].id,
+    //       activity: {
+    //           id: num,
+    //           name: activities[i].name,
+    //           description: activities[i].description,
+    //           metric: activities[i].metric,
+    //           multiplier: activities[i].multiplier
+    //       }
+    //     }
+    //   })
+    // }
 
-    const moduleForState = {
-      id: modulePost.number,
-      name: modulePost.name,
-      number: modulePost.number,
-      courseId: modulePost.id,
-      moduleActivities: getActivitesForModuleState()
-    }
+    //   console.log('MODULESTATE', getActivitesForModuleState())
+      
 
-    console.log('MODULEFORSTATE', moduleForState)
-    router.push('/moduleDashboard')
+    //   currentCourse.modules.push(getActivitesForModuleState())
+    //   console.log('NEWACTIVITIES', currentCourse)
+    //   setSharedState({...sharedState, [sharedState.currentCourse]: currentCourse})
+  
+
+    router.push('/courseDashboard')
   }
 
   const makeInputs = (activities) => {
