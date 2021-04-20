@@ -8,7 +8,7 @@ import CircleChart from '../components/CircleChart'
 
 import HorizontalChart from '../components/HorizontalChart'
 
-import styles from '../styles/courseDashboard.module.scss'
+import styles from '../styles/dashboard.module.scss'
 
 export default function courseDashboard() {
   const { sharedState, setSharedState, hasBeenDeleted, hasBeenUpdated } = useAppContext()
@@ -58,7 +58,7 @@ export default function courseDashboard() {
   return (
     <>
       {course &&
-      <section className={styles.courseMeta}>
+      <section className={styles.courseInformation}>
         <h1>{course.name}</h1>
         <p>
           Institution: {course.institution}

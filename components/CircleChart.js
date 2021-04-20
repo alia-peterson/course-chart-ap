@@ -1,6 +1,7 @@
 import React from "react";
 import { Doughnut } from "react-chartjs-2";
-import styles from "../styles/courseDashboard.module.scss";
+
+import styles from "../styles/dashboard.module.scss";
 
 export default function CircleChart({ data }) {
   const chartLabels = data.map((p) => Object.keys(p));

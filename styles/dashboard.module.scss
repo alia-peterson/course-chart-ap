@@ -1,7 +1,9 @@
 @import 'variables';
 
-.courseMeta {
+.courseInformation {
+  @include form-box;
   text-align: center;
+  width: 80%;
 }
 
 .courseGraphs {

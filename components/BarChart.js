@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { useAppContext } from '../context/app-context';
 import { calculations } from '../utilities/calculations';
-import styles from '../styles/courseDashboard.module.scss';
+
+import styles from '../styles/dashboard.module.scss';
 
 const BarChart = (props) => {
     const { activityColors } = useAppContext()

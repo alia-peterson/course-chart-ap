@@ -1,17 +1,9 @@
 @import 'variables';
 
 .form {
-  background-color: $blue-light;
-  box-shadow: 6px 6px 6px $blue-medium;
-  color: black;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  font-size: 18px;
-  width: 100%;
+  @include form-box;
   margin: auto;
-  padding: 2rem;
-  max-width: 800px;
+  width: 100%;
 }
 
 .input {
@@ -31,7 +23,6 @@
   display: flex;
   flex-direction: column;
   padding: 1rem;
-  // width: 50%;
 }
 
 .error {

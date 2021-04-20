@@ -38,7 +38,6 @@ export default function addCourseForm() {
       goal: goal
     }
 
-    console.log(newCourse);
     postCourse(newCourse)
   }
 
