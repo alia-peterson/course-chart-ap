@@ -15,7 +15,9 @@ export default function CircleChart({ data, view }) {
 
   const { activityColors } = useAppContext();
 
-  const chartLabels = sortedData.map((p) => Object.keys(p));
+  const chartLabels = sortedData.map((p) => {
+    const checkPercentage = Object.values(p) < 10 ? `  ${Object.values(p)}` : Object.values(p)
+    return `${checkPercentage}%  -  ${Object.keys(p)}`});
   const chartData = sortedData.map((p) => Object.values(p));
   const datas = {
     labels: chartLabels,
