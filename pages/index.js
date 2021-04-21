@@ -1,4 +1,17 @@
+import { useEffect } from 'react'
+import { useAppContext } from '../context/app-context'
+
 export default function Home() {
+  const { sharedState, setSharedState } = useAppContext()
+
+  useEffect(() => {
+    setSharedState({
+      ...sharedState,
+      currentCourse: '',
+      currentModule: ''
+    })
+  }, [])
+
   return (
       <>
         <h1 className="welcome">Welcome to Course Chart!</h1>

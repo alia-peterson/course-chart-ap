@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useAppContext } from "../context/app-context";
 import CircleChart from "../components/CircleChart";
 import { calculations } from "../utilities/calculations";
@@ -8,7 +8,7 @@ import { useRouter } from 'next/router'
 import styles from "../styles/dashboard.module.scss";
 
 export default function moduleDashboard() {
-  const { sharedState, setSharedState, hasBeenDeleted, setHasBeenDeleted, hasBeenUpdated } = useAppContext();
+  const { sharedState, setSharedState, hasBeenUpdated, setHasBeenUpdated } = useAppContext();
   const [module, setModule] = useState({});
   const [percentages, setPercentages] = useState([]);
   const router = useRouter()
@@ -32,14 +32,20 @@ export default function moduleDashboard() {
     } else {
       router.push('/')
     }
-  }, [hasBeenDeleted, sharedState.currentModule, hasBeenUpdated]);
+  }, [sharedState.currentModule, hasBeenUpdated]);
 
   const deleteMod = () => {
     if (confirm('Are you sure you\'d like to delete this module?')) {
       deleteData('module', sharedState.currentModule)
-      setHasBeenDeleted(!hasBeenDeleted)
-      router.push('/courseDashboard')
-    }
+        .then(() => {
+          setSharedState({
+            ...sharedState,
+            currentModule: ''
+          })
+          setHasBeenUpdated(!hasBeenUpdated)
+          router.push('/courseDashboard')
+        })
+      }
   }
 
   return (
