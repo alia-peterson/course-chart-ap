@@ -70,21 +70,28 @@ export default function courseDashboard() {
       {course &&
       <div className={styles.courseHeader}>
         <section className={styles.courseInformation}>
-          <h1>{course.name}</h1>
+          <h1 className={styles.courseName}>{course.name}</h1>
           <p className={styles.courseInstitution}>{course.institution}</p>
         </section>
-        <p className={styles.courseTimeInformation}>
-            Credit Hours: {course.creditHours}
-            <br />
-            Length: {course.length} Weeks
-        </p>
+        <div className={styles.courseTimeInformation}>
+            <div className={styles.courseTime}>
+              <h2>Credit Hours:</h2> 
+              <p>{course.creditHours}</p>
+            </div>
+            <div className={styles.courseTime}>
+              <h2>Length:</h2> 
+              <p>{course.length} Weeks</p>
+            </div>
+        </div>
       </div>
       }
 
       {course.modules &&
         <section className={styles.courseGraphs}>
           {courseActivityPercentages.length > 0 &&
-            <CircleChart data={courseActivityPercentages} view={'Course'}/>
+            <div className={styles.donut}>
+              <CircleChart data={courseActivityPercentages} view={'Course'}/>
+            </div>
           }
 
           {activityTotals.length &&

@@ -19,9 +19,9 @@ export default function editModuleForm() {
   const [currentModule, setCurrentModule] = useState({})
 
   let states = 
-  Object.fromEntries(Object.keys(activities).map(key => {
-    return [key, [useState(0), useState('')] ]
-}))
+    Object.fromEntries(Object.keys(activities).map(key => {
+      return [key, [useState(0), useState('')] ]
+  }))
 
   const calculateGoalMinutesRange = (course) => {
     if (course && course.goal ) {
@@ -71,22 +71,29 @@ export default function editModuleForm() {
       )
 
       Object.values(states).forEach((arrayOfStates, i) => {
+        console.log(arrayOfStates[0][1])
         if (activityIdAndInput[i+1]) {
           arrayOfStates[0][1](activityIdAndInput[i+1][0])
           arrayOfStates[1][1](activityIdAndInput[i+1][1])
         }
       })
     
+      
+
+    }
+  }, [hasBeenUpdated])
+
+  useEffect(() => {
+    if (sharedState[sharedState.currentCourse]) {
       const totalMins = Object.values(states).reduce((total, state, i) => {
-        const mins = parseInt(state[0][0]) * activities[i].multiplier
-        return total + mins
-      }, 0)
+          const mins = parseInt(state[0][0]) * activities[i].multiplier
+          return total + mins
+        }, 0)
       const percentMax = ((totalMins/courseGoalMinutesMax) * 100) < 100 ? ((totalMins/courseGoalMinutesMax) * 100) :  100
       const color = getColor(percentMax, totalMins, courseGoalMinutesMin)
       setTotalInputMinutes(totalMins)
       setTotalInputPercent(percentMax + '%')
       setBarColor(color)
-
     }
   })
 

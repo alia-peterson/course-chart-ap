@@ -15,6 +15,12 @@ export default function CircleChart({ data, view }) {
 
   const { activityColors } = useAppContext();
 
+
+  // const returnLabelPercent = p => {
+  //   if (p < 10) {
+
+  //   }  `  ${Object.values(p)}` : Object.values(p)
+  // }
   const chartLabels = sortedData.map((p) => {
     const checkPercentage = Object.values(p) < 10 ? `  ${Object.values(p)}` : Object.values(p)
     return `${checkPercentage}%  -  ${Object.keys(p)}`});
@@ -32,24 +38,27 @@ export default function CircleChart({ data, view }) {
   };
 
   const options = {
-      
-        legend: {
-          position: 'right',
-        },
-        title: {
-          display: true,
-          text: `Activities in ${view}`,
-          fontFamily: 'IBM Plex Mono',
-          fontSize: 18,
-          fontColor: 'gray'
-        }
+    layout: {
+      padding: 5
+    },
+    legend: {
+      position: 'right',
+    },
+    title: {
+      display: true,
+      text: `Activities in ${view}`,
+      fontFamily: 'IBM Plex Mono',
+      fontSize: 18,
+      fontColor: 'gray',
+      padding: 10
+    }
     
     }
 
 
   return (
     <div className={styles.chartContainer}>
-      <Doughnut className='circleChart' data={datas} options={options} width={400} height={400} />
+      <Doughnut className='circleChart' data={datas} options={options} width={300} height={150} />
     </div>
   );
 }

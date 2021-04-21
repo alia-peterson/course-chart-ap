@@ -3,6 +3,7 @@
 .courseHeader {
   @include form-box;
   width: 50%;
+  height: 8rem;
 
   .courseInformation {
     width: 100%;
@@ -11,8 +12,14 @@
     border: 2px solid $blue-dark;
     box-shadow: -1px 3px 15px rgb(27, 61, 89, 0.5);
 
+    .courseName {
+      padding: 0;
+      margin: 0;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
     .courseInstitution {
-      margin: -0.5rem 1rem 1rem;
+      margin: 0.1rem;
       font-weight: bolder;
       font-size: 14px;
     }
@@ -23,6 +30,19 @@
     margin-top: 1rem;
     align-self: center;
     text-align: left;
+    display: flex;
+    flex-direction: row;
+
+    .courseTime {
+      display: flex;
+      flex-direction: row;
+      margin: 0rem 2rem;
+      text-align: center;
+      h2 {
+        font-size: small;
+        margin-right: .2rem;
+      }
+    }
   }
 }
 
@@ -30,6 +50,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  .donut {
+    width: 100%;
+    max-width: 1000px;
+  }
 }
 
 .chartContainer {
