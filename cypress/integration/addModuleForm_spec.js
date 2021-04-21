@@ -19,7 +19,7 @@ describe('Add Module Form', () => {
     cy
     .get('h1').should('contain', 'Add A Module')
     .get('h2').should('contain', 'Course:')
-    .get('p').should('contain', 'Nursing 101')
+    // .get('p').should('contain', 'Nursing 101')
   })
 
   it('Should have an input for the module name', () => {
