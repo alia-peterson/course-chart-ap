@@ -1,7 +1,7 @@
-import data from "../context/test-data";
-import { calculations } from "./calculations";
+import data from "../../context/test-data";
+import { calculations } from "../calculations";
 
-describe("calculations", () => {
+describe("calculations.js Jest testing", () => {
   const courseActivityTotals = data.courseActivityTotals;
   const activitesByModule = data.moduleActivities;
   const activityTypes = data.activityTypes;
