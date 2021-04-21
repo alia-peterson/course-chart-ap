@@ -91,7 +91,7 @@ export default function moduleDashboard() {
   }
   
   return (
-    <div>
+    <>
       {module && module.moduleActivities &&
       <>
         <div className={styles.modHeader}>
