@@ -12,6 +12,7 @@ export default function addCourseForm() {
   const [hours, setHours] = useState('')
   const [length, setLength] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
+  const router = useRouter()
 
   useEffect(async () => {
     if (hasBeenUpdated) {
