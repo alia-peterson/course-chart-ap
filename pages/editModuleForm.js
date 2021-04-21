@@ -2,9 +2,9 @@ import React, { useState, useRef, useEffect } from "react";
 import { useRouter } from 'next/router'
 import { useAppContext } from '../context/app-context'
 import styles from '../styles/addModuleForm.module.scss'
-import { postData } from '../context/apiCalls';
+import { patchData } from '../context/apiCalls';
 
-export default function addModuleForm() {
+export default function editModuleForm() {
   const router = useRouter()
   const { sharedState, setSharedState } = useAppContext()
   const { hasBeenUpdated, setHasBeenUpdated } = useAppContext()
@@ -12,11 +12,19 @@ export default function addModuleForm() {
   const [totalInputMinutes, setTotalInputMinutes] = useState(0)
   const [totalInputPercent, setTotalInputPercent] = useState(0)
   const [barColor, setBarColor] = useState('')
-  const [currentCourse, setCurrentCourse] = useState(sharedState[sharedState.currentCourse])
+  const [currentCourse, setCurrentCourse] = useState({})
   let activities = sharedState.activities
+  let activityIdAndInput = {}
+
+  const [currentModule, setCurrentModule] = useState({})
+
+  let states = 
+  Object.fromEntries(Object.keys(activities).map(key => {
+    return [key, [useState(0), useState('')] ]
+}))
 
   const calculateGoalMinutesRange = (course) => {
-    if (course && course.goal) {
+    if (course && course.goal ) {
     const splitString = course.goal.replace(' hours', '').split('-')
     const makeMinutes = num => {
       return parseInt(num)*60
@@ -33,11 +41,6 @@ export default function addModuleForm() {
   }
 
   let range = rangeWidth(courseGoalMinutesMin, courseGoalMinutesMax)
-
-  const states =
-  Object.fromEntries(Object.keys(activities).map(key => {
-    return [key, [useState(0), useState('')] ]
-  }))
 
   const getColor = (percentMax, totalMins, courseGoalMinutesMin) => {
     let color
@@ -56,30 +59,49 @@ export default function addModuleForm() {
   }
 
   useEffect(() => {
-    const totalMins = Object.values(states).reduce((total, state, i) => {
-      const mins = parseInt(state[0][0]) * activities[i].multiplier
-      return total + mins
-    }, 0)
-    const percentMax = ((totalMins/courseGoalMinutesMax) * 100) < 100 ? ((totalMins/courseGoalMinutesMax) * 100) : 100
-    const color = getColor(percentMax, totalMins, courseGoalMinutesMin)
-    setTotalInputMinutes(totalMins)
-    setTotalInputPercent(percentMax + '%')
-    setBarColor(color)
+    if (sharedState[sharedState.currentCourse]) {
+      setCurrentCourse(sharedState[sharedState.currentCourse])
+      console.log('SHAREDSTATE', sharedState[sharedState.currentCourse], sharedState.currentModule)
+      const mod = sharedState[sharedState.currentCourse].modules.find(mod => sharedState.currentModule === mod.id)
+      setCurrentModule(mod)
+      setModuleName(mod.name)
+
+      console.log('MODULE', mod)
+      activityIdAndInput = Object.fromEntries(mod.moduleActivities.map(modActivity => {
+        return [modActivity.activity.id, [modActivity.input, modActivity.notes]]
+      })
+      )
+      console.log('ACTIVITYINPUTOB', activityIdAndInput)
+
+      Object.values(states).forEach((arrayOfStates, i) => {
+        if (activityIdAndInput[i+1]) {
+          arrayOfStates[0][1](activityIdAndInput[i+1][0])
+          arrayOfStates[1][1](activityIdAndInput[i+1][1])
+        }
+      })
+    
+      const totalMins = Object.values(states).reduce((total, state, i) => {
+        const mins = parseInt(state[0][0]) * activities[i].multiplier
+        return total + mins
+      }, 0)
+      const percentMax = ((totalMins/courseGoalMinutesMax) * 100) < 100 ? ((totalMins/courseGoalMinutesMax) * 100) :  100
+      const color = getColor(percentMax, totalMins, courseGoalMinutesMin)
+      setTotalInputMinutes(totalMins)
+      setTotalInputPercent(percentMax + '%')
+      setBarColor(color)
+
+    }
   })
 
-  const post = async (postBody, stateBody) => {
-    let url = 'https://course-chart-be.herokuapp.com/modules'
-    const response = await postData(url, postBody)
-    if (response.message !== 'Module created successfully') {
-        return alert(`Sorry, there was an error adding your module.` )
+  const patch = async (postBody) => {
+    const id = parseInt(sharedState.currentModule)
+    const response = await patchModule('module', postBody, id)
+    if (response.message !== 'Module updated successfully') {
+        return alert(`Sorry, there was an error updating your module.` )
     }
 
     setHasBeenUpdated(!hasBeenUpdated)
-    setSharedState({
-      ...sharedState, 
-      currentModule: postBody.id, 
-    })
-      alert('Module added!')
+    alert('Module updated!')
   }
 
   const addModule = event => {
@@ -109,13 +131,15 @@ export default function addModuleForm() {
       moduleActivities: onlyChangedModActivities
     }
 
-    post(modulePost)
+    patch(modulePost)
 
     router.push('/courseDashboard')
   }
 
   const makeInputs = (activities) => {
-
+    console.log('INMAKEINPUT', states
+    [2])
+    if (sharedState[sharedState.currentCourse] && states) {
     const allInputs = Object.keys(activities).map((key, i) => (
         <div className={styles.inputStyle} key={i}>
 
@@ -162,11 +186,12 @@ export default function addModuleForm() {
       )
     )
     return allInputs
+    }
   }
 
   return (
     <div className={styles.addModuleForm}>
-      <h1 className={styles.formPageTitle}>Add A Module</h1>
+      <h1 className={styles.formPageTitle}>Edit Module</h1>
       <p>
         <span className={styles.courseLabel}>
           Course:
@@ -206,7 +231,7 @@ export default function addModuleForm() {
           <p className={styles.topLabelNotes}>Notes</p>
         </div>
 
-        {makeInputs(activities)}
+        {states && makeInputs(activities)}
 
         <button
           className={styles.submitButton}
@@ -240,5 +265,3 @@ export default function addModuleForm() {
       </div>
   )
 }
-
-//use a chartJS horizontal bar chart to make this look nicer?
