@@ -61,17 +61,14 @@ export default function editModuleForm() {
   useEffect(() => {
     if (sharedState[sharedState.currentCourse]) {
       setCurrentCourse(sharedState[sharedState.currentCourse])
-      console.log('SHAREDSTATE', sharedState[sharedState.currentCourse], sharedState.currentModule)
       const mod = sharedState[sharedState.currentCourse].modules.find(mod => sharedState.currentModule === mod.id)
       setCurrentModule(mod)
       setModuleName(mod.name)
 
-      console.log('MODULE', mod)
       activityIdAndInput = Object.fromEntries(mod.moduleActivities.map(modActivity => {
         return [modActivity.activity.id, [modActivity.input, modActivity.notes]]
       })
       )
-      console.log('ACTIVITYINPUTOB', activityIdAndInput)
 
       Object.values(states).forEach((arrayOfStates, i) => {
         if (activityIdAndInput[i+1]) {
@@ -95,7 +92,8 @@ export default function editModuleForm() {
 
   const patch = async (postBody) => {
     const id = parseInt(sharedState.currentModule)
-    const response = await patchModule('module', postBody, id)
+    const response = await patchData('module', postBody, id)
+
     if (response.message !== 'Module updated successfully') {
         return alert(`Sorry, there was an error updating your module.` )
     }
@@ -106,11 +104,6 @@ export default function editModuleForm() {
 
   const addModule = event => {
     event.preventDefault()
-
-    const modulesWithSameNameAsInput = currentCourse.modules.filter(mod => mod.name === moduleName)
-    if (modulesWithSameNameAsInput.length) {
-      return alert('Please use a unique module name!')
-    }
 
     const allModActivites =  [
       ...Object.values(states).map((activity, i) => {
@@ -126,7 +119,7 @@ export default function editModuleForm() {
 
     const modulePost = {
       name: moduleName,
-      number: parseInt(currentCourse.modules.length+1),
+      number: parseInt(currentModule.id),
       courseId: parseInt(currentCourse.id),
       moduleActivities: onlyChangedModActivities
     }
@@ -137,8 +130,6 @@ export default function editModuleForm() {
   }
 
   const makeInputs = (activities) => {
-    console.log('INMAKEINPUT', states
-    [2])
     if (sharedState[sharedState.currentCourse] && states) {
     const allInputs = Object.keys(activities).map((key, i) => (
         <div className={styles.inputStyle} key={i}>
@@ -236,7 +227,7 @@ export default function editModuleForm() {
         <button
           className={styles.submitButton}
           type="submit">
-            Add Module
+            Edit Module
         </button>
       </form>
 

@@ -39,22 +39,22 @@ export const deleteData = (type, id) => {
     .catch((error) => console.error(error));
 };
 
-export const patchModule = (type, body, id) => {
+export const patchData = (type, body, id) => {
   const url =
     type === 'course'
       ? `https://course-chart-be.herokuapp.com/courses/${id}`
       : `https://course-chart-be.herokuapp.com/modules/${id}`
   const settings = { 
     method: "PATCH", 
-    body: body 
+    body: JSON.stringify(body) 
   };
   return fetch(url, settings)
   .then((response) => {
-      console.log('PATCH', response)
+      console.log('PATCHRESPONSE', response.body)
     if (!response.ok) {
       throw Error(response.statusText);
     }
-    return response.message;
+    return response.json();
   })
   .catch((error) => console.error(error));
 }

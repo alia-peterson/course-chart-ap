@@ -61,7 +61,7 @@ export default function moduleDashboard() {
           <section className={styles.moduleActivitySideInfo}>
             <div className={styles.moduleActivityNameNotes}>
               <p style={{backgroundColor: `${color}`, color: `white`}}>{name}</p>
-              <p>{notes}</p>
+              <p className={styles.moduleNotes}>{notes}</p>
             </div>
             <div className={styles.moduleActivityTimeNotes}>
               <p>{description}</p>
@@ -96,9 +96,10 @@ export default function moduleDashboard() {
         {percentages.length && 
           <CircleChart data={percentages} />}
           {activityInputs(module.moduleActivities)}
-          <button className={styles.deleteButton} onClick={deleteMod}>Delete Module</button>
-          <button className={styles.deleteButton} onClick={editMod}>Edit Module</button>
-          
+          <div className={styles.buttons}>
+            <button className={styles.editButton} onClick={editMod}>Edit Module</button>
+            <button className={styles.deleteButton} onClick={deleteMod}>Delete Module</button>
+          </div>
       </>
       } 
     </div>
