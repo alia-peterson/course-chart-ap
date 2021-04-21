@@ -5,10 +5,18 @@ import { Doughnut } from "react-chartjs-2";
 import styles from "../styles/dashboard.module.scss";
 
 export default function CircleChart({ data, view }) {
+  console.log('DATA', data)
+
+  const filteredData = Array.from(data).filter(type => Object.values(type)[0])
+
+  const sortedData = filteredData.sort((a, b) => {
+    return Object.values(b)[0] - Object.values(a)[0]
+  })
+
   const { activityColors } = useAppContext();
 
-  const chartLabels = data.map((p) => Object.keys(p));
-  const chartData = data.map((p) => Object.values(p));
+  const chartLabels = sortedData.map((p) => Object.keys(p));
+  const chartData = sortedData.map((p) => Object.values(p));
   const datas = {
     labels: chartLabels,
     fontFamily: 'IBM Plex Sans',

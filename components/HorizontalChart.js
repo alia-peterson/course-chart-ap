@@ -54,7 +54,7 @@ export default function HorizontalChart({ activities }) {
 
     return (
       <div key={i} className={styles.container}>
-        <p>Module Name: {moduleActivities[module][0].moduleName}</p>
+        <p>{moduleActivities[module][0].moduleName}</p>
         <div className={styles.graph}>{activities}</div>
       </div>
     )
