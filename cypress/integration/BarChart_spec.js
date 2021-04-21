@@ -10,7 +10,7 @@ describe('Dashboard View', () => {
     cy.get('#1').click()
   })
   
-    it('Has a canvas', () => {
+    it.only('Has a canvas', () => {
       cy.get('.barChart').within(() => {
         cy.get('canvas')
       })

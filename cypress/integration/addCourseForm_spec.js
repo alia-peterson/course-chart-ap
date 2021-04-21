@@ -11,7 +11,7 @@ describe('Add Course Form', () => {
       .url().should('include', '/addCourseForm')
     })
 
-    it('Should have inputs and labels on the form', () => {
+    it.only('Should have inputs and labels on the form', () => {
       cy
       .get('.CourseForm_container__1ON1N').within(() => {
       cy

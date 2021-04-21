@@ -13,17 +13,15 @@ export default function NavBar() {
     const modules = course.modules.map((mod, j) => {
       return (
         <Link key={j} href={`/moduleDashboard`}>
-          <div className={styles.module}>
-            <a 
-              id={j}
-              onClick={() => {
+          <div 
+          className={styles.module}
+          key={j} 
+          onClick={() => {
                 setSharedState({
                   ...sharedState,
                   currentModule: mod.id
-                })
-              }
-            }
-          >
+                })}}>
+            <a>
             </a>
             <a>
               {mod.name}

@@ -4,12 +4,11 @@ import { Doughnut } from "react-chartjs-2";
 
 import styles from "../styles/dashboard.module.scss";
 
-export default function CircleChart({ data }) {
+export default function CircleChart({ data, view }) {
   const { activityColors } = useAppContext();
 
   const chartLabels = data.map((p) => Object.keys(p));
   const chartData = data.map((p) => Object.values(p));
-  const chartColors = sharedState.activities.map(activity => activity.color)
   const config = {
     labels: chartLabels,
     datasets: [

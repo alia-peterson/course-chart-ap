@@ -15,14 +15,11 @@ describe('Add Module Form', () => {
     .url().should('include', '/addModuleForm')
   })
 
-  it('Should have a heading and course info', () => {
-      cy
-      .get('.addModuleForm_addModuleForm__sOuqr').within(() => {
-        cy
-        .get('h1').should('have.text', 'Add A Module')
-        .get('span').should('contain', 'Course:')
-        .get('p').should('contain', 'Nursing 101')
-      })
+  it.only('Should have a heading and course info', () => {
+    cy
+    .get('h1').should('contain', 'Add A Module')
+    .get('h2').should('contain', 'Course:')
+    .get('p').should('contain', 'Nursing 101')
   })
 
   it('Should have an input for the module name', () => {
