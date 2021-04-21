@@ -28,6 +28,10 @@ context('Dashboard View', () => {
       .url().should('include', 'courseDashboard')
   })
 
+  it.only('Shouldtest', () => {
+
+  })
+
   it('Should change url path to selected moduleDashboard page', () => {
     cy.intercept('GET', course1Api, { fixture: 'course1-api' })
       .get('nav').find('a[id=1]').click().wait(500)

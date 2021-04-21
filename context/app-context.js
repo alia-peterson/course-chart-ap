@@ -17,9 +17,9 @@ export function AppWrapper({ children }) {
         "#42e6d0",
         "#bb0935",
         "#5d9b35",
-        "#ffa500",
-        "#ff2500"
-      ]
+        '#ffa500',
+        '#ff2500'
+    ]
     const [hasBeenUpdated, setHasBeenUpdated] = useState(false)
     const [sharedState, setSharedState] = useState({
         courses: [{
