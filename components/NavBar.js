@@ -101,7 +101,7 @@ export default function NavBar() {
           </div>
         </Link>
         <Link href='/instructions'>
-          <a>Instructions</a>
+          <a className='instructions'>Instructions</a>
         </Link>
 
         <Link href='/instructions'>

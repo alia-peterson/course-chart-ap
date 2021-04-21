@@ -112,7 +112,7 @@ describe('Add module 404 Error on POST', () => {
       .url().should('include', '/addModuleForm')
     })
 
-    it.only('Shows an error to user if clicking add button post fails', () => {
+    it('Shows an error to user if clicking add button post fails', () => {
       cy
       .get('.addModuleForm_moduleMetaData__2BWxT').within(() => {
         cy
