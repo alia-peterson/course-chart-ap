@@ -18,7 +18,6 @@ export default function courseDashboard() {
   const [activityTotals, setActivityTotals] = useState({})
   const [courseActivityPercentages, setCourseActivityPercentages] = useState([])
 
-  console.log(course);
   useEffect(() => {
     getData(`courses/${courseId}`)
       .then(courseModules => {
