@@ -13,15 +13,17 @@ export default function NavBar() {
     const modules = course.modules.map((mod, j) => {
       return (
         <Link key={j} href={`/moduleDashboard`}>
-          <div className={styles.module}>
-            <a
-              onClick={() => {
+          <div 
+            className={styles.module}
+            onClick={() => {
                 setSharedState({
                   ...sharedState,
                   currentModule: mod.id
                 })
-                }
-              }>
+              }
+            }
+          >
+            <a>
               {mod.name}
             </a>
           </div>
@@ -32,17 +34,18 @@ export default function NavBar() {
     return (
       <div key={i}>
         <Link href={`/courseDashboard`}>
-          <div className={styles.course}>
-            <a
-              id={i}
-              onClick={() => {
-                setSharedState({
-                  ...sharedState,
-                  currentCourse: course.id,
-                })
-              }}>
-              {course.name}
-            </a>
+          <div 
+            className={styles.course}
+            onClick={() => {
+              setSharedState({
+                ...sharedState,
+                currentCourse: course.id,
+              })
+            }}
+          >
+            <a id={i}>
+                {course.name}
+              </a>
           </div>
         </Link>
 
@@ -76,7 +79,7 @@ export default function NavBar() {
       <section className={styles.courseButtons}>
         <Link href='/'>
           <div className={styles.home}>
-            <a>Home</a>
+            <a>How It Works</a>
           </div>
         </Link>
 
@@ -90,12 +93,8 @@ export default function NavBar() {
           </div>
         </Link>
 
-        <Link href='/instructions'>
-          <a>Instructions</a>
-        </Link>
-
-        <Link href='/instructions'>
-          <a>About Site</a>
+        <Link href='/contactDevelopers'>
+          <a>Contact the Devs</a>
         </Link>
       </section>
     </nav>

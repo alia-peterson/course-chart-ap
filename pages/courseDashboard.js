@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useAppContext } from '../context/app-context'
 import { getData, deleteData } from '../context/apiCalls'
@@ -11,7 +11,7 @@ import HorizontalChart from '../components/HorizontalChart'
 import styles from '../styles/dashboard.module.scss'
 
 export default function courseDashboard() {
-  const { sharedState, setSharedState, hasBeenDeleted, hasBeenUpdated } = useAppContext()
+  const { sharedState, setSharedState, hasBeenUpdated, setHasBeenUpdated } = useAppContext()
   const courseId = sharedState.currentCourse
   const router = useRouter()
   const [course, setCourse] = useState({})
@@ -19,38 +19,49 @@ export default function courseDashboard() {
   const [courseActivityPercentages, setCourseActivityPercentages] = useState([])
 
   useEffect(() => {
-    getData(`courses/${courseId}`)
-      .then(courseModules => {
-        if (courseModules) {
-          setCourse(courseModules.data.course)
-          if (courseModules.data.activityTotals !== null) {
-            const percentages = calculations.getActivityPercentages(courseModules.data.   activityTotals, sharedState.activities)
-            setCourseActivityPercentages(percentages)
-            setActivityTotals(courseModules.data.activityTotals)
-            const updatedCourse = courseModules.data.course
-            const stateCopy = sharedState
-            stateCopy[sharedState.currentCourse] = updatedCourse
-            stateCopy.currentCourseActivityTotals = courseModules.data.activityTotals
+    if (!sharedState.currentCourse) {
+      router.push('/')
+    } else {
+      getData(`courses/${courseId}`)
+        .then(courseModules => {
+          if (courseModules) {
+            setCourse(courseModules.data.course)
+            if (courseModules.data.activityTotals !== null) {
+              const percentages = calculations.getActivityPercentages(courseModules.data.   activityTotals, sharedState.activities)
+              setCourseActivityPercentages(percentages)
+              setActivityTotals(courseModules.data.activityTotals)
+              const updatedCourse = courseModules.data.course
+              const stateCopy = sharedState
+              delete stateCopy[sharedState.currentCourse]
+              stateCopy[sharedState.currentCourse] = updatedCourse
+              stateCopy.currentCourseActivityTotals = courseModules.data.activityTotals
 
-            setSharedState({
-              ...stateCopy
-            })
+              setSharedState({
+                ...stateCopy
+              })
 
-          } else {
-            setSharedState({
-              ...sharedState,
-              [courseId]: courseModules.data.course,
-            })
+            } else {
+              setSharedState({
+                ...sharedState,
+                [courseId]: courseModules.data.course,
+              })
+            }
           }
-        }
-      })
-  }, [hasBeenDeleted, sharedState.currentCourse, hasBeenUpdated])
+        })
+    }
+  }, [sharedState.currentCourse, hasBeenUpdated])
 
   const deleteCourse = () => {
     if (confirm('Are you sure you\'d like to delete this course?')) {
       deleteData('course', sharedState.currentCourse)
-      sharedState[sharedState.currentCourse].modules
-      router.push('/')
+        .then(() => {
+          setSharedState({
+            ...sharedState,
+            currentCourse: ''
+          })
+          setHasBeenUpdated(!hasBeenUpdated)
+          router.push('/')
+        })
     }
   }
 
