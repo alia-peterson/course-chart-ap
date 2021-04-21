@@ -24,9 +24,13 @@ context('Dashboard View', () => {
       .url().should('include', 'addCourseForm')
   })
 
-  it.only('Should change url path to selected courseDashboard page', () => {
+  it('Should change url path to selected courseDashboard page', () => {
     cy.get('nav').find('a[id=1]').click()
       .url().should('include', 'courseDashboard')
+  })
+
+  it.only('Shouldtest', () => {
+
   })
 
   it('Should change url path to selected moduleDashboard page', () => {
