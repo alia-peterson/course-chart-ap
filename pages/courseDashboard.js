@@ -11,7 +11,7 @@ import HorizontalChart from '../components/HorizontalChart'
 import styles from '../styles/dashboard.module.scss'
 
 export default function courseDashboard() {
-  const { sharedState, setSharedState, hasBeenDeleted, hasBeenUpdated } = useAppContext()
+  const { sharedState, setSharedState, hasBeenUpdated, setHasBeenUpdated } = useAppContext()
   const courseId = sharedState.currentCourse
   const router = useRouter()
   const [course, setCourse] = useState({})
@@ -49,13 +49,19 @@ export default function courseDashboard() {
           }
         })
     }
-  }, [hasBeenDeleted, sharedState.currentCourse, hasBeenUpdated])
+  }, [sharedState.currentCourse, hasBeenUpdated])
 
   const deleteCourse = () => {
     if (confirm('Are you sure you\'d like to delete this course?')) {
       deleteData('course', sharedState.currentCourse)
-      sharedState[sharedState.currentCourse].modules
-      router.push('/')
+        .then(() => {
+          setSharedState({
+            ...sharedState,
+            currentCourse: ''
+          })
+          setHasBeenUpdated(!hasBeenUpdated)
+          router.push('/')
+        })
     }
   }
 

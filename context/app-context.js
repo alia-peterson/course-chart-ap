@@ -21,7 +21,6 @@ export function AppWrapper({ children }) {
         "#ff2500"
       ]
     const [hasBeenUpdated, setHasBeenUpdated] = useState(false)
-    const [hasBeenDeleted, setHasBeenDeleted] = useState(false)
     const [sharedState, setSharedState] = useState({
         courses: [{
             modules:[]
@@ -38,18 +37,15 @@ export function AppWrapper({ children }) {
         const activitiesWithColor = activities.data.map((activity, i) => {
             return {...activity, color: activityColors[i-1]}
         })
-        setSharedState({
-            ...sharedState,
-            courses: courses.data,
-            activities: activitiesWithColor
-        })
-    }, [hasBeenUpdated, hasBeenDeleted]);
+        const stateCopy = sharedState
+        stateCopy.courses = courses.data
+        stateCopy.activities = activitiesWithColor
+        setSharedState({...stateCopy})
+    }, [hasBeenUpdated]);
 
     const value = {
         sharedState,
         setSharedState,
-        hasBeenDeleted,
-        setHasBeenDeleted,
         hasBeenUpdated,
         setHasBeenUpdated,
         activityColors
