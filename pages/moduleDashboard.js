@@ -89,6 +89,46 @@ export default function moduleDashboard() {
     setSharedState({...sharedState, currentModule: module.id, currentCourse: module.courseId})
     router.push('/editModuleForm')
   }
+
+  const activityInputs = (activities) => {
+    return activities.map(activity => {
+      const input = activity.input
+      const metric = activity.activity.metric ? activity.activity.metric.split(' ')[2] : 'assignments'
+      const name = activity.activity.name
+      const minutes = activity.activity.multiplier * input
+      const notes = activity.notes
+      const description = activity.description
+      const color = sharedState.activities[activity.activity.id] ? sharedState.activities[activity.activity.id].color : 'blue'
+      return (
+        <div className={styles.moduleActivityInputs}>
+          <div className={styles.moduleActivityInputsCircles} style={{border: `7px solid ${color}`}}>
+            <p>{input} {metric}</p>
+          </div>
+          <section className={styles.moduleActivitySideInfo}>
+            <div className={styles.moduleActivityNameNotes}>
+              <p style={{backgroundColor: `${color}`, color: `white`}}>{name}</p>
+              <p className={styles.moduleNotes}>{notes}</p>
+            </div>
+            <div className={styles.moduleActivityTimeNotes}>
+              <p>{description}</p>
+              <p>{minutes} minutes</p>
+            </div>
+          </section>
+        </div>
+      )
+    })
+  }
+
+  const totalMinutesAssigned = () => {
+    return module.moduleActivities.reduce((total, activity) => {
+      return total + activity.activity.multiplier * activity.input
+    }, 0)
+  }
+
+  const editMod = () => {
+    setSharedState({...sharedState, currentModule: module.id, currentCourse: module.courseId})
+    router.push('/editModuleForm')
+  }
   
   return (
     <>
