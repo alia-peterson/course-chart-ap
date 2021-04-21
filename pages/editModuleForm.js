@@ -93,7 +93,7 @@ export default function editModuleForm() {
   const patch = async (postBody) => {
     const id = parseInt(sharedState.currentModule)
     const response = await patchData('module', postBody, id)
-
+    console.log('RESPONSEINFORM', response)
     if (response.message !== 'Module updated successfully') {
         return alert(`Sorry, there was an error updating your module.` )
     }
