@@ -97,7 +97,7 @@ export default function NavBar() {
       <section className={styles.navButtons}>
         <Link href='/addCourseForm'>
           <div className={styles.courseButtons}>
-            <a>+ Add New Course</a>
+            <a className='addCourse'>+ Add New Course</a>
           </div>
         </Link>
         <Link href='/instructions'>
