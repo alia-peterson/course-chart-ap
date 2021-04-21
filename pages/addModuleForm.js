@@ -139,6 +139,7 @@ export default function addModuleForm() {
               {activities[key].metric}
           </label>
           <input
+            style={{border: `10px solid ${activities[key].color}`}}
             className={styles.circleInput}
             value={states[key][0][0]}
             id={activities[key].id}
@@ -155,6 +156,7 @@ export default function addModuleForm() {
             aria-label="notes">
           </label>
           <textarea
+            style={{border: `2px solid ${activities[key].color}`}}
             className={styles.formNotes}
             value={states[key][1][0]}
             name="notes"

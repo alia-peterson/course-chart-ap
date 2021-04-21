@@ -158,6 +158,7 @@ export default function editModuleForm() {
           </label>
           <input
             className={styles.circleInput}
+            style={{border: `10px solid ${activities[key].color}`}}
             value={states[key][0][0]}
             id={activities[key].id}
             type="number"
@@ -173,6 +174,7 @@ export default function editModuleForm() {
             aria-label="notes">
           </label>
           <textarea
+            style={{border: `2px solid ${activities[key].color}`}}
             className={styles.formNotes}
             value={states[key][1][0]}
             id="notes"

@@ -5,9 +5,7 @@ import { Doughnut } from "react-chartjs-2";
 import styles from "../styles/dashboard.module.scss";
 
 export default function CircleChart({ data, view }) {
-  console.log('DATA', data)
-
-  const filteredData = Array.from(data).filter(type => Object.values(type)[0])
+  const filteredData = data.filter(type => Object.values(type)[0])
 
   const sortedData = filteredData.sort((a, b) => {
     return Object.values(b)[0] - Object.values(a)[0]
@@ -16,14 +14,33 @@ export default function CircleChart({ data, view }) {
   const { activityColors } = useAppContext();
 
 
-  // const returnLabelPercent = p => {
-  //   if (p < 10) {
+  console.log('SORTED', sortedData)
 
-  //   }  `  ${Object.values(p)}` : Object.values(p)
-  // }
+  const getLabelPercent = p => {
+    let number = Object.values(p)
+    let string = `${number}`
+    if (number < 10) {
+      string = '  ' + number
+    } else if (number < 100) {
+      string = ' ' + number
+    }
+    return string
+  }
+
+const normalizeLabelLength = label => {
+  let string = ''
+  let numSpaces = 55 - label.split('').length
+  let spaces = new Array(numSpaces).fill(' ').join('')
+  string = label+spaces
+  return string
+}
+
   const chartLabels = sortedData.map((p) => {
-    const checkPercentage = Object.values(p) < 10 ? `  ${Object.values(p)}` : Object.values(p)
-    return `${checkPercentage}%  -  ${Object.keys(p)}`});
+    let label =  normalizeLabelLength(`${getLabelPercent(p)}%  -  ${Object.keys(p)}`)
+    console.log(label, label.length)
+    return label
+  });
+
   const chartData = sortedData.map((p) => Object.values(p));
   const datas = {
     labels: chartLabels,
