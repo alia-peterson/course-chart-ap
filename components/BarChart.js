@@ -18,6 +18,12 @@ const BarChart = (props) => {
 
     useEffect(() => {
         let dataToDisplay = calculations.formatDataForBarChart(props.course, barData.label, props.activityTotals)
+        console.log('DATATODISAPLY', dataToDisplay)
+        // const filteredData = data.filter(type => Object.values(type)[0])
+
+        // const sortedData = filteredData.sort((a, b) => {
+        //   return Object.values(b)[0] - Object.values(a)[0]
+        // })
         setData({ ...barData, dataToDisplay })
     }, [props.activityTotals])
 

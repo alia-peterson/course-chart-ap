@@ -13,9 +13,6 @@ export default function CircleChart({ data, view }) {
 
   const { activityColors } = useAppContext();
 
-
-  console.log('SORTED', sortedData)
-
   const getLabelPercent = p => {
     let number = Object.values(p)
     let string = `${number}`
