@@ -29,11 +29,11 @@ const BarChart = (props) => {
     const data = {
         labels: Object.keys(barData.dataToDisplay),
         datasets: [{
-          label: barData.label,
-          data: Object.values(barData.dataToDisplay),
-          backgroundColor: `${barData.color}`,
-          borderColor: `${barData.color}`,
-          borderWidth: 1
+            label: barData.label,
+            data: Object.values(barData.dataToDisplay),
+            backgroundColor: `${barData.color}`,
+            borderColor: `${barData.color}`,
+            borderWidth: 1
         }]
     }
 
@@ -42,7 +42,9 @@ const BarChart = (props) => {
         title: {
             display: true,
             text: `Comparison of Individual Task for ${props.course.name}`,
-            fontSize: 16,
+            fontSize: 18,
+            fontFamily: 'IBM Plex Mono',
+            fontColor: 'gray'
         },
         scales: {
             yAxes: [{
@@ -53,7 +55,8 @@ const BarChart = (props) => {
                 scaleLabel: {
                     display: true,
                     labelString: 'Minutes',
-                    fontStyle: 'bold'
+                    fontStyle: 'bold',
+                    fontFamily: 'IBM Plex Sans'
                 }
             }],
             xAxes: [{
@@ -61,10 +64,11 @@ const BarChart = (props) => {
                 scaleLabel: {
                     display: true,
                     labelString: 'Module',
-                    fontStyle: 'bold'
+                    fontStyle: 'bold', 
+                    fontFamily: 'IBM Plex Sans'
                 }
             }]
-        }
+        },
     }
 
 

@@ -1,9 +1,29 @@
 @import 'variables';
 
-.courseInformation {
+.courseHeader {
   @include form-box;
-  text-align: center;
-  width: 80%;
+  width: 50%;
+
+  .courseInformation {
+    width: 100%;
+    text-align: center;
+    background-color: white;
+    border: 2px solid $blue-dark;
+    box-shadow: -1px 3px 15px rgb(27, 61, 89, 0.5);
+
+    .courseInstitution {
+      margin: -0.5rem 1rem 1rem;
+      font-weight: bolder;
+      font-size: 14px;
+    }
+  }
+
+  .courseTimeInformation {
+    font-size: small;
+    margin-top: 1rem;
+    align-self: center;
+    text-align: left;
+  }
 }
 
 .courseGraphs {
@@ -19,6 +39,11 @@
   margin: auto;
   padding: 1rem 0;
   width: 80%;
+
+  h2 {
+    font-size: 18px;
+    color: gray;
+  }
 }
 
 .activityOptions {

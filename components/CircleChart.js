@@ -9,8 +9,9 @@ export default function CircleChart({ data, view }) {
 
   const chartLabels = data.map((p) => Object.keys(p));
   const chartData = data.map((p) => Object.values(p));
-  const config = {
+  const datas = {
     labels: chartLabels,
+    fontFamily: 'IBM Plex Sans',
     datasets: [
       {
         data: chartData,
@@ -20,10 +21,25 @@ export default function CircleChart({ data, view }) {
     ],
   };
 
+  const options = {
+      
+        legend: {
+          position: 'right',
+        },
+        title: {
+          display: true,
+          text: `Activities in ${view}`,
+          fontFamily: 'IBM Plex Mono',
+          fontSize: 18,
+          fontColor: 'gray'
+        }
+    
+    }
+
+
   return (
     <div className={styles.chartContainer}>
-      {view === 'Course' ? <h2>{`Activities in ${view}`}</h2> : <h2>{`Activities in ${view}`}</h2>}
-      <Doughnut className='circleChart' data={config} width={400} height={400} />
+      <Doughnut className='circleChart' data={datas} options={options} width={400} height={400} />
     </div>
   );
 }

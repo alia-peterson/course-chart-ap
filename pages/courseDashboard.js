@@ -68,16 +68,17 @@ export default function courseDashboard() {
   return (
     <>
       {course &&
-      <section className={styles.courseInformation}>
-        <h1>{course.name}</h1>
-        <p>
-          Institution: {course.institution}
-          <br />
-          Credit Hours: {course.creditHours}
-          <br />
-          Length: {course.length} Weeks
+      <div className={styles.courseHeader}>
+        <section className={styles.courseInformation}>
+          <h1>{course.name}</h1>
+          <p className={styles.courseInstitution}>{course.institution}</p>
+        </section>
+        <p className={styles.courseTimeInformation}>
+            Credit Hours: {course.creditHours}
+            <br />
+            Length: {course.length} Weeks
         </p>
-      </section>
+      </div>
       }
 
       {course.modules &&

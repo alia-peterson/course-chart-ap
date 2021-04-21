@@ -58,6 +58,7 @@
   flex-direction: column;
   width: 100%;
   font-size: .9rem;
+  box-shadow: -1px 3px 15px rgb(27, 61, 89, 0.5);
 
   a {
     padding: 0.5rem 0;
@@ -119,6 +120,7 @@
 
 .navButtons {
   cursor: pointer;
+  border-top: 2rem solid $blue-dark;
 
   :hover {
     text-decoration: underline;
