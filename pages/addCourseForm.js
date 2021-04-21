@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import { getData, postData } from '../context/apiCalls'
 import { useAppContext } from '../context/app-context'
-
 import findGoal from '../utilities/courseGoal'
 import styles from '../styles/CourseForm.module.scss'
 
@@ -11,17 +11,25 @@ export default function addCourseForm() {
   const [course, setCourse] = useState('')
   const [hours, setHours] = useState('')
   const [length, setLength] = useState('')
-  let errorMessage = '' // why isn't this error message updating???
+  const [errorMessage, setErrorMessage] = useState('')
+  const router = useRouter()
+
+  useEffect(async () => {
+    if (hasBeenUpdated) {
+      const courses = await getData('courses')
+      const newCourseIndex = courses.data.length - 1
+      const newCourseId = courses.data[newCourseIndex].id
+      const stateCopy = sharedState
+      stateCopy.currentCourse = newCourseId
+      setSharedState({...stateCopy})
+    }
+  }, [hasBeenUpdated])
 
   const handleSubmit = (event) => {
     event.preventDefault()
 
     if (hours === '' || length === '') {
-      errorMessage = 'Please fill out all fields of form.'
-
-      setTimeout(() => {
-        errorMessage = ''
-      }, 1000)
+      setErrorMessage('Please fill out all fields of form.')
 
     } else {
       submitForm()
@@ -38,7 +46,11 @@ export default function addCourseForm() {
       goal: goal
     }
 
-    console.log(newCourse);
+    setInstitution('')
+    setCourse('')
+    setHours('')
+    setLength('')
+    setErrorMessage('')
     postCourse(newCourse)
   }
 
@@ -51,11 +63,10 @@ export default function addCourseForm() {
 
     } else {
       setHasBeenUpdated(!hasBeenUpdated)
-      const newCourseIndex = sharedState.courses.length - 1
-      const newCourseId = sharedState.courses[newCourseIndex].id
-      setSharedState({...sharedState, currentCourse: newCourseId})
+      router.push('/courseDashboard')
     }
   }
+  
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>

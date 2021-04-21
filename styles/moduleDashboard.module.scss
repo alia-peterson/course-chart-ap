@@ -1,0 +1,87 @@
+@import 'variables';
+
+.modHeader {
+  text-align: center;
+}
+
+.totalModuleMinutes {
+  text-align: center;
+  font-size: larger;
+  margin-top: -1rem;
+  margin-bottom: 2rem;
+}
+
+.moduleMetaData {
+  color: blue;
+}
+
+.moduleActivityInputs {
+  color: white;
+  display: flex;
+  flex-direction: row;
+  margin: 2rem;
+}
+
+.moduleActivityInputsCircles {
+  padding: 1.5rem;
+  color: #1B3D59;
+  background-color: white;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 85px;
+  font-size: large;
+  z-index: 2;
+  position: relative;
+  left: 5rem;
+  bottom: 0rem;
+  text-align: center;
+
+  p {
+    padding-top: 1rem;
+  }
+
+}
+
+.moduleActivitySideInfo {
+  display: flex;
+  flex-direction: column;
+  width: 40vw;
+  z-index: 1;
+
+}
+
+.moduleNotes {
+  padding: 0rem 0rem 0rem 7rem;
+}
+
+.moduleActivityNameNotes {
+  color: $blue-dark;
+}
+
+.moduleActivityTimeNotes {
+  background-color: $gray-dark;
+}
+
+.moduleActivityNameNotes, .moduleActivityTimeNotes {
+  text-align: center;
+}
+
+.deleteButton, .editButton {
+  align-self: center;
+  background-color: $blue-medium;
+  color: $off-white;
+  font-weight: bold;
+  margin-bottom: 5rem;
+  padding: .5rem;
+  cursor: pointer;
+}
+
+.editButton:hover {
+  border: 2px solid $blue-dark;
+  transform: scale(1.2);
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-evenly;
+}

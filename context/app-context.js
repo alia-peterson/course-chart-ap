@@ -19,9 +19,8 @@ export function AppWrapper({ children }) {
         "#5d9b35",
         '#ffa500',
         '#ff2500'
-      ]
+    ]
     const [hasBeenUpdated, setHasBeenUpdated] = useState(false)
-    const [hasBeenDeleted, setHasBeenDeleted] = useState(false)
     const [sharedState, setSharedState] = useState({
         courses: [{
             modules:[]
@@ -33,26 +32,23 @@ export function AppWrapper({ children }) {
     })
 
     useEffect( async () => {
-        console.log('TRIGGERD', Date.now(), hasBeenUpdated)
         const courses = await getData('courses')
         const activities = await getData('activities')
         const activitiesWithColor = activities.data.map((activity, i) => {
             return {...activity, color: activityColors[i]}
         })
-        setSharedState({
-            ...sharedState,
-            courses: courses.data,
-            activities: activitiesWithColor
-        })
-    }, [hasBeenUpdated, hasBeenDeleted]);
+        const stateCopy = sharedState
+        stateCopy.courses = courses.data
+        stateCopy.activities = activitiesWithColor
+        setSharedState({...stateCopy})
+    }, [hasBeenUpdated]);
 
     const value = {
         sharedState,
         setSharedState,
-        hasBeenDeleted,
-        setHasBeenDeleted, 
         hasBeenUpdated,
-        setHasBeenUpdated
+        setHasBeenUpdated,
+        activityColors
     }
     return (
         <AppContext.Provider value={value}>

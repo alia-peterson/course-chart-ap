@@ -7,18 +7,10 @@ import { useAppContext } from '../context/app-context'
 
 export default function NavBar() {
   const { sharedState, setSharedState} = useAppContext()
-  const [selected, setSelected ] = useState('home')
-
-  const checkIfSelected = (id) => {
-      if (id === selected) {
-          return styles.selected
-      }
-  }
 
   const courses = sharedState.courses.map((course, i) => {
 
     const modules = course.modules.map((mod, j) => {
-        let selectedCheck = checkIfSelected(mod.id)
       return (
         <Link key={j} href={`/moduleDashboard`}>
           <div className={styles.module}>
@@ -29,8 +21,11 @@ export default function NavBar() {
                   ...sharedState,
                   currentModule: mod.id
                 })
-                }
-              }>
+              }
+            }
+          >
+            </a>
+            <a>
               {mod.name}
             </a>
           </div>
@@ -41,17 +36,16 @@ export default function NavBar() {
     return (
       <div key={i}>
         <Link href={`/courseDashboard`}>
-          <div className={styles.course}>
-            <a
-              id={i}
-              onClick={() => {
-                setSharedState({
-                  ...sharedState,
-                  currentCourse: course.id,
-                })
-                setSelected(course.id)
-            }
-              }>
+          <div 
+            className={styles.course}
+            onClick={() => {
+              setSharedState({
+                ...sharedState,
+                currentCourse: course.id,
+              })
+            }}
+          >
+            <a id={i}>
                 {course.name}
               </a>
           </div>
@@ -75,19 +69,19 @@ export default function NavBar() {
 
   return (
     <nav className={styles.navbar}>
-        <Link href='/' className={styles.homeLogo}>
-            <section className={styles.container}>
-              <div className={styles.logo}>
-                <Image src='/icon.png' alt='Course chart icon' height={50} width={50} />
-              </div>
-              <h1>CourseChart</h1>
-            </section>
+      <Link href='/' className={styles.homeLogo}>
+        <section className={styles.container}>
+          <div className={styles.logo}>
+            <Image src='/icon.png' alt='Course chart icon' height={50} width={50} />
+          </div>
+          <h1>CourseChart</h1>
+        </section>
       </Link>
 
       <section className={styles.courseButtons}>
         <Link href='/'>
           <div className={styles.home}>
-            <a>Home</a>
+            <a>How It Works</a>
           </div>
         </Link>
 
@@ -104,8 +98,8 @@ export default function NavBar() {
           <a className='instructions'>Instructions</a>
         </Link>
 
-        <Link href='/instructions'>
-          <a>About Site</a>
+        <Link href='/contactDevelopers'>
+          <a>Contact the Devs</a>
         </Link>
       </section>
     </nav>

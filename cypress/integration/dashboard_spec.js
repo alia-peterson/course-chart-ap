@@ -5,7 +5,7 @@ context('Dashboard View', () => {
 
   beforeEach(() => {
     cy.intercept('GET', coursesApi, { fixture: 'courses-api' })
-    cy.visit(baseUrl)
+    cy.visit(baseUrl).wait(300)
   })
 
   it('Should display the heading of Course Chart on initial display', () => {
@@ -33,6 +33,10 @@ context('Dashboard View', () => {
   it('Should change url path to selected courseDashboard page', () => {
     cy.get('nav').find('a[id=1]').click()
       .url().should('include', 'courseDashboard')
+  })
+
+  it.only('Shouldtest', () => {
+
   })
 
   it('Should change url path to selected moduleDashboard page', () => {
