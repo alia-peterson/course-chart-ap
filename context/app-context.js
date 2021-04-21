@@ -17,8 +17,8 @@ export function AppWrapper({ children }) {
         "#42e6d0",
         "#bb0935",
         "#5d9b35",
-        '#ffa500',
-        '#ff2500'
+        "#ffa500",
+        "#ff2500"
       ]
     const [hasBeenUpdated, setHasBeenUpdated] = useState(false)
     const [hasBeenDeleted, setHasBeenDeleted] = useState(false)
@@ -33,7 +33,6 @@ export function AppWrapper({ children }) {
     })
 
     useEffect( async () => {
-        console.log('TRIGGERD', Date.now(), hasBeenUpdated)
         const courses = await getData('courses')
         const activities = await getData('activities')
         const activitiesWithColor = activities.data.map((activity, i) => {
@@ -50,9 +49,10 @@ export function AppWrapper({ children }) {
         sharedState,
         setSharedState,
         hasBeenDeleted,
-        setHasBeenDeleted, 
+        setHasBeenDeleted,
         hasBeenUpdated,
-        setHasBeenUpdated
+        setHasBeenUpdated,
+        activityColors
     }
 
     return (

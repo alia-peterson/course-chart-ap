@@ -16,4 +16,47 @@ $off-white: #F9F9F9;
   font-weight: bold;
   padding: 0.5rem 1rem;
   margin: 0.5rem;
+  cursor: pointer;
 }
+
+@mixin form-box {
+  background-color: $blue-light;
+  box-shadow: 6px 6px 6px $blue-medium;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 18px;
+  max-width: 800px;
+  padding: 2rem;
+  margin: 1rem;
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+    margin: 0;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+/* graph colors */
+$color-1: #FF6384;
+$color-2: #36A2EB;
+$color-3: #FFCE56;
+$color-4: #1dea49;
+$color-5: #ef1aae;
+$color-6: #0b04fa;
+$color-7: #9a1aa0;
+$color-8: #3f218c;
+$color-9: #ebfc05;
+$color-10: #42e6d0;
+$color-11: #bb0935;
+$color-12: #5d9b35;
+$color-13: #ffa500;
+$color-14: #ff2500;

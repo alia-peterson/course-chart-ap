@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react'
 import { useAppContext } from '../context/app-context'
 import calculations from '../utilities/calculations'
+import getColor from '../utilities/chartColors'
 
 import styles from '../styles/HorizontalChart.module.scss'
 
 export default function HorizontalChart({ activities }) {
-  // const { sharedState, setSharedState } = useAppContext()
-  // const { courseActivities, setCourseActivities } = useState({})
+  const { activityColors } = useAppContext()
 
   const moduleActivities = activities.reduce((acc, curr) => {
     const activity = {
@@ -31,8 +31,11 @@ export default function HorizontalChart({ activities }) {
     }, 0)
 
     const activities = moduleActivities[module].map((mod, j) => {
+      const color = getColor(mod.activityName)
       const styleObject = {
-        "width" : `${Math.round(mod.minutes / totalMinsPerModule * 100)}%`
+        'backgroundColor': `${color}`,
+        'height': '100%',
+        'width': `${Math.round(mod.minutes / totalMinsPerModule * 100)}%`
       }
 
       return (
@@ -43,7 +46,7 @@ export default function HorizontalChart({ activities }) {
           style={styleObject}
           >
           <div className={styles.tooltip}>
-            <p>{mod.activityName}: {styleObject.width}</p>
+            {mod.activityName}: {styleObject.width}
           </div>
         </div>
       )
