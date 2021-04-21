@@ -38,3 +38,23 @@ export const deleteData = (type, id) => {
     })
     .catch((error) => console.error(error));
 };
+
+export const patchModule = (type, body, id) => {
+  const url =
+    type === 'course'
+      ? `https://course-chart-be.herokuapp.com/courses/${id}`
+      : `https://course-chart-be.herokuapp.com/modules/${id}`
+  const settings = { 
+    method: "PATCH", 
+    body: body 
+  };
+  return fetch(url, settings)
+  .then((response) => {
+      console.log('PATCH', response)
+    if (!response.ok) {
+      throw Error(response.statusText);
+    }
+    return response.message;
+  })
+  .catch((error) => console.error(error));
+}
