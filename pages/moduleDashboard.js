@@ -100,7 +100,7 @@ export default function moduleDashboard() {
           <p className={styles.totalModuleMinutes}>{totalMinutesAssigned()}</p>
         </div>
         {percentages.length && 
-          <CircleChart data={percentages} />}
+          <CircleChart data={percentages} view={'Module'} />}
           {activityInputs(module.moduleActivities)}
           <div className={styles.buttons}>
             <button className={styles.editButton} onClick={editMod}>Edit Module</button>

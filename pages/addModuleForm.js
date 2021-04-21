@@ -157,7 +157,8 @@ export default function addModuleForm() {
           <textarea
             className={styles.formNotes}
             value={states[key][1][0]}
-            id="notes"
+            name="notes"
+            id={i}
             rows="4"
             cols="50"
             onChange={(event) => states[key][1][1](event.target.value)}

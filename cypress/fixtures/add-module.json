@@ -1,0 +1,22 @@
+{
+    "name": "Module 4",
+    "number": 9,
+    "courseId": 1,
+    "moduleActivities": [
+        {
+            "input": 30,
+            "notes": "This is the activity notes",
+            "activityId": 1
+        },
+        {
+            "input": 8,
+            "notes": "If this is seen, then the module was created successfully",
+            "activityId": 2
+        },
+        {
+            "input": 180,
+            "notes": "Notes go here",
+            "activityId": 3
+        }
+    ]
+}

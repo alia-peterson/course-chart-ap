@@ -83,7 +83,7 @@ export default function courseDashboard() {
       {course.modules &&
         <section className={styles.courseGraphs}>
           {courseActivityPercentages.length > 0 &&
-            <CircleChart data={courseActivityPercentages}/>
+            <CircleChart data={courseActivityPercentages} view={'Course'}/>
           }
 
           {activityTotals.length &&
