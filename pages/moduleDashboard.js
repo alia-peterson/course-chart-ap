@@ -5,7 +5,7 @@ import { calculations } from "../utilities/calculations";
 import { deleteData } from '../context/apiCalls'
 import { useRouter } from 'next/router'
 
-import styles from "../styles/moduleDashBoard.module.scss";
+import styles from "../styles/moduleDashboard.module.scss";
 import { activities } from "../context/activities";
 import courseDashboard from "./courseDashboard";
 
