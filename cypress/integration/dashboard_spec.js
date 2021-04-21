@@ -8,19 +8,26 @@ context('Dashboard View', () => {
     cy.visit(baseUrl).wait(300)
   })
 
+  it('Should display the heading of Course Chart on initial display', () => {
+    cy.get('h1').should('contain', 'Course Chart')
+  })
+
   it('Has a navigation bar with course and module buttons', () => {
     cy.get('nav').find('img').should('be.visible')
       .get('nav').find('h1').should('have.text', 'CourseChart')
-      .get('nav').find('a').eq(0).should('have.text', 'How It Works')
+      .get('nav').find('a').eq(0).should('have.text', 'Home')
       .get('nav').find('a').eq(1).should('have.text', 'Nursing 101')
       .get('nav').find('a').eq(2).should('have.text', 'Foundations of Nursing')
       .get('nav').find('a').eq(3).should('have.text', '+ Add New Course')
-      .get('nav').find('a').eq(4).should('have.text', 'Contact the Devs')
+      .get('nav').find('a').eq(4).should('have.text', 'Instructions')
+      .get('nav').find('a').eq(5).should('have.text', 'About Site')
   })
 
   it('Should change url path to selected addCourseForm page', () => {
-    cy.get('nav').find('a').eq(3).click()
-      .url().should('include', 'addCourseForm')
+    cy
+    .wait(1000)
+    .get('nav').find('a').eq(3).click()
+    .url().should('include', 'addCourseForm')
   })
 
   it('Should change url path to selected courseDashboard page', () => {

@@ -35,7 +35,7 @@ export function AppWrapper({ children }) {
         const courses = await getData('courses')
         const activities = await getData('activities')
         const activitiesWithColor = activities.data.map((activity, i) => {
-            return {...activity, color: activityColors[i-1]}
+            return {...activity, color: activityColors[i]}
         })
         const stateCopy = sharedState
         stateCopy.courses = courses.data
@@ -50,7 +50,6 @@ export function AppWrapper({ children }) {
         setHasBeenUpdated,
         activityColors
     }
-
     return (
         <AppContext.Provider value={value}>
             {children}

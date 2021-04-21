@@ -14,15 +14,15 @@ export default function NavBar() {
       return (
         <Link key={j} href={`/moduleDashboard`}>
           <div 
-            className={styles.module}
-            onClick={() => {
+          className={styles.module}
+          key={j} 
+          onClick={() => {
                 setSharedState({
                   ...sharedState,
                   currentModule: mod.id
-                })
-              }
-            }
-          >
+                })}}>
+            <a>
+            </a>
             <a>
               {mod.name}
             </a>
@@ -89,8 +89,11 @@ export default function NavBar() {
       <section className={styles.navButtons}>
         <Link href='/addCourseForm'>
           <div className={styles.courseButtons}>
-            <a>+ Add New Course</a>
+            <a className='addCourse'>+ Add New Course</a>
           </div>
+        </Link>
+        <Link href='/instructions'>
+          <a className='instructions'>Instructions</a>
         </Link>
 
         <Link href='/contactDevelopers'>
