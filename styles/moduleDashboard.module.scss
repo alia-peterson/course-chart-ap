@@ -44,7 +44,7 @@
 .moduleActWrapper {
   display:grid;
   width: 95%;
-  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
   grid-gap: 1rem;
 
   .moduleActivityInputs {
