@@ -12,7 +12,8 @@ export default function HorizontalChart({ activities }) {
     const activity = {
       moduleName: curr.moduleName,
       activityName: curr.activityName,
-      minutes: curr.minutes
+      minutes: curr.minutes,
+      id: curr.activityId
     }
 
     if (acc[curr.moduleId]) {
@@ -25,12 +26,21 @@ export default function HorizontalChart({ activities }) {
     return acc
   }, {})
 
+  const sortData = data => {
+    const sorted = data.sort((a, b) => {
+      return a.id - b.id
+    })
+    return sorted
+  }
+
   const chartComponent = Object.keys(moduleActivities).map((module, i) => {
     const totalMinsPerModule = moduleActivities[module].reduce((total, entry) => {
       return total + Object.values(entry)[2]
     }, 0)
 
-    const activities = moduleActivities[module].map((mod, j) => {
+    const sortedActivities = sortData(moduleActivities[module])
+
+    const activities = sortedActivities.map((mod, j) => {
       let activityColor = Object.fromEntries(sharedState.activities.map(a => [a.name, a.color]))
       const color = activityColor[mod.activityName]
       const styleObject = {
