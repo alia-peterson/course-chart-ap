@@ -4,6 +4,7 @@
   @include form-box;
   margin: auto;
   width: 100%;
+  font-family: 'IBM Plex Mono', monospace;
 }
 
 .input {
@@ -11,6 +12,7 @@
   font-size: 16px;
   padding: 0.2rem;
   width: 300px;
+  font-family: 'IBM Plex Sans';
 }
 
 .container {
@@ -38,4 +40,28 @@
 
 .button {
   @include button-primary;
+  font-family: 'IBM Plex Sans';
+}
+
+
+.courseFormHeading {
+  @include form-box;
+  width: 50%;
+  height: 8rem;
+
+  .courseFormTitleWrapper {
+    text-align: center;
+    background-color: white;
+    border: 2px solid $blue-dark;
+    box-shadow: -1px 3px 15px rgb(27, 61, 89, 0.5);
+    padding: 0.5rem;
+    width: 130%;
+    margin-left: -15%;
+    
+    .courseFormTitle {
+       margin: 0;
+      font-family: 'IBM Plex Mono', monospace;
+
+    }
+  }
 }

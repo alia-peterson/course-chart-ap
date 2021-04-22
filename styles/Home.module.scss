@@ -17,5 +17,129 @@
   align-items: center;
   overflow: scroll;
   height: 100%;
+  box-shadow: -1px 3px 15px rgb(27, 61, 89, 0.5);
 }
 
+
+.welcome {
+  margin: 5rem;
+  color: $blue-dark;
+}
+
+.welcomeHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: $blue-dark;
+
+  .welcomeTitle {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+}
+
+.instructions {
+  margin: 1rem 10rem;
+  align-text: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .purpose {
+    @include form-box;
+    width: 60%;
+  }
+
+  .inlineName {
+    text-align: center;
+    background-color: white;
+    border: 2px solid $blue-dark;
+    box-shadow: -1px 3px 15px rgb(27, 61, 89, 0.5);
+    padding: 0.5rem;
+    width: 130%;
+    margin-left: -15%;
+    margin-bottom: 2rem;
+    font-weight: bold;
+    font-family: 'IBM Plex Mono', monospace;
+    color: $blue-dark;
+  }
+
+  .ul {
+    font-family: 'IBM Plex Sans';
+
+    .li {
+        padding: .5rem;
+    }
+  }
+
+  .general {
+    font-family: 'IBM Plex Mono', monospace;
+  }
+   
+}
+
+
+
+
+
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  width: 100px;
+  border: 10px solid $blue-dark;
+  border-radius: 50%;
+  background-color: $off-white;
+  cursor: pointer;
+   border-color: red;
+  animation-name: flash_border;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  -webkit-animation-name: flash_border;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation-name: flash_border;
+  -moz-animation-duration: 2s;
+  -moz-animation-timing-function: linear;
+  -moz-animation-iteration-count: infinite;
+}
+
+@keyframes flash_border {
+  0% {
+    border-color: $blue-light;
+  }
+  50% {
+    border-color: $blue-dark;
+  }
+  100% {
+    border-color: $off-white;
+  }
+}
+
+@-webkit-keyframes flash_border {
+  0% {
+    border-color: $blue-light;
+  }
+  50% {
+    border-color: $blue-dark;
+  }
+  100% {
+    border-color: red;
+  }
+}
+
+@-moz-keyframes flash_border {
+  0% {
+    border-color: $blue-light;
+  }
+  50% {
+    border-color: b$blue-dark;
+  }
+  100% {
+    border-color: $off-white;
+  }
+}

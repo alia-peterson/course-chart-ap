@@ -69,6 +69,14 @@ export default function addCourseForm() {
   
 
   return (
+    <>
+      <div className={styles.courseFormHeading}>
+        <div className={styles.courseFormTitleWrapper}>
+          <h1 className={styles.courseFormTitle}>
+            Add A Course
+          </h1>
+        </div>
+      </div>
     <form className={styles.form} onSubmit={handleSubmit}>
 
       <div className={styles.container}>
@@ -136,5 +144,6 @@ export default function addCourseForm() {
       </div>
       <button type='submit' className={styles.button}>Submit</button>
     </form>
+    </>
   )
 }
