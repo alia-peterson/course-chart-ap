@@ -50,8 +50,14 @@ export default function moduleDashboard() {
       }
   }
 
+  const sortActivities = activities => {
+    return activities.sort((a,b) => {
+      return a.notes.length - b.notes.length
+    })
+  }
   const activityInputs = (activities) => {
-    return activities.map(activity => {
+    const sortedActivities = sortActivities(activities)
+    return sortedActivities.map(activity => {
       const input = activity.input
       const metric = activity.activity.metric ? activity.activity.metric.split(' ')[2] : 'assignments'
       const name = activity.activity.name
@@ -62,11 +68,12 @@ export default function moduleDashboard() {
       return (
         <div className={styles.moduleActivityInputs}>
           <div className={styles.moduleActivityInputsCircles} style={{border: `7px solid ${color}`}}>
-            <p>{input} {metric}</p>
+            <p>{input}</p>
+            <p className={styles.moduleMetric}>{metric}</p>
           </div>
           <section className={styles.moduleActivitySideInfo}>
             <div className={styles.moduleActivityNameNotes}>
-              <p style={{backgroundColor: `${color}`, color: `white`}}>{name}</p>
+              <p className={styles.moduleActivityName} style={{backgroundColor: `${color}`, color: `white`}}>{name}</p>
               <p className={styles.moduleNotes}>{notes}</p>
             </div>
             <div className={styles.moduleActivityTimeNotes}>

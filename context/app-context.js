@@ -10,7 +10,7 @@ export function AppWrapper({ children }) {
         "#FFCE56",
         "#Fb4D3D",
         "#D90368",
-        "#0b04fa",
+        "#0B04FA",
         "#9a1aa0",
         "#5B59CE",
         "#2C663A",
