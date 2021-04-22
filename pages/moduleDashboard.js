@@ -110,7 +110,9 @@ export default function moduleDashboard() {
             <CircleChart data={percentages} view={'Module'} />
           </div> 
         }
+        <div className={styles.moduleActWrapper}>
           {activityInputs(module.moduleActivities)}
+        </div>
           <div className={styles.buttons}>
             <button className={styles.editButton} onClick={editMod}>Edit Module</button>
             <button className={styles.deleteButton} onClick={deleteMod}>Delete Module</button>
