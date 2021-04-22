@@ -75,7 +75,6 @@
   .general {
     font-family: 'IBM Plex Mono', monospace;
   }
-   
 }
 
 
@@ -93,53 +92,144 @@
   border-radius: 50%;
   background-color: $off-white;
   cursor: pointer;
-   border-color: red;
   animation-name: flash_border;
-  animation-duration: 2s;
+  animation-duration: 15s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   -webkit-animation-name: flash_border;
-  -webkit-animation-duration: 2s;
+  -webkit-animation-duration: 15s;
   -webkit-animation-timing-function: linear;
   -webkit-animation-iteration-count: infinite;
   -moz-animation-name: flash_border;
-  -moz-animation-duration: 2s;
+  -moz-animation-duration: 15s;
   -moz-animation-timing-function: linear;
   -moz-animation-iteration-count: infinite;
 }
 
 @keyframes flash_border {
-  0% {
+  8% {
     border-color: $blue-light;
   }
-  50% {
+  16% {
     border-color: $blue-dark;
   }
+  24% {
+    border-color: #FF6384;
+  }
+  32% {
+    border-color: #36A2EB;
+  }
+  40% {
+    border-color: #FFCE56;
+  }
+  48% {
+    border-color: #1dea49;
+  }
+  56% {
+    border-color: #ef1aae;
+  }
+  64% {
+    border-color: #0b04fa;
+  }
+  72% {
+    border-color: #9a1aa0;
+  }
+  80% {
+    border-color: #3f218c;
+  }
+  88% {
+    border-color: #ebfc05;
+  }
+  96% {
+    border-color: #ffa500;
+  }
   100% {
-    border-color: $off-white;
+    border-color: #ff2500;
   }
 }
 
+
+
 @-webkit-keyframes flash_border {
-  0% {
+  8% {
     border-color: $blue-light;
   }
-  50% {
+  16% {
     border-color: $blue-dark;
   }
+  24% {
+    border-color: #FF6384;
+  }
+  32% {
+    border-color: #36A2EB;
+  }
+  40% {
+    border-color: #FFCE56;
+  }
+  48% {
+    border-color: #1dea49;
+  }
+  56% {
+    border-color: #ef1aae;
+  }
+  64% {
+    border-color: #0b04fa;
+  }
+  72% {
+    border-color: #9a1aa0;
+  }
+  80% {
+    border-color: #3f218c;
+  }
+  88% {
+    border-color: #ebfc05;
+  }
+  96% {
+    border-color: #ffa500;
+  }
   100% {
-    border-color: red;
+    border-color: #ff2500;
   }
 }
 
 @-moz-keyframes flash_border {
-  0% {
+  8% {
     border-color: $blue-light;
   }
-  50% {
-    border-color: b$blue-dark;
+  16% {
+    border-color: $blue-dark;
+  }
+  24% {
+    border-color: #FF6384;
+  }
+  32% {
+    border-color: #36A2EB;
+  }
+  40% {
+    border-color: #FFCE56;
+  }
+  48% {
+    border-color: #1dea49;
+  }
+  56% {
+    border-color: #ef1aae;
+  }
+  64% {
+    border-color: #0b04fa;
+  }
+  72% {
+    border-color: #9a1aa0;
+  }
+  80% {
+    border-color: #3f218c;
+  }
+  88% {
+    border-color: #ebfc05;
+  }
+  96% {
+    border-color: #ffa500;
   }
   100% {
-    border-color: $off-white;
+    border-color: #ff2500;
   }
 }
