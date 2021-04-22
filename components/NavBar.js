@@ -32,7 +32,7 @@ export default function NavBar() {
     })
 
     return (
-      <div key={i}>
+      <div className={styles.navCourses} key={i}>
         <Link href={`/courseDashboard`}>
           <div 
             className={styles.course}
@@ -50,7 +50,7 @@ export default function NavBar() {
         </Link>
 
         {(sharedState.currentCourse === course.id) &&
-        <div className={styles.courseButtons}>
+        <>
 
           {modules}
 
@@ -59,7 +59,7 @@ export default function NavBar() {
               <a>+ Add New Module</a>
             </div>
           </Link>
-        </div>
+        </>
         }
       </div>
     )
