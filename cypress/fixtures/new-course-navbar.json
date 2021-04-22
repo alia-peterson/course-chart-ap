@@ -1,0 +1,30 @@
+{
+  "data": [
+    {
+      "id": 2,
+      "name": "Nursing 101",
+      "modules": []
+    },
+    {
+      "id": 1,
+      "name": "Foundations of Nursing",
+      "modules": [
+        {"id": 1, "name": "Module 1", "courseId": 1},
+        {"id": 2, "name": "Module 2", "courseId": 1},
+        {"id": 3, "name": "Module 3", "courseId": 1},
+        {"id": 4, "name": "Module 4", "courseId": 1},
+        {"id": 5, "name": "Module 5", "courseId": 1},
+        {"id": 6, "name": "Module 6", "courseId": 1},
+        {"id": 7, "name": "Module 7", "courseId": 1},
+        {"id": 8, "name": "Module 8", "courseId": 1}
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Course 1",
+      "modules": []
+    }
+  ],
+  "message": "Courses found",
+  "status": 200
+}

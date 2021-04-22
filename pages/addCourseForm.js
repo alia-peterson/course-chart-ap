@@ -61,8 +61,8 @@ export default function addCourseForm() {
 
     if (response.message !== 'Course created successfully') {
       return alert('Sorry, there was an error adding your course.')
-    } 
-    
+    }
+
     setHasBeenUpdated(!hasBeenUpdated)
     router.push('/courseDashboard')
   }
@@ -82,7 +82,7 @@ export default function addCourseForm() {
       <div className={styles.container}>
         <div className={styles.inner}>
           <label htmlFor='institution'>
-            Institution Name: 
+            Institution Name:
           </label>
           <input
             type='text'
@@ -148,7 +148,7 @@ export default function addCourseForm() {
       <div className={styles.error}>
         <p>{errorMessage}</p>
       </div>
-      <button type='submit' className={styles.button}>Submit</button>
+      <button type='submit' className={styles.button}>+ Add Course</button>
     </form>
     </div>
   )

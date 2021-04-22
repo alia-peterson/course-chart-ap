@@ -1,0 +1,16 @@
+{
+    "data": {
+        "course": {
+            "id": 200,
+            "name": "Course 1",
+            "institution": "Turing",
+            "creditHours": 1,
+            "length": 4,
+            "goal": "11-12 hours",
+            "modules": []
+        },
+        "activityTotals": null
+    },
+    "message": "Course found",
+    "status": 200
+}
