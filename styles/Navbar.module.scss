@@ -49,9 +49,12 @@
 
 .courseButtons {
   overflow-y: scroll;
+  height: 100%;
   -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-color: $blue-dark;
   scrollbar-width: none; 
-  // max-height: 100%;
+  max-height: 100%;
+  margin:0;
 }
 
 .courseButtons,
@@ -60,7 +63,7 @@
   flex-direction: column;
   width: 100%;
   font-size: .9rem;
-  box-shadow: -1px 3px 15px rgb(27, 61, 89, 0.5);
+  box-shadow: inset -1px 3px 15px rgb(27, 61, 89, 0.5);
 
   a {
     padding: 0.5rem 0;
@@ -123,7 +126,7 @@
 .navButtons {
   cursor: pointer;
   border-top: 2rem solid $blue-dark;
-  position: absolute;
+  position: relative;
   bottom: 0;
 
   :hover {
@@ -139,3 +142,4 @@
   background-color: $gray-light;
   color: $blue-dark;
 }
+
