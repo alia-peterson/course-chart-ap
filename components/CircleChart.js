@@ -12,7 +12,6 @@ export default function CircleChart({ data, view }) {
   })
   
   const { sharedState } = useAppContext();
-  const activityColors = sharedState.activities.map(a => a.color)
 
   const getLabelPercent = p => {
     let number = Object.values(p)
@@ -40,6 +39,14 @@ const normalizeLabelLength = label => {
   });
 
   const chartData = sortedData.map((p) => Object.values(p));
+
+  let color = Object.fromEntries(sharedState.activities.map(a => [a.name, a.color]))
+
+  const activityColors = sortedData.map(d => {
+    let type = Object.keys(d)[0]
+    return color[type]})
+
+
   const datas = {
     labels: chartLabels,
     fontFamily: 'IBM Plex Sans',
