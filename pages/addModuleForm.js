@@ -180,13 +180,18 @@ export default function addModuleForm() {
   }
 
   return (
-    <>
+    <div className={styles.moduleForm}>
       <div className={styles.formHeading}>
-        <h1 className={styles.formTitle}>Add A Module</h1>
+        <h1 className={styles.formTitle}>
+          Add A Module
+        </h1>
         <div className={styles.formCourseInfo}>
-          <p className={styles.formCourse}>Course:</p>
-          <h2 className={styles.formCourseName}>{currentCourse ? currentCourse.name : ''}</h2>
-          
+          <p className={styles.formCourse}>
+            Course:
+          </p>
+          <h2 className={styles.formCourseName}>
+            {currentCourse ? currentCourse.name : ''}
+          </h2>
         </div>
       </div>
 
@@ -254,7 +259,7 @@ export default function addModuleForm() {
 
       </div>
 
-    </>
+    </div>
   )
 }
 

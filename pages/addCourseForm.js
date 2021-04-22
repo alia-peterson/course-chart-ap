@@ -68,7 +68,7 @@ export default function addCourseForm() {
   }
 
   return (
-    <div className={styles.moduleForm}>
+    <div className={styles.courseForm}>
       <div className={styles.courseFormHeading}>
         <div className={styles.courseFormTitleWrapper}>
           <h1 className={styles.courseFormTitle}>

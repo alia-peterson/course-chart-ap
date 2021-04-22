@@ -1,18 +1,19 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react"
 import { useRouter } from 'next/router'
 import { useAppContext } from '../context/app-context'
+import { patchData } from '../context/apiCalls'
+
 import styles from '../styles/addModuleForm.module.scss'
-import { patchData } from '../context/apiCalls';
 
 export default function editModuleForm() {
   const router = useRouter()
   const { sharedState, setSharedState } = useAppContext()
   const { hasBeenUpdated, setHasBeenUpdated } = useAppContext()
-  const [moduleName, setModuleName] = useState('')
-  const [totalInputMinutes, setTotalInputMinutes] = useState(0)
-  const [totalInputPercent, setTotalInputPercent] = useState(0)
-  const [barColor, setBarColor] = useState('')
-  const [currentCourse, setCurrentCourse] = useState({})
+  const [ moduleName, setModuleName ] = useState('')
+  const [ totalInputMinutes, setTotalInputMinutes ] = useState(0)
+  const [ totalInputPercent, setTotalInputPercent ] = useState(0)
+  const [ barColor, setBarColor ] = useState('')
+  const [ currentCourse, setCurrentCourse ] = useState({})
   let activities = sharedState.activities
   let activityIdAndInput = {}
 
@@ -20,7 +21,7 @@ export default function editModuleForm() {
 
   let states = 
     Object.fromEntries(Object.keys(activities).map(key => {
-      return [key, [useState(0), useState('')] ]
+      return [ key, [useState(0), useState('')] ]
   }))
 
   const calculateGoalMinutesRange = (course) => {
@@ -197,13 +198,18 @@ export default function editModuleForm() {
   }
 
   return (
-    <>
+    <div className={styles.moduleForm}>
       <div className={styles.formHeading}>
-        <h1 className={styles.formTitle}>Add A Module</h1>
+        <h1 className={styles.formTitle}>
+          Add A Module
+        </h1>
         <div className={styles.formCourseInfo}>
-          <p className={styles.formCourse}>Course:</p>
-          <h2 className={styles.formCourseName}>{currentCourse ? currentCourse.name : ''}</h2>
-          
+          <p className={styles.formCourse}>
+            Course:
+          </p>
+          <h2 className={styles.formCourseName}>
+            {currentCourse ? currentCourse.name : ''}
+          </h2>
         </div>
       </div>
 
@@ -271,6 +277,6 @@ export default function editModuleForm() {
 
       </div>
 
-    </>
+    </div>
   )
 }

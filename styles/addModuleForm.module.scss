@@ -1,10 +1,20 @@
 @import 'variables';
 
 /* form styling */
+
+.moduleForm {
+  width: 100%;
+  height: 100%;
+}
+
 .formHeading {
   @include form-box;
   width: 50%;
   height: 8rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1rem;
+  margin-bottom:5rem;
 
   .formTitle {
     text-align: center;
@@ -39,7 +49,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 1240px;
+  position: relative;
 
   .moduleInformation {
     margin: 2rem;

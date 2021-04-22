@@ -6,8 +6,6 @@ import { deleteData } from '../context/apiCalls'
 import { useRouter } from 'next/router'
 
 import styles from "../styles/moduleDashboard.module.scss";
-import { activities } from "../context/activities";
-import courseDashboard from "./courseDashboard";
 
 export default function moduleDashboard() {
   const { sharedState, setSharedState, hasBeenUpdated, setHasBeenUpdated } = useAppContext();
