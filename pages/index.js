@@ -27,10 +27,10 @@ export default function Home() {
       </div>
         <section className={styles.instructions}>
           <p className={styles.purpose}>
-            <span className={styles.inlineName}>CourseChart</span> Track and visualize tasks assigned to students with estimates of time needed to complete them.
+            <span className={styles.inlineName}>CourseChart</span> Track and visualize tasks assigned to students with estimates of the time needed to complete them.
             <br />
             <br />
-            See the breakdown of time on task for each module, and wholistically, each course.
+            See the breakdown of Time on Task for each module, and wholistically, for each course.
           </p>
           <p className={styles.general}>
             This can be used for: 
