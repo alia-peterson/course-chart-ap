@@ -10,8 +10,9 @@ export default function CircleChart({ data, view }) {
   const sortedData = filteredData.sort((a, b) => {
     return Object.values(b)[0] - Object.values(a)[0]
   })
-
-  const { activityColors } = useAppContext();
+  
+  const { sharedState } = useAppContext();
+  const activityColors = sharedState.activities.map(a => a.color)
 
   const getLabelPercent = p => {
     let number = Object.values(p)
@@ -45,7 +46,7 @@ const normalizeLabelLength = label => {
     datasets: [
       {
         data: chartData,
-        backgroundColor: activityColors,
+        backgroundColor: activityColors, 
         hoverBackgroundColor: activityColors,
       },
     ],
