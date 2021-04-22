@@ -78,8 +78,8 @@ const normalizeLabelLength = label => {
 
 
   return (
-    <div className={styles.chartContainer}>
-      <Doughnut className='circleChart' data={datas} options={options} width={400} height={250} />
+    <div className={styles.chartContainer} aria-label={`A color coded doughnut chart for the activities in a ${view}`}>
+      <Doughnut className='circleChart' data={datas} options={options} width={400} height={250}  />
     </div>
   );
 }
