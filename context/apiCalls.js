@@ -50,7 +50,6 @@ export const patchData = (type, body, id) => {
   };
   return fetch(url, settings)
   .then((response) => {
-      console.log('PATCHRESPONSE', response.status)
     if (!response.ok) {
       throw Error(response.statusText);
     }
