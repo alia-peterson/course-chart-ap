@@ -9,7 +9,7 @@ describe("calculations.js Jest testing", () => {
   const label = data.label;
   const allActivityTotals = data.allActivityTotals;
 
-  it("Should have a calculations object", () => {
+  it.only("Should have a calculations object", () => {
     expect(typeof calculations).toBe("object");
   });
 
