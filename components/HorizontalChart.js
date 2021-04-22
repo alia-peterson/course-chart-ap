@@ -6,7 +6,7 @@ import getColor from '../utilities/chartColors'
 import styles from '../styles/HorizontalChart.module.scss'
 
 export default function HorizontalChart({ activities }) {
-  const { activityColors } = useAppContext()
+  const { sharedState } = useAppContext()
 
   const moduleActivities = activities.reduce((acc, curr) => {
     const activity = {
@@ -31,7 +31,8 @@ export default function HorizontalChart({ activities }) {
     }, 0)
 
     const activities = moduleActivities[module].map((mod, j) => {
-      const color = getColor(mod.activityName)
+      let activityColor = Object.fromEntries(sharedState.activities.map(a => [a.name, a.color]))
+      const color = activityColor[mod.activityName]
       const styleObject = {
         'backgroundColor': `${color}`,
         'height': '100%',
