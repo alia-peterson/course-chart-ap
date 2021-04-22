@@ -23,7 +23,7 @@ export default function NavBar() {
                 })}}>
             <a>
             </a>
-            <a>
+            <a id={j}>
               {mod.name}
             </a>
           </div>
