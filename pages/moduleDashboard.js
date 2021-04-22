@@ -58,7 +58,7 @@ export default function moduleDashboard() {
       const minutes = activity.activity.multiplier * input
       const notes = activity.notes
       const description = activity.description
-      const color = sharedState.activities[activity.activity.id] ? sharedState.activities[activity.activity.id].color : 'blue'
+      const color = sharedState.activities[activity.activity.id] ? sharedState.activities[(activity.activity.id - 1)].color : 'blue'
       return (
         <div className={styles.moduleActivityInputs}>
           <div className={styles.moduleActivityInputsCircles} style={{border: `7px solid ${color}`}}>

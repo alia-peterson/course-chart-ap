@@ -107,129 +107,52 @@
 }
 
 @keyframes flash_border {
-  8% {
-    border-color: $blue-light;
-  }
-  16% {
-    border-color: $blue-dark;
-  }
-  24% {
-    border-color: #FF6384;
-  }
-  32% {
-    border-color: #36A2EB;
-  }
-  40% {
-    border-color: #FFCE56;
-  }
-  48% {
-    border-color: #1dea49;
-  }
-  56% {
-    border-color: #ef1aae;
-  }
-  64% {
-    border-color: #0b04fa;
-  }
-  72% {
-    border-color: #9a1aa0;
-  }
-  80% {
-    border-color: #3f218c;
-  }
-  88% {
-    border-color: #ebfc05;
-  }
-  96% {
-    border-color: #ffa500;
-  }
-  100% {
-    border-color: #ff2500;
-  }
+  8% {border-color: $color-1};
+  16% {border-color: $color-2};
+  24% {border-color: $color-3};
+  32% {border-color: $color-4};
+  40% {border-color: $color-5};
+  48% {border-color: $color-6};
+  56% {border-color: $color-7};
+  64% {border-color: $color-8};
+  72% {border-color: $color-9};
+  80% {border-color: $color-10};
+  88% {border-color: $color-11};
+  96% {border-color: $color-12};
+  100% {border-color: $color-13};
 }
 
 
 
 @-webkit-keyframes flash_border {
-  8% {
-    border-color: $blue-light;
-  }
-  16% {
-    border-color: $blue-dark;
-  }
-  24% {
-    border-color: #FF6384;
-  }
-  32% {
-    border-color: #36A2EB;
-  }
-  40% {
-    border-color: #FFCE56;
-  }
-  48% {
-    border-color: #1dea49;
-  }
-  56% {
-    border-color: #ef1aae;
-  }
-  64% {
-    border-color: #0b04fa;
-  }
-  72% {
-    border-color: #9a1aa0;
-  }
-  80% {
-    border-color: #3f218c;
-  }
-  88% {
-    border-color: #ebfc05;
-  }
-  96% {
-    border-color: #ffa500;
-  }
-  100% {
-    border-color: #ff2500;
-  }
+  8% {border-color: $color-1};
+  16% {border-color: $color-2};
+  24% {border-color: $color-3};
+  32% {border-color: $color-4};
+  40% {border-color: $color-5};
+  48% {border-color: $color-6};
+  56% {border-color: $color-7};
+  64% {border-color: $color-8};
+  72% {border-color: $color-9};
+  80% {border-color: $color-10};
+  88% {border-color: $color-11};
+  96% {border-color: $color-12};
+  100% {border-color: $color-13};
+
 }
 
 @-moz-keyframes flash_border {
-  8% {
-    border-color: $blue-light;
+  8% {border-color: $color-1};
+  16% {border-color: $color-2};
+  24% {border-color: $color-3};
+  32% {border-color: $color-4};
+  40% {border-color: $color-5};
+  48% {border-color: $color-6};
+  56% {border-color: $color-7};
+  64% {border-color: $color-8};
+  72% {border-color: $color-9};
+  80% {border-color: $color-10};
+  88% {border-color: $color-11};
+  96% {border-color: $color-12};
+  100% {border-color: $color-13};
   }
-  16% {
-    border-color: $blue-dark;
-  }
-  24% {
-    border-color: #FF6384;
-  }
-  32% {
-    border-color: #36A2EB;
-  }
-  40% {
-    border-color: #FFCE56;
-  }
-  48% {
-    border-color: #1dea49;
-  }
-  56% {
-    border-color: #ef1aae;
-  }
-  64% {
-    border-color: #0b04fa;
-  }
-  72% {
-    border-color: #9a1aa0;
-  }
-  80% {
-    border-color: #3f218c;
-  }
-  88% {
-    border-color: #ebfc05;
-  }
-  96% {
-    border-color: #ffa500;
-  }
-  100% {
-    border-color: #ff2500;
-  }
-}

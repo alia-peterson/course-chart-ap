@@ -34,7 +34,6 @@ const normalizeLabelLength = label => {
 
   const chartLabels = sortedData.map((p) => {
     let label =  normalizeLabelLength(`${getLabelPercent(p)}%  -  ${Object.keys(p)}`)
-    console.log(label, label.length)
     return label
   });
 
