@@ -6,9 +6,7 @@ context('Instructions Page', () => {
   })
 
   it.only('Goes to an istructions page when the instructions button in the sidebar is clicked', () => {
-    cy
-    .get('.instructions').click()
-    .url().should('include', '/instructions')
+
   })
 
   it('Gives an overview of the site and how to use it', () => {
