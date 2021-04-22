@@ -258,4 +258,3 @@ export default function addModuleForm() {
   )
 }
 
-//use a chartJS horizontal bar chart to make this look nicer?

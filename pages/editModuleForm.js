@@ -136,8 +136,15 @@ export default function editModuleForm() {
     router.push('/courseDashboard')
   }
 
+  const normalizeCircleLabelLength = (label, length) => {
+    let string = label.length > 1 ? label : '# of assignments'
+    let numSpaces = length - string.length
+    let spaces = new Array(numSpaces).fill(' ').join('')
+    return string + spaces
+  }
+
   const makeInputs = (activities) => {
-    if (sharedState[sharedState.currentCourse] && states) {
+
     const allInputs = Object.keys(activities).map((key, i) => (
         <div className={styles.inputStyle} key={i}>
 
@@ -145,7 +152,7 @@ export default function editModuleForm() {
             <p className={styles.minutesTotal}>
               {states[key][0][0] * activities[key].multiplier}
             </p>
-            <p className={styles.title} style={{border: `2px solid ${activities[key].color}`}}>
+            <p className={styles.title} style={{border: `4px solid ${activities[key].color}`}}>
               {activities[key].name}
             </p>
           </div>
@@ -154,18 +161,18 @@ export default function editModuleForm() {
             className={styles.circleLabel}
             htmlFor={key}
             aria-label={activities[key].name}>
-              {activities[key].metric}
+              {normalizeCircleLabelLength(activities[key].metric, 30)}
           </label>
           <input
-            className={styles.circleInput}
             style={{border: `10px solid ${activities[key].color}`}}
+            className={styles.circleInput}
             value={states[key][0][0]}
             id={activities[key].id}
             type="number"
             min='0'
             onChange={(event) => states[key][0][1](event.target.value)}/>
           <div className={styles.description}>
-            <p>{activities[key].description}</p>
+            {normalizeCircleLabelLength(activities[key].description, 70)}
           </div>
 
           <label
@@ -177,7 +184,8 @@ export default function editModuleForm() {
             style={{border: `2px solid ${activities[key].color}`}}
             className={styles.formNotes}
             value={states[key][1][0]}
-            id="notes"
+            name="notes"
+            id={i}
             rows="4"
             cols="50"
             onChange={(event) => states[key][1][1](event.target.value)}
@@ -186,57 +194,58 @@ export default function editModuleForm() {
       )
     )
     return allInputs
-    }
   }
 
   return (
-    <div className={styles.addModuleForm}>
-      <h1 className={styles.formPageTitle}>Edit Module</h1>
-      <p>
-        <span className={styles.courseLabel}>
-          Course:
-        </span>
-        <br />
-        {currentCourse ? currentCourse.name : ''}
-      </p>
+    <>
+      <div className={styles.formHeading}>
+        <h1 className={styles.formTitle}>Add A Module</h1>
+        <div className={styles.formCourseInfo}>
+          <p className={styles.formCourse}>Course:</p>
+          <h2 className={styles.formCourseName}>{currentCourse ? currentCourse.name : ''}</h2>
+          
+        </div>
+      </div>
 
-      <form onSubmit={addModule}>
+      <form onSubmit={addModule} className={styles.formBody}>
 
-        <div className={styles.moduleMetaData}>
-
+        <div className={styles.moduleInformation}>
           <label
             className={styles.formLabel}
             htmlFor="module-name"
             aria-label="Module Name">
-              Module Name
+              Module Name:
           </label>
           <input
-            className={styles.formInput}
+            className={styles.moduleNameInput}
             id="module-name"
             type="text"
             value={moduleName}
             onChange={(event) => {setModuleName(event.target.value)}}
             required />
-
         </div>
 
         <div className={styles.topLabels}>
           <p className={styles.topLabelMinutes}>
-            Total Minutes
+            TOTAL MINUTES 
           </p>
           <p className={styles.topLabelInput}>
-            INPUT 🖊
+            INPUT
           </p>
-          <p className={styles.topLabelTime}>Time Per Task</p>
-          <p className={styles.topLabelNotes}>Notes</p>
+          <p className={styles.topLabelTpT}>
+            TIME PER TASK
+          </p>
+          <p className={styles.topLabelNotes}>
+            NOTES
+          </p>
         </div>
 
-        {states && makeInputs(activities)}
+        {makeInputs(activities)}
 
         <button
           className={styles.submitButton}
           type="submit">
-            Edit Module
+            Add Module
         </button>
       </form>
 
@@ -262,6 +271,6 @@ export default function editModuleForm() {
 
       </div>
 
-      </div>
+    </>
   )
 }
