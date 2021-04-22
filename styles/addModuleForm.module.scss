@@ -3,8 +3,36 @@
 /* form styling */
 .formHeading {
   @include form-box;
-  text-align: center;
-  width: 80%;
+  width: 50%;
+  height: 8rem;
+
+  .formTitle {
+    text-align: center;
+    background-color: white;
+    border: 2px solid $blue-dark;
+    box-shadow: -1px 3px 15px rgb(27, 61, 89, 0.5);
+    padding: 0.5rem;
+    width: 130%;
+    margin-left: -15%;
+  }
+
+  .formCourseInfo {
+    font-size: small;
+    align-self: center;
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+
+    .formCourse {
+      font-size: small;
+      margin-right: 1rem;
+    }
+
+    .formCourseName {
+      font-size: bold;
+      font-size: small;
+    }
+  }
 }
 
 .formBody {
@@ -12,19 +40,20 @@
   flex-direction: column;
   align-items: center;
   width: 1240px;
-}
 
-.moduleInformation {
-  display: flex;
-  flex-flow: column;
-  width: 50%;
-
-  input {
-    border: 2px solid $blue-dark;
-    margin-bottom: 2rem;
-    padding: 0.5rem;
+  .moduleInformation {
+    margin: 2rem;
+    font-family: 'IBM Plex Mono', monospace;
+  
+    .moduleNameInput {
+      border: 2px solid $blue-dark;
+      margin-bottom: 1rem;
+      padding: .5rem 1rem;
+      resize: none;
+    }
   }
 }
+
 
 /* module activity fields */
 .inputStyle {
@@ -43,33 +72,43 @@
 }
 
 .minutesTotal {
-  height: 100%;
+  background-color: #E6E6E6;
+  padding: 2rem;
+  margin: 1.5rem -2rem 0rem 3rem;
   width: 5rem;
-  background-color: $gray-light;
-  padding: 1rem;
-  text-align: center;
-  margin: 2.5rem 2rem 5rem 2rem
+  height: 5rem;
+  border-radius: 58px;
+  position: relative;
+  bottom: 0rem;
+  right: 0rem;
+  z-index: 1;
 }
 
 .title {
   height: 100%;
   width: 20rem;
   border: 2px solid $blue-dark;
-  padding: 2.5rem 2rem 0rem 2rem;
   text-align: center;
-  margin: 0.7rem 4rem 3rem -2rem;
   font-weight: bold;
   padding: 1rem;
-  margin: 2.5rem 4rem 5rem -2rem;
+  margin: 2rem;
   word-break: break-word;
+  background-color: white;
+  z-index: 2;
 }
 
 .circleLabel {
-  width: 15%;
-  margin-left: -4rem;
+  width: 25%;
+  margin-left: -5rem;
   background-color: $gray-light;
   height: 2rem;
   min-width: 100px;
+  text-align: right;
+  padding: .5rem 2rem;
+  position: relative;
+  right: -1rem;
+  z-index: 1;
+  font-size: small;
 }
 
 .circleInput {
@@ -80,6 +119,7 @@
   border-radius: 70px;
   font-size: large;
   z-index: 2;
+  font-size: larger;
 }
 
 .description {
@@ -95,6 +135,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: small;
 }
 
 .formNotes {
@@ -112,25 +153,28 @@
 
 /* module activity header labels */
 .topLabels {
+  position: relative;
   display: flex;
+  flex-direction: row;
+  height: 4rem;
+  font-size: smaller;
   justify-content: space-around;
-  width: 1240px;
 
-  p {
-    text-decoration: underline;
+  .topLabelMinutes {
+    margin: 1rem 10rem 1rem 0rem
   }
-}
+  
+  .topLabelInput {
+    margin: 1rem 3rem 1rem 15rem;
+  }
 
-.topLabelMinutes {
-  margin-left: -2rem;
-}
-
-.topLabelInput {
-  padding-left: 21rem;
-}
-
-.topLabelNotes {
-  margin-right: 12rem;
+  .topLabelTpT {
+    margin: 1rem 2rem 1rem 1rem;
+  }
+  
+  .topLabelNotes {
+    margin: 1rem 9rem 1rem 10rem;
+  }
 }
 
 /* timebar styling */

@@ -53,7 +53,7 @@ const normalizeLabelLength = label => {
 
   const options = {
     layout: {
-      padding: 5
+      padding: 0
     },
     legend: {
       position: 'right',
@@ -64,7 +64,7 @@ const normalizeLabelLength = label => {
       fontFamily: 'IBM Plex Mono',
       fontSize: 18,
       fontColor: 'gray',
-      padding: 10
+      padding: 30
     }
     
     }
@@ -72,7 +72,7 @@ const normalizeLabelLength = label => {
 
   return (
     <div className={styles.chartContainer}>
-      <Doughnut className='circleChart' data={datas} options={options} width={300} height={150} />
+      <Doughnut className='circleChart' data={datas} options={options} width={400} height={250} />
     </div>
   );
 }

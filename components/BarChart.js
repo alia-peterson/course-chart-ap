@@ -48,7 +48,7 @@ const BarChart = (props) => {
         maintainAspectRatio: true,
         title: {
             display: true,
-            text: `Comparison of ${barData.label} for ${props.course.name}`,
+            text: `Comparison of Individual Task for ${props.course.name}`,
             fontSize: 18,
             fontFamily: 'IBM Plex Mono',
             fontColor: 'gray'
@@ -59,8 +59,6 @@ const BarChart = (props) => {
                     beginAtZero: true,
                     max: getMax(Object.values(barData.dataToDisplay))
                 },
-                // suggestedMax: 100,
-                // //Math.max(...Object.values(barData.dataToDisplay)) + 5,
                 display: true,
                 scaleLabel: {
                     display: true,
@@ -86,7 +84,7 @@ const BarChart = (props) => {
         return buttonTypes.map(type => ( 
             <button
                 className={styles.buttonChart}
-                style={{borderColor: `${type.color}`}}
+                style={{border: `4px solid ${type.color}`}}
                 onClick={() => changeData(`${type.name}`, type.color)}
                 >
                 {type.name}

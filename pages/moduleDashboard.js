@@ -94,10 +94,16 @@ export default function moduleDashboard() {
     <>
       {module && module.moduleActivities &&
       <>
-        <div className={styles.modHeader}>
-          <h1>{module.name}</h1>
-          <h4>Total Minutes Assigned</h4>
-          <p className={styles.totalModuleMinutes}>{totalMinutesAssigned()}</p>
+        <div className={styles.moduleHeader}>
+          <h1 className={styles.moduleName}>
+            {module.name}
+          </h1>
+          <div className={styles.moduleTimeInfo}>
+            <p className={styles.moduleTotal}>
+              Total Minutes Assigned:
+            </p>
+            <h2 className={styles.totalModuleMinutes}>{totalMinutesAssigned()}</h2>
+          </div>
         </div>
         {percentages.length &&
           <div className={styles.donut}>

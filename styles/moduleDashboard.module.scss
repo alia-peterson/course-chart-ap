@@ -1,14 +1,40 @@
 @import 'variables';
 
-.modHeader {
-  text-align: center;
-}
+.moduleHeader {
+  @include form-box;
+  width: 50%;
+  height: 8rem;
 
-.totalModuleMinutes {
-  text-align: center;
-  font-size: larger;
-  margin-top: -1rem;
-  margin-bottom: 2rem;
+  .moduleName {
+    text-align: center;
+    background-color: white;
+    border: 2px solid $blue-dark;
+    box-shadow: -1px 3px 15px rgb(27, 61, 89, 0.5);
+    padding: 0.5rem;
+    width: 130%;
+    margin-left: -15%;
+  }
+
+  .moduleTimeInfo {
+    font-size: small;
+    align-self: center;
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+
+    .moduleTotal {
+      font-size: small;
+      padding: 0;
+      margin: 0;
+      margin-right: .5rem;
+    }
+
+    .totalModuleMinutes {
+      font-size: small;
+      text-align: center;
+    }
+  }
+  
 }
 
 .moduleMetaData {
