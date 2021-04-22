@@ -5,13 +5,13 @@ context('Instructions Page', () => {
     cy.visit(baseUrl)
   })
 
-  it('Goes to an istructions page when the instructions button in the sidebar is clicked', () => {
+  it.only('Goes to an istructions page when the instructions button in the sidebar is clicked', () => {
     cy
     .get('.instructions').click()
     .url().should('include', '/instructions')
   })
 
-  it.only('Gives an overview of the site and how to use it', () => {
+  it('Gives an overview of the site and how to use it', () => {
     cy
     // .get('.instructions').click()
     // .url().should('include', '/instructions')

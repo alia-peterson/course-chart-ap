@@ -15,7 +15,11 @@ describe('Add Module Form', () => {
     .url().should('include', '/addModuleForm')
   })
 
-  it.only('Should have a heading and course info', () => {
+  it.only('Should have info', () => {
+
+  })
+
+  it('Should have a heading and course info', () => {
     cy
     .get('h1').should('contain', 'Add A Module')
     .get('h2').should('contain', 'Course:')

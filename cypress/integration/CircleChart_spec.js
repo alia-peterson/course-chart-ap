@@ -6,7 +6,11 @@ describe('Circle Chart', () => {
       cy.get("#1").click().wait(500);
     })
 
-    it.only('Should display the title of the doughnut chart on the course dashboard', () => {
+    it.only('Should display doughnut chart', () => {
+
+    })
+
+    it('Should display the title of the doughnut chart on the course dashboard', () => {
       cy.get('.dashboard_chartContainer__2OkxP').within(() => {
         cy.get('h2').should('contain', 'Activities in Course')
       })
