@@ -66,10 +66,9 @@ export default function addCourseForm() {
     setHasBeenUpdated(!hasBeenUpdated)
     router.push('/courseDashboard')
   }
-  
 
   return (
-    <>
+    <div className={styles.moduleForm}>
       <div className={styles.courseFormHeading}>
         <div className={styles.courseFormTitleWrapper}>
           <h1 className={styles.courseFormTitle}>
@@ -77,11 +76,14 @@ export default function addCourseForm() {
           </h1>
         </div>
       </div>
+
     <form className={styles.form} onSubmit={handleSubmit}>
 
       <div className={styles.container}>
         <div className={styles.inner}>
-          <label htmlFor='institution'>Institution Name: </label>
+          <label htmlFor='institution'>
+            Institution Name: 
+          </label>
           <input
             type='text'
             id='institution'
@@ -110,7 +112,9 @@ export default function addCourseForm() {
             id='hours'
             defaultValue='Select Credit Hours'
             >
-            <option disabled value='Select Credit Hours'>Select Credit Hours</option>
+            <option disabled value='Select Credit Hours'>
+              Select Credit Hours
+            </option>
             <option value='1'>1 Credit</option>
             <option value='2'>2 Credits</option>
             <option value='3'>3 Credits</option>
@@ -125,7 +129,9 @@ export default function addCourseForm() {
             id='length'
             defaultValue='Select Course Length'
             >
-            <option disabled value='Select Course Length'>Select Course Length</option>
+            <option disabled value='Select Course Length'>
+              Select Course Length
+            </option>
             <option value='4'>4 Weeks</option>
             <option value='5'>5 Weeks</option>
             <option value='7'>7 Weeks</option>
@@ -144,6 +150,6 @@ export default function addCourseForm() {
       </div>
       <button type='submit' className={styles.button}>Submit</button>
     </form>
-    </>
+    </div>
   )
 }
