@@ -48,7 +48,14 @@ export const calculations = {
       return activity.activityName.includes(label);
     });
 
-    return numOfMods.reduce((accumulator, modName) => {
+    const activitiesThatExist = allActivityTotals.reduce((acc, activity) => {
+      if (!acc.includes(activity.activityName)) {
+        acc.push(activity.activityName)
+      }
+      return acc
+    }, [])
+
+    const barDataObject =  numOfMods.reduce((accumulator, modName) => {
       let found = specificActivities.find((mod) => mod.moduleName === modName);
       if (found) {
         accumulator[modName] = found.minutes;
@@ -57,5 +64,10 @@ export const calculations = {
       }
       return accumulator;
     }, {});
+
+    return [barDataObject, activitiesThatExist]
   },
 };
+
+//{ keyModule: numMinutes 
+//}

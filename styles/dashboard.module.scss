@@ -76,12 +76,14 @@
   flex-direction: row;
   flex-wrap: wrap;
   margin-top: 25px;
+  justify-content: center;
 }
 
 .buttonChart {
   background-color: #ffffff;
   border: 2px solid;
   margin: 2px;
+  padding: .2rem;
 }
 
 .buttonDelete {
