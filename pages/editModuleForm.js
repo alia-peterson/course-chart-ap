@@ -251,7 +251,7 @@ export default function editModuleForm() {
         <button
           className={styles.submitButton}
           type="submit">
-            Add Module
+            Add Edits
         </button>
       </form>
 
