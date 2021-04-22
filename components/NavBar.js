@@ -92,9 +92,6 @@ export default function NavBar() {
             <a className='addCourse'>+ Add New Course</a>
           </div>
         </Link>
-        <Link href='/instructions'>
-          <a className='instructions'>Instructions</a>
-        </Link>
 
         <Link href='/contactDevelopers'>
           <a>Contact the Devs</a>

@@ -21,6 +21,7 @@ export default function addCourseForm() {
       const newCourseId = courses.data[newCourseIndex].id
       const stateCopy = sharedState
       stateCopy.currentCourse = newCourseId
+      console.log('NEWCOURSEID', newCourseId)
       setSharedState({...stateCopy})
     }
   }, [hasBeenUpdated])
@@ -60,11 +61,10 @@ export default function addCourseForm() {
 
     if (response.message !== 'Course created successfully') {
       return alert('Sorry, there was an error adding your course.')
-
-    } else {
-      setHasBeenUpdated(!hasBeenUpdated)
-      router.push('/courseDashboard')
-    }
+    } 
+    
+    setHasBeenUpdated(!hasBeenUpdated)
+    router.push('/courseDashboard')
   }
   
 

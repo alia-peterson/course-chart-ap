@@ -90,3 +90,7 @@
   @include button-primary;
   margin-bottom: 2rem;
 }
+
+.buttonDelete:hover {
+  background-color: darkred;
+}
