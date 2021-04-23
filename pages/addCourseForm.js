@@ -64,7 +64,8 @@ export default function addCourseForm() {
     } 
     
     setHasBeenUpdated(!hasBeenUpdated)
-    router.push('/courseDashboard')
+
+    router.push('/')
   }
 
   return (
