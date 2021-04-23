@@ -34,26 +34,26 @@ export default function Home() {
           </p>
           <div className={styles.bullets}>
           <p className={styles.general}>
-            This can be used for: 
+            This can be used for:
           </p>
             <ul className={styles.ul}>
               <li className={styles.li}>auditors looking to see if a course meets the standards for accredition</li>
-              <li className={styles.li}>teachers in order to plan module lessons and estimate the needed time     contributions for students based on their inputs</li>
-              <li className={styles.li}>teaching consultants and subject matter experts (SMEs) to provide insight on course design</li>
+              <li className={styles.li}>teachers planning module lessons and estimating the time contributions for students based on their inputs</li>
+              <li className={styles.li}>teaching consultants and subject matter experts (SMEs) hoping to provide insight on course design</li>
             </ul>
           <p className={styles.general}>
             To use CourseChart:
           </p>
           <ul className={styles.ul}>
             <li className={styles.li}>click on the "+ Add New Course" tab in the side bar</li>
-            <li className={styles.li}>input information about the course name, description, credit hours, duration  of course, and the institution associated</li>
+            <li className={styles.li}>input information about the institution name, course name, credit hours, and the duration  of course</li>
             <li className={styles.li}>click on the "+ Add Course" button at the bottom of the form to add a new course</li>
-            <li className={styles.li}>if you click any course in the sidebar, it will dropdown to show all modules for that course alongside a button to add a new module </li>
-            <li className={styles.li}>click on the "Add New Module" in the side bar to add another module to any course</li>
-            <li className={styles.li}>input information about the added Module including name, description, and # of inputs for various tasks assigned during that module</li>
-            <li className={styles.li}>the total time per each task will be displayed in a bar at the bottom as the task inputs are entered, along with a target hours per week for the course based on credit hours and duration</ li>
+            <li className={styles.li}>if you click any course in the sidebar, it will expand to show all modules for that course alongside a button to "+ Add New Module"</li>
+            <li className={styles.li}>click on the "+ Add New Module" in the side bar to add another module to any course</li>
+            <li className={styles.li}>input information about the added Module, including: name, description, and # of inputs for various activities assigned during that module</li>
+            <li className={styles.li}>the total time for each task will be displayed in a bar at the bottom as the task inputs are entered, along with a target hours-per-week for the course based on credit hours and duration</ li>
             <li className={styles.li}>the bar at the bottom of this page will be yellow if you're below the goal time of assignments per week (based on credit hours and length of course), it will turn orange when you're in the suggested goal range, and will be red if you go over!</ li>
-            <li className={styles.li}>you will also see time in minutes and hours as you update the form, for each individual task as you enter the input, as well as an overall total at the bottom</ li>
+            <li className={styles.li}>you will also see time in minutes and hours as you update the form for each individual task, as you enter the input, and as an overall total at the bottom of the page</ li>
             <li className={styles.li}>click on the "Add Module" button at the bottom of the form to add your module</li>
             <li className={styles.li}>click on the logo in the sidebar to come back to this page!</li>
           </ul>
