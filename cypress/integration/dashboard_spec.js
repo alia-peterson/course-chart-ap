@@ -102,13 +102,11 @@ context('Module Dashboard View', () => {
       .get('.HorizontalChart_container__2v6ne').should('be.visible')
   })
 
-  it.only('Should display the information specific to each activity', () => {
+  it.skip('Should display the information specific to each activity', () => {
     cy.get('nav').find('a[id=1]').click().wait(500)
     .get('nav').find('a[id=0]:last').click().wait(500)
-    cy.get('.moduleDashboard_moduleActivityInputsCircles__OOfLT').within(() => {
-      cy.get('p').should('contain', '107')
-      cy.get('p').should('contain', 'pages')
-    })
+    .get('p').should('contain', '107')
+    .get('p').should('contain', 'pages')
   })
 })
 

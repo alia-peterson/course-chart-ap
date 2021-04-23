@@ -27,9 +27,7 @@ describe('Circle Chart', () => {
     
     it('Should have an aria label on chart in module dashboard for accessibilty', () => {
       cy.get('nav').find('a').eq(3).click()
-      cy.get('.moduleDashboard_donut__2_Scj').within(() => {
-        cy.get('.dashboard_chartContainer__2OkxP').invoke('attr', 'aria-label').should('contain', 'A color coded doughnut chart for the activities in a Module')
-    })
+        .get('div#circle').invoke('attr', 'aria-label').should('contain', 'A color coded doughnut chart for the activities in a Course')
   })
   })
   
