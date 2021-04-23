@@ -101,7 +101,7 @@ export default function courseDashboard() {
           {activityTotals.length &&
             <div className={styles.chartContainer}>
               <h2>Activities Percentages Per Module</h2>
-              <HorizontalChart activities={activityTotals} />
+              <HorizontalChart className='horizontal-chart' activities={activityTotals} />
             </div>
           }
 

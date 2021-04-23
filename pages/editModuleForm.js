@@ -19,7 +19,7 @@ export default function editModuleForm() {
 
   const [currentModule, setCurrentModule] = useState({})
 
-  let states = 
+  let states =
     Object.fromEntries(Object.keys(activities).map(key => {
       return [ key, [useState(0), useState('')] ]
   }))
@@ -78,8 +78,8 @@ export default function editModuleForm() {
           arrayOfStates[1][1](activityIdAndInput[i+1][1])
         }
       })
-    
-      
+
+
 
     }
   }, [hasBeenUpdated])
@@ -233,7 +233,7 @@ export default function editModuleForm() {
 
         <div className={styles.topLabels}>
           <p className={styles.topLabelMinutes}>
-            TOTAL MINUTES 
+            TOTAL MINUTES
           </p>
           <p className={styles.topLabelInput}>
             INPUT
@@ -251,7 +251,7 @@ export default function editModuleForm() {
         <button
           className={styles.submitButton}
           type="submit">
-            Add Edits
+            Update Module
         </button>
       </form>
 
