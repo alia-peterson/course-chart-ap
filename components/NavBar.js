@@ -23,7 +23,7 @@ export default function NavBar() {
                 })}}>
             <a>
             </a>
-            <a>
+            <a id={j}>
               {mod.name}
             </a>
           </div>
@@ -32,7 +32,7 @@ export default function NavBar() {
     })
 
     return (
-      <div key={i}>
+      <div className={styles.navCourses} key={i}>
         <Link href={`/courseDashboard`}>
           <div 
             className={styles.course}
@@ -50,7 +50,7 @@ export default function NavBar() {
         </Link>
 
         {(sharedState.currentCourse === course.id) &&
-        <div className={styles.courseButtons}>
+        <>
 
           {modules}
 
@@ -59,7 +59,7 @@ export default function NavBar() {
               <a>+ Add New Module</a>
             </div>
           </Link>
-        </div>
+        </>
         }
       </div>
     )
@@ -91,9 +91,6 @@ export default function NavBar() {
           <div className={styles.courseButtons}>
             <a className='addCourse'>+ Add New Course</a>
           </div>
-        </Link>
-        <Link href='/instructions'>
-          <a className='instructions'>Instructions</a>
         </Link>
 
         <Link href='/contactDevelopers'>

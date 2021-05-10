@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@300&display=swap");
 
-$blue-dark: #1B3D59; //darker blue for backgrounds
+$blue-dark: #1b3d59; //darker blue for backgrounds
 $blue-light: #2E9BF0; // cyan for smaller backgrounds and details
 $blue-medium: #2D75AE; // color for new module/course buttons
 $gray-dark: #808080;
@@ -21,7 +21,7 @@ $off-white: #F9F9F9;
 
 @mixin form-box {
   background-color: $blue-light;
-  box-shadow: 6px 6px 6px $blue-medium;
+  box-shadow: -1px 3px 15px rgb(27, 61, 89, 0.5);
   color: black;
   display: flex;
   flex-direction: column;
@@ -46,17 +46,17 @@ $off-white: #F9F9F9;
 }
 
 /* graph colors */
-$color-1: #FF6384;
-$color-2: #36A2EB;
-$color-3: #FFCE56;
-$color-4: #1dea49;
-$color-5: #ef1aae;
-$color-6: #0b04fa;
-$color-7: #9a1aa0;
-$color-8: #3f218c;
-$color-9: #ebfc05;
-$color-10: #42e6d0;
-$color-11: #bb0935;
-$color-12: #5d9b35;
-$color-13: #ffa500;
-$color-14: #ff2500;
+$color-1:#8EA604;
+$color-2:#36A2EB;
+$color-3:#FFCE56;
+$color-4:#Fb4D3D;
+$color-5:#D90368;
+$color-6:#0b04fa;
+$color-7:#9a1aa0;
+$color-8:#5B59CE;
+$color-9:#2C663A;
+$color-10:#E65F5C;
+$color-11:#BB0000;
+$color-12:#5A9C2D;
+$color-13:#E9A321;
+$color-14:#BF3100;

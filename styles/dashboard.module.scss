@@ -1,15 +1,62 @@
 @import 'variables';
 
-.courseInformation {
+.courseHeader {
   @include form-box;
-  text-align: center;
-  width: 80%;
+  width: 50%;
+  height: 8rem;
+
+  .courseInformation {
+    text-align: center;
+    background-color: white;
+    border: 2px solid $blue-dark;
+    box-shadow: -1px 3px 15px rgb(27, 61, 89, 0.5);
+    padding: 0.5rem;
+    width: 130%;
+    margin-left: -15%;
+
+    .courseName {
+      margin: 0;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    .courseInstitution {
+      margin: 0.1rem;
+      font-weight: bolder;
+      font-size: 14px;
+    }
+  }
+
+  .courseTimeInformation {
+    font-size: small;
+    margin-top: 1rem;
+    align-self: center;
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+
+    .courseTime {
+      display: flex;
+      flex-direction: row;
+      margin: 0rem 2rem;
+      text-align: center;
+
+      h2 {
+        font-size: small;
+        margin-left: .5rem;
+      }
+    }
+  }
 }
 
 .courseGraphs {
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  .donut {
+    width: 100%;
+    max-width: 1000px;
+  }
 }
 
 .chartContainer {
@@ -19,22 +66,38 @@
   margin: auto;
   padding: 1rem 0;
   width: 80%;
+
+  h2 {
+    font-size: 18px;
+    color: gray;
+  }
+
+  .activityOptions {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 25px;
+    justify-content: center;
+
+    .buttonChart {
+      background-color: #ffffff;
+      border: 2px solid;
+      margin: 5px;
+      padding: .5rem;
+      font-size: small;
+    }
+  }
 }
 
-.activityOptions {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin-top: 25px;
-}
 
-.buttonChart {
-  background-color: #ffffff;
-  border: 2px solid;
-  margin: 2px;
-}
+
+
 
 .buttonDelete {
   @include button-primary;
   margin-bottom: 2rem;
+}
+
+.buttonDelete:hover {
+  background-color: darkred;
 }

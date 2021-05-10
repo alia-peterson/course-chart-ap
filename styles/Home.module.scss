@@ -17,4 +17,151 @@
   align-items: center;
   overflow: scroll;
   height: 100%;
+  box-shadow: -1px 3px 15px rgb(27, 61, 89, 0.5);
 }
+
+
+.welcome {
+  margin: 5rem;
+  color: $blue-dark;
+}
+
+.welcomeHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: $blue-dark;
+
+  .welcomeTitle {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+}
+
+.instructions {
+  margin: 1rem 10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .purpose {
+    @include form-box;
+    width: 60%;
+    min-width: 20rem;
+  }
+
+  .bullets {
+    max-width: 50rem;
+  }
+
+  .inlineName {
+    text-align: center;
+    background-color: white;
+    border: 2px solid $blue-dark;
+    box-shadow: -1px 3px 15px rgb(27, 61, 89, 0.5);
+    padding: 0.5rem;
+    width: 130%;
+    margin-left: -15%;
+    margin-bottom: 2rem;
+    font-weight: bold;
+    font-size: 18px;
+    font-family: 'IBM Plex Mono', monospace;
+    color: $blue-dark;
+  }
+
+  .ul {
+    font-family: 'IBM Plex Sans';
+
+    .li {
+        padding: .5rem;
+    }
+  }
+
+  .general {
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  .bold {
+    font-weight: bold;
+  }
+}
+
+
+
+
+
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  width: 100px;
+  border: 10px solid $blue-dark;
+  border-radius: 50%;
+  background-color: $off-white;
+  cursor: pointer;
+  animation-name: flash_border;
+  animation-duration: 15s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  -webkit-animation-name: flash_border;
+  -webkit-animation-duration: 15s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation-name: flash_border;
+  -moz-animation-duration: 15s;
+  -moz-animation-timing-function: linear;
+  -moz-animation-iteration-count: infinite;
+}
+
+@keyframes flash_border {
+  8% {border-color: $color-1};
+  16% {border-color: $color-2};
+  24% {border-color: $color-3};
+  32% {border-color: $color-4};
+  40% {border-color: $color-5};
+  48% {border-color: $color-6};
+  56% {border-color: $color-7};
+  64% {border-color: $color-8};
+  72% {border-color: $color-9};
+  80% {border-color: $color-10};
+  88% {border-color: $color-11};
+  96% {border-color: $color-12};
+  100% {border-color: $color-13};
+}
+
+
+
+@-webkit-keyframes flash_border {
+  8% {border-color: $color-1};
+  16% {border-color: $color-2};
+  24% {border-color: $color-3};
+  32% {border-color: $color-4};
+  40% {border-color: $color-5};
+  48% {border-color: $color-6};
+  56% {border-color: $color-7};
+  64% {border-color: $color-8};
+  72% {border-color: $color-9};
+  80% {border-color: $color-10};
+  88% {border-color: $color-11};
+  96% {border-color: $color-12};
+  100% {border-color: $color-13};
+
+}
+
+@-moz-keyframes flash_border {
+  8% {border-color: $color-1};
+  16% {border-color: $color-2};
+  24% {border-color: $color-3};
+  32% {border-color: $color-4};
+  40% {border-color: $color-5};
+  48% {border-color: $color-6};
+  56% {border-color: $color-7};
+  64% {border-color: $color-8};
+  72% {border-color: $color-9};
+  80% {border-color: $color-10};
+  88% {border-color: $color-11};
+  96% {border-color: $color-12};
+  100% {border-color: $color-13};
+  }

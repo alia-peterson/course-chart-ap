@@ -68,28 +68,40 @@ export default function courseDashboard() {
   return (
     <>
       {course &&
-      <section className={styles.courseInformation}>
-        <h1>{course.name}</h1>
-        <p>
-          Institution: {course.institution}
-          <br />
-          Credit Hours: {course.creditHours}
-          <br />
-          Length: {course.length} Weeks
-        </p>
-      </section>
+      <div className={styles.courseHeader}>
+        <section className={styles.courseInformation}>
+          <h1 className={styles.courseName}>
+            {course.name}
+          </h1>
+          <p className={styles.courseInstitution}>
+            {course.institution}
+          </p>
+        </section>
+        <div className={styles.courseTimeInformation}>
+            <div className={styles.courseTime}>
+              <p>Credit Hours:</p> 
+              <h2>{course.creditHours}</h2>
+            </div>
+            <div className={styles.courseTime}>
+              <p>Length:</p> 
+              <h2>{course.length} Weeks</h2>
+            </div>
+        </div>
+      </div>
       }
 
       {course.modules &&
         <section className={styles.courseGraphs}>
           {courseActivityPercentages.length > 0 &&
-            <CircleChart data={courseActivityPercentages} view={'Course'}/>
+            <div className={styles.donut}>
+              <CircleChart data={courseActivityPercentages} view={'Course'}/>
+            </div>
           }
 
           {activityTotals.length &&
             <div className={styles.chartContainer}>
               <h2>Activities Percentages Per Module</h2>
-              <HorizontalChart activities={activityTotals} />
+              <HorizontalChart className='horizontal-chart' activities={activityTotals} />
             </div>
           }
 

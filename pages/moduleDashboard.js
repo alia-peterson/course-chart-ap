@@ -6,8 +6,6 @@ import { deleteData } from '../context/apiCalls'
 import { useRouter } from 'next/router'
 
 import styles from "../styles/moduleDashboard.module.scss";
-import { activities } from "../context/activities";
-import courseDashboard from "./courseDashboard";
 
 export default function moduleDashboard() {
   const { sharedState, setSharedState, hasBeenUpdated, setHasBeenUpdated } = useAppContext();
@@ -50,23 +48,30 @@ export default function moduleDashboard() {
       }
   }
 
+  const sortActivities = activities => {
+    return activities.sort((a,b) => {
+      return a.notes.length - b.notes.length
+    })
+  }
   const activityInputs = (activities) => {
-    return activities.map(activity => {
+    const sortedActivities = sortActivities(activities)
+    return sortedActivities.map((activity, i) => {
       const input = activity.input
       const metric = activity.activity.metric ? activity.activity.metric.split(' ')[2] : 'assignments'
       const name = activity.activity.name
       const minutes = activity.activity.multiplier * input
       const notes = activity.notes
       const description = activity.description
-      const color = sharedState.activities[activity.activity.id] ? sharedState.activities[activity.activity.id].color : 'blue'
+      const color = sharedState.activities[activity.activity.id] ? sharedState.activities[(activity.activity.id - 1)].color : 'blue'
       return (
-        <div className={styles.moduleActivityInputs}>
+        <div className={styles.moduleActivityInputs} key={i}>
           <div className={styles.moduleActivityInputsCircles} style={{border: `7px solid ${color}`}}>
-            <p>{input} {metric}</p>
+            <p>{input}</p>
+            <p className={styles.moduleMetric}>{metric}</p>
           </div>
           <section className={styles.moduleActivitySideInfo}>
             <div className={styles.moduleActivityNameNotes}>
-              <p style={{backgroundColor: `${color}`, color: `white`}}>{name}</p>
+              <p className={styles.moduleActivityName} style={{backgroundColor: `${color}`, color: `white`}}>{name}</p>
               <p className={styles.moduleNotes}>{notes}</p>
             </div>
             <div className={styles.moduleActivityTimeNotes}>
@@ -94,14 +99,25 @@ export default function moduleDashboard() {
     <>
       {module && module.moduleActivities &&
       <>
-        <div className={styles.modHeader}>
-          <h1>{module.name}</h1>
-          <h4>Total Minutes Assigned</h4>
-          <p className={styles.totalModuleMinutes}>{totalMinutesAssigned()}</p>
+        <div className={styles.moduleHeader}>
+          <h1 className={styles.moduleName}>
+            {module.name}
+          </h1>
+          <div className={styles.moduleTimeInfo}>
+            <p className={styles.moduleTotal}>
+              Total Minutes Assigned:
+            </p>
+            <h2 className={styles.totalModuleMinutes}>{totalMinutesAssigned()}</h2>
+          </div>
         </div>
-        {percentages.length && 
-          <CircleChart data={percentages} view={'Module'} />}
+        {percentages.length &&
+          <div className={styles.donut}>
+            <CircleChart data={percentages} view={'Module'} />
+          </div> 
+        }
+        <div className={styles.moduleActWrapper}>
           {activityInputs(module.moduleActivities)}
+        </div>
           <div className={styles.buttons}>
             <button className={styles.editButton} onClick={editMod}>Edit Module</button>
             <button className={styles.deleteButton} onClick={deleteMod}>Delete Module</button>

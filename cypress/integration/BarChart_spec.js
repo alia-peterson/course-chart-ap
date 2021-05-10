@@ -10,93 +10,17 @@ describe('Dashboard View', () => {
     cy.get('#1').click()
   })
   
-    it.only('Has a canvas', () => {
+    it('Should display a canvas tag for a bar chart', () => {
       cy.get('.barChart').within(() => {
         cy.get('canvas')
       })
     })
 
-    it('Has a button for Readings (understand)', () => {
+    it('Should have buttons for each each activity to change the display of the bar chart', () => {
       cy.get('.barChart').within(() => {
-        cy.get('button').eq(0).contains('Readings (understand)')
-      })
-    })
-
-    it('Has a button for Readings (study guide)', () => {
-      cy.get('.barChart').within(() => {
-      cy.get('button').eq(1).contains('Readings (study guide)')
-      })
-    })
-
-    it('Has a button for Writings (research)', () => {
-      cy.get('.barChart').within(() => {
-      cy.get('button').eq(2).contains('Writings (research)')
-      })
-    })
-
-    it('Has a button for Writings (reflection)', () => {
-      cy.get('.barChart').within(() => {
-      cy.get('button').eq(3).contains('Writings (reflection)')
-      })
-    })
-
-    it('Has a button for Lessons Objects (matching/multiple choice)', () => {
-      cy.get('.barChart').within(() => {
-      cy.get('button').eq(4).contains('Lessons Objects (matching/multiple choice)')
-      })
-    })
-
-    it('Has a button for Lessons Objects (case study)', () => {
-      cy.get('.barChart').within(() => {
-      cy.get('button').eq(5).contains('Lessons Objects (case study)')
-      })
-    })
-
-    it('Has a button for Lecture', () => {
-      cy.get('.barChart').within(() => {
-      cy.get('button').eq(6).contains('Lecture')
-      })
-    })
-
-    it('Has a button for Videos', () => {
-      cy.get('.barChart').within(() => {
-      cy.get('button').eq(7).contains('Videos')
-      })
-    })
-
-    it('Has a button for Websites', () => {
-      cy.get('.barChart').within(() => {
-      cy.get('button').eq(8).contains('Websites')
-      })
-    })
-
-    it('Has a button for Discussion Boards', () => {
-      cy.get('.barChart').within(() => {
-      cy.get('button').eq(9).contains('Discussion Boards')
-      })
-    })
-
-    it('Has a button for Quizzes', () => {
-      cy.get('.barChart').within(() => {
-      cy.get('button').eq(10).contains('Quizzes')
-      })
-    })
-
-    it('Has a button for Exams', () => {
-      cy.get('.barChart').within(() => {
-      cy.get('button').eq(11).contains('Exams')
-      })
-    })
-
-    it('Has a button for Self Assessments', () => {
-      cy.get('.barChart').within(() => {
-      cy.get('button').eq(12).contains('Self Assessments')
-      })
-    })
-
-    it('Has a button for Miscellaneous', () => {
-      cy.get('.barChart').within(() => {
-      cy.get('button').eq(13).contains('Miscellaneous')
+        cy.get('section').within(() => {
+          cy.get('button').should('have.text', 'Reading (understand)')
+        })
       })
     })
 })

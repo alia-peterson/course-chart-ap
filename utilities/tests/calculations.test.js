@@ -75,12 +75,19 @@ describe("calculations.js Jest testing", () => {
   it("Should take in an object of a course, an activity label, and an array of activityTotals for that mod, returning formatted data that is input in the bar graph", () => {
     expect(
       calculations.formatDataForBarChart(course, label, allActivityTotals)
-    ).toEqual({
-      "Module 1": 642,
-      "Module 2": 318,
-      "Module 3": 396,
-      "Module 4": 630,
-      "Module 5": 312,
-    });
+    ).toStrictEqual([
+      {"Module 1": 642, 
+      "Module 2": 318, 
+      "Module 3": 396, 
+      "Module 4": 630, 
+      "Module 5": 312}, 
+      ["Reading (understand)", 
+      "Reading (study guide)", 
+      "Writing (reflection)", 
+      "Learning Objects (matching/multiple choice)", 
+      "Learning Objects (case study)", 
+      "Videos", "Discussion Boards", 
+      "Quizzes", "Self Assessments"]
+    ]);
   });
 });

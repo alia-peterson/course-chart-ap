@@ -1,87 +1,148 @@
 @import 'variables';
 
-.modHeader {
-  text-align: center;
-}
+.moduleHeader {
+  @include form-box;
+  width: 50%;
+  height: 8rem;
 
-.totalModuleMinutes {
-  text-align: center;
-  font-size: larger;
-  margin-top: -1rem;
-  margin-bottom: 2rem;
+  .moduleName {
+    text-align: center;
+    background-color: white;
+    border: 2px solid $blue-dark;
+    box-shadow: -1px 3px 15px rgb(27, 61, 89, 0.5);
+    padding: 0.5rem;
+    width: 130%;
+    margin-left: -15%;
+  }
+
+  .moduleTimeInfo {
+    font-size: small;
+    align-self: center;
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+
+    .moduleTotal {
+      font-size: small;
+      padding: 0;
+      margin: 0;
+      margin-right: .5rem;
+    }
+
+    .totalModuleMinutes {
+      font-size: small;
+      text-align: center;
+    }
+  }
+  
 }
 
 .moduleMetaData {
   color: blue;
 }
 
-.moduleActivityInputs {
-  color: white;
-  display: flex;
-  flex-direction: row;
-  margin: 2rem;
-}
+.moduleActWrapper {
+  display:grid;
+  width: 95%;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  grid-gap: 1rem;
 
-.moduleActivityInputsCircles {
-  padding: 1.5rem;
-  color: #1B3D59;
-  background-color: white;
-  width: 10rem;
-  height: 10rem;
-  border-radius: 85px;
-  font-size: large;
-  z-index: 2;
-  position: relative;
-  left: 5rem;
-  bottom: 0rem;
-  text-align: center;
+  .moduleActivityInputs {
+    color: white;
+    display: flex;
+    flex-direction: row;
+    margin: 0.5rem;
+    min-width: 25rem;
 
-  p {
-    padding-top: 1rem;
+    .moduleMetric {
+      font-size: small;
+      position: relative;
+      top: -25px;
+    }
   }
 
-}
+  .moduleActivityInputsCircles {
+    color: #1B3D59;
+    background-color: white;
+    min-width: 100px;
+    min-height: 100px;
+    width: 100px;
+    height: 100px;
+    max-width: 100px;
+    max-height: 100px;
+    border-radius: 100px;
+    font-size: small;
+    z-index: 2;
+    position: relative;
+    left: 2rem;
+    bottom: 0rem;
+    text-align: center;
 
-.moduleActivitySideInfo {
-  display: flex;
-  flex-direction: column;
-  width: 40vw;
-  z-index: 1;
+    p {
+      font-weight: bold;
+      padding-top: 10px;
+      font-size: larger;
+    }
 
-}
+  }
 
-.moduleNotes {
-  padding: 0rem 0rem 0rem 7rem;
-}
+  .moduleActivitySideInfo {
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+    width: 54rem;
 
-.moduleActivityNameNotes {
-  color: $blue-dark;
-}
+    .moduleActivityName {
+      padding: 0rem 3.2rem;
+    }
 
-.moduleActivityTimeNotes {
-  background-color: $gray-dark;
-}
+  }
 
-.moduleActivityNameNotes, .moduleActivityTimeNotes {
-  text-align: center;
+  .moduleNotes {
+    padding: 0rem 2rem 0rem 3rem;
+    text-align: left;
+  }
+
+  .moduleActivityNameNotes {
+    color: $blue-dark;
+    font-size: smaller;
+  }
+
+  .moduleActivityTimeNotes {
+    background-color: $gray-dark;
+    padding-top: 5px;
+    height: 30px;
+    p {
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+  .moduleActivityNameNotes, .moduleActivityTimeNotes {
+    text-align: center;
+  }
 }
 
 .deleteButton, .editButton {
-  align-self: center;
-  background-color: $blue-medium;
-  color: $off-white;
-  font-weight: bold;
-  margin-bottom: 5rem;
-  padding: .5rem;
-  cursor: pointer;
+  @include button-primary;
+  margin-bottom: 2rem;
+
 }
 
 .editButton:hover {
-  border: 2px solid $blue-dark;
-  transform: scale(1.2);
+  background-color: $blue-light;
+}
+
+.deleteButton:hover {
+  background-color: darkred;
 }
 
 .buttons {
   display: flex;
   justify-content: space-evenly;
+}
+
+.donut {
+  width: 100%;
+  max-width: 1000px;
 }

@@ -5,20 +5,20 @@ const AppContext = createContext();
 
 export function AppWrapper({ children }) {
     const activityColors = [
-        "#FF6384",
+        "#8EA604",
         "#36A2EB",
         "#FFCE56",
-        "#1dea49",
-        "#ef1aae",
-        "#0b04fa",
+        "#Fb4D3D",
+        "#D90368",
+        "#0B04FA",
         "#9a1aa0",
-        "#3f218c",
-        "#ebfc05",
-        "#42e6d0",
-        "#bb0935",
-        "#5d9b35",
-        '#ffa500',
-        '#ff2500'
+        "#5B59CE",
+        "#2C663A",
+        "#E65F5C",
+        "#BB0000",
+        "#5A9C2D",
+        '#E9A321',
+        '#BF3100'
     ]
     const [hasBeenUpdated, setHasBeenUpdated] = useState(false)
     const [sharedState, setSharedState] = useState({

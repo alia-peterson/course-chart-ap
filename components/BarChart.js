@@ -6,35 +6,42 @@ import { calculations } from '../utilities/calculations';
 import styles from '../styles/dashboard.module.scss';
 
 const BarChart = (props) => {
-    const { activityColors } = useAppContext()
+    const { activityColors, sharedState } = useAppContext()
 
     const [barData, setData] = useState({
         label: 'Reading (understand)',
         dataToDisplay: {},
         color: activityColors[0],
         course: props.course,
-        activityTotals: props.activityTotals
+        activityTotals: props.activityTotals,
+        activitiesThatExist: []
     })
 
+
     useEffect(() => {
-        let dataToDisplay = calculations.formatDataForBarChart(props.course, barData.label, props.activityTotals)
-        setData({ ...barData, dataToDisplay })
+        let [ dataToDisplay, activitiesThatExist ] = calculations.formatDataForBarChart(props.course, barData.label, props.activityTotals)
+        setData({ ...barData, dataToDisplay, activitiesThatExist })
     }, [props.activityTotals])
 
     const changeData = (dataType, color) => {
-            let dataToDisplay = calculations.formatDataForBarChart(props.course, dataType, props.activityTotals)
-            setData({ label: dataType, dataToDisplay, color })
-        }
+            let [ dataToDisplay, activitiesThatExist ]  = calculations.formatDataForBarChart(props.course, dataType, props.activityTotals)
+            setData({ label: dataType, dataToDisplay, color, activitiesThatExist  })
+    }
 
     const data = {
         labels: Object.keys(barData.dataToDisplay),
         datasets: [{
-          label: barData.label,
-          data: Object.values(barData.dataToDisplay),
-          backgroundColor: `${barData.color}`,
-          borderColor: `${barData.color}`,
-          borderWidth: 1
+            label: barData.label,
+            data: Object.values(barData.dataToDisplay),
+            backgroundColor: `${barData.color}`,
+            borderColor: `${barData.color}`,
+            borderWidth: 1
         }]
+    }
+
+    const getMax = arrNums => {
+        const num = Math.max(...arrNums) + 10
+        return Math.ceil((num / 10)) * 10
     }
 
     const opts = {
@@ -42,18 +49,22 @@ const BarChart = (props) => {
         title: {
             display: true,
             text: `Comparison of Individual Task for ${props.course.name}`,
-            fontSize: 16,
+            fontSize: 18,
+            fontFamily: 'IBM Plex Mono',
+            fontColor: 'gray'
         },
         scales: {
             yAxes: [{
                 ticks: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    max: getMax(Object.values(barData.dataToDisplay))
                 },
                 display: true,
                 scaleLabel: {
                     display: true,
                     labelString: 'Minutes',
-                    fontStyle: 'bold'
+                    fontStyle: 'bold',
+                    fontFamily: 'IBM Plex Sans'
                 }
             }],
             xAxes: [{
@@ -61,13 +72,26 @@ const BarChart = (props) => {
                 scaleLabel: {
                     display: true,
                     labelString: 'Module',
-                    fontStyle: 'bold'
+                    fontStyle: 'bold', 
+                    fontFamily: 'IBM Plex Sans'
                 }
             }]
-        }
+        },
     }
 
-
+    const buttons = activityTypes => {
+        const buttonTypes = activityTypes.filter(types => barData.activitiesThatExist.includes(types.name))
+        return buttonTypes.map((type, i) => ( 
+            <button
+                key={i}
+                className={styles.buttonChart}
+                style={{border: `4px solid ${type.color}`}}
+                onClick={() => changeData(`${type.name}`, type.color)}
+                >
+                {type.name}
+            </button>
+        ))
+    }
 
     return (
         <div className='barChart'>
@@ -78,104 +102,8 @@ const BarChart = (props) => {
                 options={opts}
             />
             <section className={styles.activityOptions}>
-                <button
-                    className={styles.buttonChart}
-                    style={{borderColor: `${activityColors[0]}`}}
-                    onClick={() => changeData('Reading (understand)', activityColors[0])}
-                >
-                    Readings (understand)
-                </button>
-                <button
-                    className={styles.buttonChart}
-                    style={{borderColor: `${activityColors[1]}`}}
-                    onClick={() => changeData('Reading (study guide)', activityColors[1])}
-                >
-                    Readings (study guide)
-                </button>
-                <button
-                    className={styles.buttonChart}
-                    style={{borderColor: `${activityColors[2]}`}}
-                    onClick={() => changeData('Writings (research)', activityColors[2])}
-                >
-                    Writings (research)
-                </button>
-                <button
-                    className={styles.buttonChart}
-                    style={{borderColor: `${activityColors[3]}`}}
-                    onClick={() => changeData('Writings (reflection)', activityColors[3])}
-                >
-                    Writings (reflection)
-                </button>
-                <button
-                    className={styles.buttonChart}
-                    style={{borderColor: `${activityColors[4]}`}}
-                    onClick={() => changeData('Lessons Objects (matching/multiple choice)', activityColors[4])}
-                >
-                    Lessons Objects (matching/multiple choice)
-                </button>
-                <button
-                    className={styles.buttonChart}
-                    style={{borderColor: `${activityColors[5]}`}}
-                    onClick={() => changeData('Lessons Objects (case study)', activityColors[5])}
-                >
-                    Lessons Objects (case study)
-                </button>
-                <button
-                    className={styles.buttonChart}
-                    style={{borderColor: `${activityColors[6]}`}}
-                    onClick={() => changeData('Lecture', activityColors[6])}
-                >
-                    Lecture
-                </button>
-                <button
-                    className={styles.buttonChart}
-                    style={{borderColor: `${activityColors[7]}`}}
-                    onClick={() => changeData('Videos', activityColors[7])}
-                >
-                    Videos
-                </button>
-                <button
-                    className={styles.buttonChart}
-                    style={{borderColor: `${activityColors[8]}`}}
-                    onClick={() => changeData('Websites', activityColors[8])}
-                >
-                    Websites
-                </button>
-                <button
-                    className={styles.buttonChart}
-                    style={{borderColor: `${activityColors[9]}`}}
-                    onClick={() => changeData('Discussion Boards', activityColors[9])}
-                >
-                    Discussion Boards
-                </button>
-                <button
-                    className={styles.buttonChart}
-                    style={{borderColor: `${activityColors[10]}`}}
-                    onClick={() => changeData('Quizzes', activityColors[10])}
-                >
-                    Quizzes
-                </button>
-                <button
-                    className={styles.buttonChart}
-                    style={{borderColor: `${activityColors[11]}`}}
-                    onClick={() => changeData('Exams', activityColors[11])}
-                >
-                    Exams
-                </button>
-                <button
-                    className={styles.buttonChart}
-                    style={{borderColor: `${activityColors[12]}`}}
-                    onClick={() => changeData('Self Assessments', activityColors[12])}
-                >
-                    Self Assessments
-                </button>
-                <button
-                    className={styles.buttonChart}
-                    style={{borderColor: `${activityColors[13]}`}}
-                    onClick={() => changeData('Miscellaneous', activityColors[13])}
-                >
-                    Miscellaneous
-                </button>
+                {barData.activitiesThatExist &&
+                buttons(sharedState.activities)}
             </section>
         </div>
     )
