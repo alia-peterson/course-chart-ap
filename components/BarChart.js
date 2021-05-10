@@ -81,8 +81,9 @@ const BarChart = (props) => {
 
     const buttons = activityTypes => {
         const buttonTypes = activityTypes.filter(types => barData.activitiesThatExist.includes(types.name))
-        return buttonTypes.map(type => ( 
+        return buttonTypes.map((type, i) => ( 
             <button
+                key={i}
                 className={styles.buttonChart}
                 style={{border: `4px solid ${type.color}`}}
                 onClick={() => changeData(`${type.name}`, type.color)}

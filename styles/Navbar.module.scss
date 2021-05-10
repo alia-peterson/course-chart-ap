@@ -52,10 +52,13 @@
   overflow-y: scroll;
   height: 100%;
   -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-color: $blue-dark;
   scrollbar-width: none; 
   max-height: 100%;
-  margin:0;
+  margin: 0;
+}
+
+.courseButtons::-webkit-scrollbar {
+  display: none;
 }
 
 .courseButtons,
@@ -144,4 +147,3 @@
   background-color: $gray-light;
   color: $blue-dark;
 }
-

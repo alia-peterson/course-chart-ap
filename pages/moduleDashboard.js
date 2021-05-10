@@ -55,7 +55,7 @@ export default function moduleDashboard() {
   }
   const activityInputs = (activities) => {
     const sortedActivities = sortActivities(activities)
-    return sortedActivities.map(activity => {
+    return sortedActivities.map((activity, i) => {
       const input = activity.input
       const metric = activity.activity.metric ? activity.activity.metric.split(' ')[2] : 'assignments'
       const name = activity.activity.name
@@ -64,7 +64,7 @@ export default function moduleDashboard() {
       const description = activity.description
       const color = sharedState.activities[activity.activity.id] ? sharedState.activities[(activity.activity.id - 1)].color : 'blue'
       return (
-        <div className={styles.moduleActivityInputs}>
+        <div className={styles.moduleActivityInputs} key={i}>
           <div className={styles.moduleActivityInputsCircles} style={{border: `7px solid ${color}`}}>
             <p>{input}</p>
             <p className={styles.moduleMetric}>{metric}</p>
