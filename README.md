@@ -4,7 +4,7 @@ Sometimes you have to xcel: at CourseChart, we help you excell.
 
 Educators and those helping them have enough to do without poorly designed tools. Leave behind the stress of course planning, time on task visualization, and unhelpful spreadsheets filled with hours of buggy copy-pasting.
 
-[CourseChart](https://course-chart-fe.vercel.app/) is here to help!
+[CourseChart](https://course-chart-ap.vercel.app/) is here to help!
 
 This is a tool for:
 - Teachers planning courses
@@ -64,8 +64,3 @@ We completed this project in a tight turnaround, and had more ideas than time. F
 - overarching metrics for course inputs, etc.
 - ability to update activities/multiplier for time totals
   - this project had this in mind and is designed to make this easily implemented
-- 
-
-## In Action
-
-![GIF of functionality]()
